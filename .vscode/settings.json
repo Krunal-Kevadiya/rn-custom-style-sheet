@@ -1,0 +1,65 @@
+{
+  "files.autoSave": "onFocusChange",
+  "eslint.alwaysShowStatus": true,
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "json"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "javascript.validate.enable": false,
+  "typescript.validate.enable": false,
+  "json.format.enable": false,
+  "window.zoomLevel": 0,
+  "editor.tabSize": 2,
+  "[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+  },
+  "[json]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+  },
+  "files.associations": {
+    "*.xml": "html",
+    "*.svg": "html"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#f4d166",
+    "activityBar.activeBorder": "#0b9573",
+    "activityBar.background": "#f4d166",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#0b9573",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "sash.hoverBorder": "#f4d166",
+    "statusBar.background": "#f1c336",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#e4b010",
+    "statusBarItem.remoteBackground": "#f1c336",
+    "statusBarItem.remoteForeground": "#15202b",
+    "titleBar.activeBackground": "#f1c336",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#f1c33699",
+    "titleBar.inactiveForeground": "#15202b99"
+  },
+  "peacock.color": "#F1C336",
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "[html]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  }
+}

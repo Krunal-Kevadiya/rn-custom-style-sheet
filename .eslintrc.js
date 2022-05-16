@@ -6,6 +6,6 @@ module.exports = {
     'import/order': 'off',
     'simple-import-sort/exports': 'error',
     'simple-import-sort/imports': 'error',
-    'sort-imports': 'off',
-  },
-}
+    'sort-imports': 'off'
+  }
+};
