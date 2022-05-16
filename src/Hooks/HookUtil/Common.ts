@@ -1,7 +1,7 @@
 import { Appearance } from 'react-native';
 
-import type { ThemeType } from '../Utility';
-import type { AppThemeType } from './ThemeReducers';
+import type { AppThemeType } from '../../ThemeReducers';
+import type { ThemeType } from '../../Utility';
 
 export function getCurrentTheme(appTheme: AppThemeType, systemTheme: AppThemeType): ThemeType {
   if (appTheme === 'system') {

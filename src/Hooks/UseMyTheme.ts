@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 
 import type { ThemeType } from '../Utility';
-import { getCurrentTheme } from './Common';
-import { useThemeContext } from './ThemeContext';
+import { getCurrentTheme } from './HookUtil';
+import useThemeContext from './UseThemeContext';
 
 export default function useMyTheme<T>(styleSheetFn: (type: ThemeType) => T): T {
   const {

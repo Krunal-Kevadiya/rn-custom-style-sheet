@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 
-import { useThemeContext } from './ThemeContext';
-import type { AppThemeType } from './ThemeReducers';
-import { Types } from './ThemeReducers';
+import type { AppThemeType } from '../ThemeReducers';
+import { Types } from '../ThemeReducers';
 import useAsyncStorage from './UseAsyncStorage';
+import useThemeContext from './UseThemeContext';
 
 export default function useUpdateMyTheme(): (appTheme: AppThemeType) => void {
   const { dispatch } = useThemeContext();

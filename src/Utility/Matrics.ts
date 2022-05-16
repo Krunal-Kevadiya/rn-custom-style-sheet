@@ -1,6 +1,7 @@
 import { Dimensions, EmitterSubscription, PixelRatio } from 'react-native';
 
 import { configs } from '../CustomStyleSheet';
+import { ORIENTATION } from '../Hooks';
 
 // Retrieve initial screen's width
 export let screenWidth = Dimensions.get('window').width;
@@ -158,7 +159,7 @@ export function listenOrientationChange(callback?: (orientation: string) => void
     longDimension = Math.max(screenWidth, screenHeight);
 
     // Trigger screen's rerender with a state update of the orientation variable
-    callback?.(screenWidth < screenHeight ? 'portrait' : 'landscape');
+    callback?.(screenWidth < screenHeight ? ORIENTATION.PORTRAIT : ORIENTATION.LANDSCAPE);
   });
   return subscription;
 }
