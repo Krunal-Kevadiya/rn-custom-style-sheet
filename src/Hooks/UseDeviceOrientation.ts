@@ -16,19 +16,21 @@ export function getWindowOrientation() {
   return height >= width ? ORIENTATION.PORTRAIT : ORIENTATION.LANDSCAPE;
 }
 
-export default function useDeviceOrientation(dispatch: Dispatch<ThemeActions>) {
+export default function useDeviceOrientation(dispatch: Dispatch<ThemeActions>, isSupportLandscape: boolean) {
   useEffect(() => {
-    listenOrientationChange((orientation: string) => {
-      dispatch({
-        type: Types.ChangeOrientation,
-        payload: {
-          orientation: orientation as OrientationType
-        }
+    if (isSupportLandscape) {
+      listenOrientationChange((orientation: string) => {
+        dispatch({
+          type: Types.ChangeOrientation,
+          payload: {
+            orientation: orientation as OrientationType
+          }
+        });
       });
-    });
+    }
     return () => {
       removeOrientationListener();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isSupportLandscape]);
 }

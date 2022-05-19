@@ -155,6 +155,7 @@ export function listenOrientationChange(callback?: (orientation: string) => void
     // Retrieve and save new dimensions
     screenWidth = window.width;
     screenHeight = window.height;
+    currentWidthDimen = 0;
     shortDimension = Math.min(screenWidth, screenHeight);
     longDimension = Math.max(screenWidth, screenHeight);
 
@@ -172,4 +173,46 @@ export function listenOrientationChange(callback?: (orientation: string) => void
  */
 export function removeOrientationListener(): void {
   subscription?.remove();
+}
+
+let currentWidthDimen: number = 0;
+
+const dimenMin = 300;
+const dimenMax = 1080;
+const dimenInterval = 30;
+
+const getAvailableWidthDimension = () => {
+  if (currentWidthDimen === 0) {
+    var dimen = screenWidth;
+    for (let i = dimenMin; i <= dimenMax; i = i + dimenInterval) {
+      if (screenWidth >= i && screenWidth < i + dimenInterval) {
+        dimen = i;
+        break; // stop the loop
+      }
+    }
+    currentWidthDimen = dimen;
+    return dimen;
+  } else {
+    return currentWidthDimen;
+  }
+};
+
+export function sdp(size: number, skipAspectRatio: boolean = false): number {
+  var changeSize: number = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
+  const dimen: number = getAvailableWidthDimension();
+  if (dimen !== 0) {
+    const ratio: number = changeSize / dimenMin;
+    changeSize = ratio * dimen;
+  }
+  return parseFloat(changeSize.toFixed(2));
+}
+
+export function ssp(size: number, skipAspectRatio: boolean = false): number {
+  var changeSize: number = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
+  const dimen: number = getAvailableWidthDimension();
+  if (dimen !== 0) {
+    const ratio: number = changeSize / dimenMin;
+    changeSize = ratio * dimen;
+  }
+  return parseFloat(changeSize.toFixed(2)) * PixelRatio.getFontScale();
 }

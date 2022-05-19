@@ -1,6 +1,6 @@
 import React, { createContext, Dispatch, useReducer } from 'react';
 
-import { useSystemAppearance } from './Hooks';
+import { useDeviceOrientation, useSystemAppearance } from './Hooks';
 import type { InitialThemeStateType, ThemeActions } from './ThemeReducers';
 import { themeReducer } from './ThemeReducers';
 
@@ -18,9 +18,20 @@ export const ThemeContext = createContext<{
   dispatch: () => null
 });
 
-export function ThemeProvider({ children }: { children: React.ReactElement }): React.ReactElement {
+export function ThemeProvider({
+  children,
+  isSupportLandscape
+}: {
+  children: React.ReactElement;
+  isSupportLandscape: boolean;
+}): React.ReactElement {
   const [state, dispatch] = useReducer(themeReducer, initialThemeState);
   useSystemAppearance(dispatch);
+  useDeviceOrientation(dispatch, isSupportLandscape);
 
   return <ThemeContext.Provider value={{ state, dispatch }}>{children}</ThemeContext.Provider>;
 }
+
+ThemeProvider.defaultProps = {
+  isSupportLandscape: false
+};

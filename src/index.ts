@@ -9,6 +9,8 @@ export {
   scale,
   screenHeight,
   screenWidth,
+  sdp,
+  ssp,
   verticalScale,
   widthPercentageToDP
 } from './Utility';

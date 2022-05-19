@@ -10,6 +10,8 @@ export {
   scale,
   screenHeight,
   screenWidth,
+  sdp,
+  ssp,
   verticalScale,
   viewportHeight,
   viewportMax,

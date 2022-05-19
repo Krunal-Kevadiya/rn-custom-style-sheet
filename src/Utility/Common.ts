@@ -3,6 +3,8 @@ import {
   moderateScale,
   moderateVerticalScale,
   scale,
+  sdp,
+  ssp,
   verticalScale,
   viewportHeight,
   viewportMax,
@@ -15,7 +17,7 @@ import {
 //           1      2        3           4           5
 const validScaleSheetRegex = new RegExp(
   // eslint-disable-next-line no-useless-escape
-  /^(\-?\d+(?:\.\d{1,3})?)@(mv?s(\d+(?:\.\d{1,2})?)?|s|vs|wp|hp|vh|vw|vmin|vmax)(sar)?(r)?$/i
+  /^(\-?\d+(?:\.\d{1,3})?)@(mv?s(\d+(?:\.\d{1,2})?)?|s|vs|wp|hp|vh|vw|vmin|vmax|sdp|ssp)(sar)?(r)?$/i
 );
 
 export function scaleFunc(value: string): number | string | undefined {
@@ -64,6 +66,12 @@ export function scaleFunc(value: string): number | string | undefined {
       break;
     case 'vw':
       result = viewportWidth(size, skipAspectRatio);
+      break;
+    case 'sdp':
+      result = sdp(size, skipAspectRatio);
+      break;
+    case 'ssp':
+      result = ssp(size, skipAspectRatio);
       break;
     default:
   }
