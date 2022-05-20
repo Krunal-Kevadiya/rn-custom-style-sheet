@@ -66,20 +66,20 @@ const styles = CustomStyleSheet.createScaled({
 
 ### Size with custom units
 
-| Unit                         | Description                                                                                             | Example                |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------- |
-| `<size>@s<sar><r>`           | scales `size` in a linear manner relative to screen width                                               | `5.5@s`                |
-| `<size>@vs<sar><r>`          | scales `size` in a linear manner relative to screen height                                              | `7@vs`                 |
-| `<size>@ms<factor><sar><r>`  | scales `size` in a linear manner relative to screen width. `factor` is resize factor. Default is `0.5`  | `5@ms` or `5@ms0.25`   |
-| `<size>@mvs<factor><sar><r>` | scales `size` in a linear manner relative to screen height. `factor` is resize factor. Default is `0.5` | `5@mvs` or `5@mvs0.75` |
-| `<size>@hp<sar><r>`          | size percentage relative to the window height                                                           | `1@hp`                 |
-| `<size>@wp<sar><r>`          | size percentage to the window width                                                                     | `1@wp`                 |
-| `<size>@vw<sar><r>`          | size relative to the window width                                                                       | `1.02@vw`              |
-| `<size>@vh<sar><r>`          | size relative to the window height                                                                      | `10@vh`                |
-| `<size>@vmin<sar><r>`        | size relative to the shortest dimension compared between window width and height                        | `10@vmin`              |
-| `<size>@vmax<sar><r>`        | size relative to the largest dimension compared between window width and height                         | `10@vmax`              |
-| `<size>@sdp<sar><r>`         | size relative to the window width                                                                       | `10@sdp`               |
-| `<size>@ssp<sar><r>`         | size relative to the window width and device font size                                                  | `10@ssp`               |
+| Unit                         | Description                                                                                                  | Example                |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------ | ---------------------- |
+| `<size>@s<sar><r>`           | scales `size` in a linear manner relative to screen width                                                    | `5.5@s`                |
+| `<size>@vs<sar><r>`          | scales `size` in a linear manner relative to screen height                                                   | `7@vs`                 |
+| `<size>@ms<factor><sar><r>`  | scales `size` in a linear manner relative to screen width. `factor` is resize factor. Default is `0.5`       | `5@ms` or `5@ms0.25`   |
+| `<size>@mvs<factor><sar><r>` | scales `size` in a linear manner relative to screen height. `factor` is resize factor. Default is `0.5`      | `5@mvs` or `5@mvs0.75` |
+| `<size>@hp<sar><r>`          | size percentage relative to the window height                                                                | `1@hp`                 |
+| `<size>@wp<sar><r>`          | size percentage to the window width                                                                          | `1@wp`                 |
+| `<size>@vw<sar><r>`          | size relative to the window width                                                                            | `1.02@vw`              |
+| `<size>@vh<sar><r>`          | size relative to the window height                                                                           | `10@vh`                |
+| `<size>@vmin<sar><r>`        | size relative to the shortest dimension compared between window width and height                             | `10@vmin`              |
+| `<size>@vmax<sar><r>`        | size relative to the largest dimension compared between window width and height                              | `10@vmax`              |
+| `<size>@sdp<sar><r>`         | size relative to the window width, More detail of [sdp](https://github.com/intuit/sdp)                       | `10@sdp`               |
+| `<size>@ssp<sar><r>`         | size relative to the window width and device font size , More detail of [ssp](https://github.com/intuit/ssp) | `10@ssp`               |
 
 > **Note:**
 >
