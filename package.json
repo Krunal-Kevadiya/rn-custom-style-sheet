@@ -1,6 +1,6 @@
 {
   "name": "rn-custom-style-sheet",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "React Native component to select a specific value from a range of values",
   "homepage": "https://github.com/krunal-kevadiya/rn-custom-style-sheet/blob/main/README.md",
   "main": "lib/index.js",
@@ -52,9 +52,9 @@
     "metro-react-native-babel-preset": "^0.67.0",
     "react": "^17.0.2",
     "react-native": "^0.67.1",
+    "react-native-mmkv": "^2.4.1",
     "react-test-renderer": "^17.0.2",
-    "typescript": "^4.5.5",
-    "react-native-mmkv": "^2.4.1"
+    "typescript": "^4.5.5"
   },
   "peerDependencies": {
     "react": "*",
