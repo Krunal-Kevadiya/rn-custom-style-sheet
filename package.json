@@ -53,11 +53,13 @@
     "react": "^17.0.2",
     "react-native": "^0.67.1",
     "react-test-renderer": "^17.0.2",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "react-native-mmkv": "^2.4.1"
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-mmkv": "*"
   },
   "jest": {
     "preset": "react-native",
@@ -89,8 +91,5 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "dependencies": {
-    "react-native-mmkv": "^2.4.1"
   }
 }
