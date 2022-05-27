@@ -50,6 +50,7 @@
     "jest": "^27.4.7",
     "lint-staged": "^11.1.2",
     "metro-react-native-babel-preset": "^0.67.0",
+    "prettier": "^2.6.2",
     "react": "^17.0.2",
     "react-native": "^0.67.1",
     "react-native-mmkv": "^2.4.1",

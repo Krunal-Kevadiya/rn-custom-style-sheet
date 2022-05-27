@@ -1,5 +1,5 @@
 export { default as CustomStyleSheet } from './CustomStyleSheet';
-export { useMyTheme, useThemeContext, useUpdateMyTheme } from './Hooks';
+export { useMyCurrentTheme, useMyTheme, useThemeContext, useUpdateMyTheme } from './Hooks';
 export { ThemeContext, ThemeProvider } from './ThemeContext';
 export type { ThemeType } from './Utility';
 export {
