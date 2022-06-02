@@ -5,7 +5,7 @@
   "homepage": "https://github.com/krunal-kevadiya/rn-custom-style-sheet/blob/main/README.md",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "author": "Mukesh Jangid <mukesh.j@simformsolutions.com>",
+  "author": "Krunal Kevadiya <kevadiyakrunal22@gmail.com>",
   "license": "MIT",
   "files": [
     "lib"
@@ -14,10 +14,10 @@
     "react",
     "react-native",
     "typescript",
-    "slider",
-    "radial",
-    "radial-slider",
-    "circular-slider",
+    "stylesheet",
+    "style",
+    "style-sheet",
+    "custom-style-sheet",
     "rn"
   ],
   "scripts": {

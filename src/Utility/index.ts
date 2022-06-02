@@ -21,4 +21,12 @@ export {
 } from './Matrics';
 export type { StorageStringType } from './MMKVStorage';
 export { getStorageString, setStorageString } from './MMKVStorage';
-export type { CustomImageStyle, CustomTextStyle, CustomViewStyle, ExpandString, ThemeType } from './Types';
+export type {
+  CustomImageStyle,
+  CustomTextStyle,
+  CustomViewStyle,
+  ImageStyleMe,
+  TextStyleMe,
+  ThemeType,
+  ViewStyleMe
+} from './Types';

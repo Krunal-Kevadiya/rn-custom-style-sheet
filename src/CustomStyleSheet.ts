@@ -1,6 +1,14 @@
 import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 
-import type { CustomImageStyle, CustomTextStyle, CustomViewStyle, ExpandString, ThemeType } from './Utility';
+import type {
+  CustomImageStyle,
+  CustomTextStyle,
+  CustomViewStyle,
+  ImageStyleMe,
+  TextStyleMe,
+  ThemeType,
+  ViewStyleMe
+} from './Utility';
 import { deepMap, getNewSize, scaleFunc } from './Utility';
 
 // Default guideline sizes are based on standard ~5" screen mobile device
@@ -16,13 +24,16 @@ namespace CustomStyleSheet {
       | CustomTextStyle
       | CustomViewStyle
       | CustomImageStyle
-      | ExpandString<TextStyle>
-      | ExpandString<ViewStyle>
-      | ExpandString<ImageStyle>;
+      | ImageStyleMe
+      | TextStyleMe
+      | ViewStyleMe
+      | TextStyle
+      | ViewStyle
+      | ImageStyle;
   };
 
   type NamedScaleStyles<T> = {
-    [P in keyof T]: ExpandString<TextStyle> | ExpandString<ViewStyle> | ExpandString<ImageStyle>;
+    [P in keyof T]: ImageStyleMe | TextStyleMe | ViewStyleMe | TextStyle | ViewStyle | ImageStyle;
   };
 
   type ReturnNamedStyles<T> = {
