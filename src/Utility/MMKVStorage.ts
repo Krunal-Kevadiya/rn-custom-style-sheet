@@ -18,7 +18,7 @@ export function getStorageString<T extends StorageStringType>(key: string, defau
   return JSON.parse(value ?? '{}');
 }
 
-export type StorageStringType = boolean | string | number | object;
+export type StorageStringType = boolean | string | number | Record<string, any>;
 
 export function setStorageString<T extends StorageStringType>(key: string, newValue: T): void {
   let value: boolean | string | number;

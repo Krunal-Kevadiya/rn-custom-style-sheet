@@ -1,12 +1,12 @@
 import { themeStyleProcessor } from './StyleProcess';
 import type { ThemeType } from './Types';
 
-function isObject(myVar?: object): boolean | undefined {
+function isObject(myVar?: Record<string, any>): boolean | undefined {
   return myVar && typeof myVar === 'object';
 }
 
 // @ts-ignore
-function mapObject(obj: object, type?: ThemeType, fn): object {
+function mapObject(obj: Record<string, any>, type?: ThemeType, fn): Record<string, any> {
   const newStyle = Object.keys(obj).reduce((res, key) => {
     // @ts-ignore
     res[key] = fn(obj[key]);
@@ -16,8 +16,8 @@ function mapObject(obj: object, type?: ThemeType, fn): object {
 }
 
 // @ts-ignore
-export function deepMap(obj: object, type: ThemeType, fn): object {
-  function deepMapper(val: object) {
+export function deepMap(obj: Record<string, any>, type: ThemeType | undefined, fn): Record<string, any> {
+  function deepMapper(val: Record<string, any>) {
     return isObject(val) ? deepMap(val, type, fn) : fn ? fn(val) : val;
   }
 

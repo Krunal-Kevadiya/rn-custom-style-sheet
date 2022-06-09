@@ -1,7 +1,8 @@
 export { default as CustomStyleSheet } from './CustomStyleSheet';
-export { useMyCurrentTheme, useMyTheme, useThemeContext, useUpdateMyTheme } from './Hooks';
+export { getCurrentTheme, useMyCurrentTheme, useMyTheme, useThemeContext, useUpdateMyTheme } from './Hooks';
 export { ThemeContext, ThemeProvider } from './ThemeContext';
-export type { ThemeType } from './Utility';
+export type { AppThemeType } from './ThemeReducers';
+export type { MyImageStyle, MyTextStyle, MyViewStyle, ThemeType } from './Utility';
 export {
   heightPercentageToDP,
   moderateScale,

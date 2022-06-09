@@ -1,4 +1,4 @@
-import type { ColorValue } from 'react-native';
+import type { ColorValue, ImageStyle, TextStyle, ViewStyle } from 'react-native';
 
 /** Dark or Light Themed */
 export type ThemeType = 'light' | 'dark';
@@ -140,3 +140,7 @@ export interface CustomImageStyle extends ImageStyleMe {
   overlayColorDark?: ColorValue | undefined;
   tintColorDark?: ColorValue | undefined;
 }
+
+export type MyTextStyle = CustomTextStyle | TextStyleMe | TextStyle;
+export type MyImageStyle = CustomImageStyle | ImageStyleMe | ImageStyle;
+export type MyViewStyle = CustomViewStyle | ViewStyleMe | ViewStyle;

@@ -20,24 +20,15 @@ export let configs = Object.freeze({
 
 namespace CustomStyleSheet {
   type NamedThemeStyles<T> = {
-    [P in keyof T]:
-      | CustomTextStyle
-      | CustomViewStyle
-      | CustomImageStyle
-      | ImageStyleMe
-      | TextStyleMe
-      | ViewStyleMe
-      | TextStyle
-      | ViewStyle
-      | ImageStyle;
+    [P in keyof T]: CustomImageStyle | CustomTextStyle | CustomViewStyle | ImageStyle | TextStyle | ViewStyle;
   };
 
   type NamedScaleStyles<T> = {
-    [P in keyof T]: ImageStyleMe | TextStyleMe | ViewStyleMe | TextStyle | ViewStyle | ImageStyle;
+    [P in keyof T]: ImageStyleMe | TextStyleMe | ViewStyleMe | ImageStyle | TextStyle | ViewStyle;
   };
 
   type ReturnNamedStyles<T> = {
-    [P in keyof T]: TextStyle | ViewStyle | ImageStyle;
+    [P in keyof T]: ViewStyle | TextStyle | ImageStyle;
   };
 
   export function config(
@@ -52,26 +43,23 @@ namespace CustomStyleSheet {
   }
 
   export function createTheme<T extends ReturnNamedStyles<T> | ReturnNamedStyles<any>>(
-    styles: T | NamedThemeStyles<T> | NamedThemeStyles<any>,
+    styles: T | NamedThemeStyles<T>,
     type: ThemeType = 'light'
-  ): T | ReturnNamedStyles<T> | ReturnNamedStyles<any> {
-    // @ts-ignore
-    return deepMap(styles, type, undefined);
+  ): T {
+    return deepMap(styles, type, undefined) as T;
   }
 
   export function createScaled<T extends ReturnNamedStyles<T> | ReturnNamedStyles<any>>(
-    styles: T | NamedScaleStyles<T> | NamedScaleStyles<any>
-  ): T | ReturnNamedStyles<T> | ReturnNamedStyles<any> {
-    // @ts-ignore
-    return deepMap(styles, undefined, scaleFunc);
+    styles: T | NamedScaleStyles<T>
+  ): T {
+    return deepMap(styles, undefined, scaleFunc) as T;
   }
 
   export function createScaledTheme<T extends ReturnNamedStyles<T> | ReturnNamedStyles<any>>(
-    styles: T | NamedThemeStyles<T> | NamedThemeStyles<any>,
+    styles: T | NamedThemeStyles<T>,
     type: ThemeType = 'light'
-  ): T | ReturnNamedStyles<T> | ReturnNamedStyles<any> {
-    // @ts-ignore
-    return deepMap(styles, type, scaleFunc);
+  ): T {
+    return deepMap(styles, type, scaleFunc) as T;
   }
 }
 

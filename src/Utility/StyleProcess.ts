@@ -9,7 +9,7 @@ import type { ThemeType } from './Types';
  * @param value is style object
  * @returns {darkThemeStyle} is object style
  */
-function getStyleDark(key: string, value?: string): object {
+function getStyleDark(key: string, value?: string): Record<string, any> {
   if (value) return { [key]: value };
   return {};
 }
@@ -20,8 +20,11 @@ function getStyleDark(key: string, value?: string): object {
  * @param type is 'light' | 'dark'
  * @returns {darkThemeStyle} is object style
  */
-export function themeStyleProcessor(style: object | Array<object>, type: ThemeType = 'light'): object {
-  const flattenStyle = Array.isArray(style) ? StyleSheet.flatten(style) : style;
+export function themeStyleProcessor(
+  style: Record<string, any> | Array<Record<string, any>>,
+  type: ThemeType = 'light'
+): Record<string, any> {
+  const flattenStyle: Record<string, any> = Array.isArray(style) ? StyleSheet.flatten(style) : style;
 
   const {
     backgroundColorDark,

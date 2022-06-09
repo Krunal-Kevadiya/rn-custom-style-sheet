@@ -26,6 +26,9 @@ export type {
   CustomTextStyle,
   CustomViewStyle,
   ImageStyleMe,
+  MyImageStyle,
+  MyTextStyle,
+  MyViewStyle,
   TextStyleMe,
   ThemeType,
   ViewStyleMe

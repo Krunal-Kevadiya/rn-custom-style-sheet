@@ -7,5 +7,5 @@ module.exports = {
   semi: true,
   quoteProps: 'as-needed',
   bracketSpacing: true,
-  arrowParens: 'always',
+  arrowParens: 'always'
 };

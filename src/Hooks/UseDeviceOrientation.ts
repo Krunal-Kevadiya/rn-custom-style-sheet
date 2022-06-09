@@ -11,12 +11,12 @@ export const ORIENTATION = {
   PORTRAIT: 'portrait'
 };
 
-export function getWindowOrientation() {
+export function getWindowOrientation(): string {
   const { width, height } = Dimensions.get('window');
   return height >= width ? ORIENTATION.PORTRAIT : ORIENTATION.LANDSCAPE;
 }
 
-export default function useDeviceOrientation(dispatch: Dispatch<ThemeActions>, isSupportLandscape: boolean) {
+export default function useDeviceOrientation(dispatch: Dispatch<ThemeActions>, isSupportLandscape: boolean): void {
   useEffect(() => {
     if (isSupportLandscape) {
       listenOrientationChange((orientation: string) => {

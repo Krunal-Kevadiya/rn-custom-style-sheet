@@ -4,20 +4,20 @@ import { configs } from '../CustomStyleSheet';
 import { ORIENTATION } from '../Hooks';
 
 // Retrieve initial screen's width
-export let screenWidth = Dimensions.get('window').width;
+export let screenWidth: number = Dimensions.get('window').width;
 
 // Retrieve initial screen's height
-export let screenHeight = Dimensions.get('window').height;
+export let screenHeight: number = Dimensions.get('window').height;
 
 // Retrieve initial screen's short dimension
-export let shortDimension = Math.min(screenWidth, screenHeight);
+export let shortDimension: number = Math.min(screenWidth, screenHeight);
 
 // Retrieve initial screen's long dimension
-export let longDimension = Math.max(screenWidth, screenHeight);
+export let longDimension: number = Math.max(screenWidth, screenHeight);
 
 export function getNewSize(size: number): number {
-  const aspectRatio = screenHeight / screenWidth;
-  let newSize = 0;
+  const aspectRatio: number = screenHeight / screenWidth;
+  let newSize: number = 0;
   if (aspectRatio > 1.77) {
     newSize = size;
   } else if (aspectRatio > 1.6) {
@@ -56,7 +56,7 @@ export function getNewSize(size: number): number {
  * @return {number} The calculated scale depending on current device's screen width.
  */
 export function scale(size: number, skipAspectRatio: boolean = false): number {
-  const changeSize = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
+  const changeSize: number = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
   return (screenWidth / configs.guidelineBaseWidth) * changeSize;
 }
 
@@ -68,7 +68,7 @@ export function scale(size: number, skipAspectRatio: boolean = false): number {
  * @return {number} The calculated vertical scale depending on current device's screen height.
  */
 export function verticalScale(size: number, skipAspectRatio: boolean = false): number {
-  const changeSize = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
+  const changeSize: number = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
   return (screenHeight / configs.guidelineBaseHeight) * changeSize;
 }
 
@@ -81,7 +81,7 @@ export function verticalScale(size: number, skipAspectRatio: boolean = false): n
  * @return {number} The calculated moderate scale depending on current device's screen width.
  */
 export function moderateScale(size: number, skipAspectRatio: boolean = false, factor: number = 0.5): number {
-  const changeSize = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
+  const changeSize: number = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
   return changeSize + (scale(changeSize, skipAspectRatio) - changeSize) * factor;
 }
 
@@ -94,7 +94,7 @@ export function moderateScale(size: number, skipAspectRatio: boolean = false, fa
  * @return {number} The calculated moderate vertical scale depending on current device's screen height.
  */
 export function moderateVerticalScale(size: number, skipAspectRatio: boolean = false, factor: number = 0.5): number {
-  const changeSize = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
+  const changeSize: number = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
   return changeSize + (verticalScale(changeSize, skipAspectRatio) - changeSize) * factor;
 }
 
@@ -121,22 +121,22 @@ export function heightPercentageToDP(heightPercent: number): number {
 }
 
 export function viewportMin(size: number, skipAspectRatio: boolean = false): number {
-  const changeSize = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
+  const changeSize: number = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
   return (changeSize / 100) * shortDimension;
 }
 
 export function viewportMax(size: number, skipAspectRatio: boolean = false): number {
-  const changeSize = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
+  const changeSize: number = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
   return (changeSize / 100) * longDimension;
 }
 
 export function viewportHeight(size: number, skipAspectRatio: boolean = false): number {
-  const changeSize = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
+  const changeSize: number = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
   return (changeSize / 100) * screenHeight;
 }
 
 export function viewportWidth(size: number, skipAspectRatio: boolean = false): number {
-  const changeSize = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
+  const changeSize: number = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
   return (changeSize / 100) * screenWidth;
 }
 
@@ -177,14 +177,14 @@ export function removeOrientationListener(): void {
 
 let currentWidthDimen: number = 0;
 
-const dimenMin = 300;
-const dimenMax = 1080;
-const dimenInterval = 30;
+const dimenMin: number = 300;
+const dimenMax: number = 1080;
+const dimenInterval: number = 30;
 
 const getAvailableWidthDimension = () => {
   if (currentWidthDimen === 0) {
-    var dimen = screenWidth;
-    for (let i = dimenMin; i <= dimenMax; i = i + dimenInterval) {
+    var dimen: number = screenWidth;
+    for (let i: number = dimenMin; i <= dimenMax; i = i + dimenInterval) {
       if (screenWidth >= i && screenWidth < i + dimenInterval) {
         dimen = i;
         break; // stop the loop
