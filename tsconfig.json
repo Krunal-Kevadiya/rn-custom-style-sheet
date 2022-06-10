@@ -20,10 +20,13 @@
     "resolveJsonModule": true,
     "noEmitOnError": true,
     "outDir": "./lib",
+    "paths": {
+      "shallow-equal": ["./src/MediaQuery/@types/shallow-equal"]
+    },
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "ES2018",
+    "target": "ES2018"
   },
   "exclude": ["**/__tests__/*"],
   "include": ["src"]

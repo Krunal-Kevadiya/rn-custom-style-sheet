@@ -40,6 +40,7 @@
     "@commitlint/config-conventional": "^16.0.0",
     "@react-native-community/eslint-config": "^3.0.1",
     "@testing-library/react-native": "^9.0.0",
+    "@types/hyphenate-style-name": "^1.0.0",
     "@types/jest": "^27.4.0",
     "@types/react-native": "^0.66.15",
     "@types/react-test-renderer": "^17.0.1",
@@ -55,7 +56,7 @@
     "react-native": "^0.67.1",
     "react-native-mmkv": "^2.4.1",
     "react-test-renderer": "^17.0.2",
-    "typescript": "^4.5.5"
+    "typescript": "^4.7.4"
   },
   "peerDependencies": {
     "react": "*",
@@ -92,5 +93,9 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "dependencies": {
+    "hyphenate-style-name": "^1.0.4",
+    "prop-types": "^15.8.1"
   }
 }

@@ -1,72 +1,62 @@
 import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 
+import type { MediaQueryAllQueryable } from './MediaQuery';
 import type {
-  CustomImageMeStyle,
-  CustomImageStyle,
-  CustomTextMeStyle,
-  CustomTextStyle,
-  CustomViewMeStyle,
-  CustomViewStyle,
-  ImageStyleMe,
-  TextStyleMe,
+  ScaleImageStyle,
+  ScaleTextStyle,
+  ScaleThemeImageStyle,
+  ScaleThemeTextStyle,
+  ScaleThemeViewStyle,
+  ScaleViewStyle,
+  StyleOption,
+  ThemeImageStyle,
+  ThemeTextStyle,
   ThemeType,
-  ViewStyleMe
+  ThemeViewStyle
 } from './Utility';
-import { deepMap, getNewSize, scaleFunc } from './Utility';
-
-// Default guideline sizes are based on standard ~5" screen mobile device
-export let configs = Object.freeze({
-  guidelineBaseWidth: 375,
-  guidelineBaseHeight: 812,
-  guidelineBaseAspectRatioFn: getNewSize
-});
+import { deepNestedMap, scaleFunc } from './Utility';
 
 namespace CustomStyleSheet {
-  type NamedThemeStyles<T> = {
-    [P in keyof T]: CustomImageStyle | CustomTextStyle | CustomViewStyle | ImageStyle | TextStyle | ViewStyle;
+  type BoundThemeStyles<T> = {
+    [P in keyof T]: T[P] extends object ? BoundThemeStyles<T[P]> : ThemeViewStyle | ThemeTextStyle | ThemeImageStyle;
   };
 
-  type NamedScaleStyles<T> = {
-    [P in keyof T]: ImageStyleMe | TextStyleMe | ViewStyleMe | ImageStyle | TextStyle | ViewStyle;
+  type BoundScaleStyles<T> = {
+    [P in keyof T]: T[P] extends object ? BoundScaleStyles<T[P]> : ScaleViewStyle | ScaleTextStyle | ScaleImageStyle;
   };
 
-  type NamedScaleThemeStyles<T> = {
-    [P in keyof T]: CustomImageMeStyle | CustomTextMeStyle | CustomViewMeStyle | ImageStyle | TextStyle | ViewStyle;
+  type BoundScaleThemeStyles<T> = {
+    [P in keyof T]: T[P] extends object
+      ? BoundScaleThemeStyles<T[P]>
+      : ScaleThemeViewStyle | ScaleThemeTextStyle | ScaleThemeImageStyle;
   };
 
-  type ReturnNamedStyles<T> = {
+  type ReturnStyles<T> = {
     [P in keyof T]: ViewStyle | TextStyle | ImageStyle;
   };
 
-  export function config(
-    guideLineBase?: Partial<{ height: number; width: number }>,
-    aspectRatioFn?: (size: number) => number
-  ): void {
-    configs = Object.assign({}, configs, {
-      guidelineBaseWidth: guideLineBase?.width ?? 375,
-      guidelineBaseHeight: guideLineBase?.height ?? 812,
-      guidelineBaseAspectRatioFn: aspectRatioFn ?? getNewSize
-    });
-  }
-
-  export function createTheme<T extends ReturnNamedStyles<T> | ReturnNamedStyles<any>>(
-    styles: T | NamedThemeStyles<T>,
-    type: ThemeType = 'light'
+  export function create<T extends ReturnStyles<T> | ReturnStyles<any>>(
+    styles:
+      | T
+      | BoundThemeStyles<T>
+      | BoundScaleStyles<T>
+      | BoundScaleThemeStyles<T>
+      | BoundThemeStyles<any>
+      | BoundScaleStyles<any>
+      | BoundScaleThemeStyles<any>,
+    option?: StyleOption
   ): T {
-    return deepMap(styles, type, undefined) as T;
-  }
+    const localOnlyTheme: boolean = option?.onlyTheme ?? false;
+    const localScaleTheme: boolean = option?.onlyScale ?? false;
+    const localType: ThemeType = option?.type ?? 'light';
+    const localDevice: Partial<MediaQueryAllQueryable> | undefined = option?.device;
 
-  export function createScaled<T extends ReturnNamedStyles<T> | ReturnNamedStyles<any>>(
-    styles: T | NamedScaleStyles<T>
-  ): T {
-    return deepMap(styles, undefined, scaleFunc) as T;
-  }
-
-  export function createScaledTheme<T extends ReturnNamedStyles<T> | ReturnNamedStyles<any>>(
-    styles: T | NamedScaleThemeStyles<T>,
-    type: ThemeType = 'light'
-  ): T {
-    return deepMap(styles, type, scaleFunc) as T;
+    return deepNestedMap({
+      styles,
+      device: localDevice,
+      type: localScaleTheme ? undefined : localType,
+      scaleFunc: localOnlyTheme ? undefined : scaleFunc
+    }) as T;
   }
 }
 

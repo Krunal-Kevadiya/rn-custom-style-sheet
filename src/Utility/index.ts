@@ -1,5 +1,5 @@
-export { scaleFunc } from './Common';
-export { deepMap } from './DeepMap';
+export { scaleFunc, shallowEqualArrays, shallowEqualObjects } from './Common';
+export { deepMap, deepNestedMap } from './DeepMap';
 export {
   applicationOrientation,
   getNewSize,
@@ -9,8 +9,6 @@ export {
   moderateVerticalScale,
   removeOrientationListener,
   scale,
-  screenHeight,
-  screenWidth,
   sdp,
   ssp,
   verticalScale,
@@ -18,22 +16,28 @@ export {
   viewportMax,
   viewportMin,
   viewportWidth,
-  widthPercentageToDP
+  widthPercentageToDP,
+  windowHeight,
+  windowWidth
 } from './Matrics';
 export type { StorageStringType } from './MMKVStorage';
 export { getStorageString, setStorageString } from './MMKVStorage';
 export type {
-  CustomImageMeStyle,
-  CustomImageStyle,
-  CustomTextMeStyle,
-  CustomTextStyle,
-  CustomViewMeStyle,
-  CustomViewStyle,
-  ImageStyleMe,
   MyImageStyle,
   MyTextStyle,
   MyViewStyle,
-  TextStyleMe,
+  OnlyScaleType,
+  OnlyThemeType,
+  ScaleImageStyle,
+  ScaleTextStyle,
+  ScaleThemeImageStyle,
+  ScaleThemeTextStyle,
+  ScaleThemeViewStyle,
+  ScaleViewStyle,
+  StyleOption,
+  StyleSheetOption,
+  ThemeImageStyle,
+  ThemeTextStyle,
   ThemeType,
-  ViewStyleMe
+  ThemeViewStyle
 } from './Types';

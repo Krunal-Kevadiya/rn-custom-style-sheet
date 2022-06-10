@@ -1,9 +1,65 @@
-import type { ColorValue, ImageStyle, TextStyle, ViewStyle } from 'react-native';
+import type {
+  ColorValue,
+  FlexStyle,
+  ImageStyle,
+  MatrixTransform,
+  PerpectiveTransform,
+  RotateTransform,
+  RotateXTransform,
+  RotateYTransform,
+  RotateZTransform,
+  ScaleTransform,
+  ScaleXTransform,
+  ScaleYTransform,
+  ShadowStyleIOS,
+  SkewXTransform,
+  SkewYTransform,
+  TextStyle,
+  TextStyleIOS,
+  TransformsStyle,
+  TranslateXTransform,
+  TranslateYTransform,
+  ViewStyle
+} from 'react-native';
+
+import type { MediaQueryAllQueryable } from '../MediaQuery';
+
+type Modify<T, R> = Pick<T, Exclude<keyof T, keyof R>> & R;
 
 /** Dark or Light Themed */
 export type ThemeType = 'light' | 'dark';
 
-interface FlexStyleMe {
+// Theme
+export type ThemeViewStyle = {
+  backgroundColorDark?: ColorValue | undefined;
+  borderBottomColorDark?: ColorValue | undefined;
+  borderColorDark?: ColorValue | undefined;
+  borderEndColorDark?: ColorValue | undefined;
+  borderLeftColorDark?: ColorValue | undefined;
+  borderRightColorDark?: ColorValue | undefined;
+  borderStartColorDark?: ColorValue | undefined;
+  borderTopColorDark?: ColorValue | undefined;
+  shadowColorDark?: ColorValue | undefined;
+} & ViewStyle;
+
+export type ThemeTextStyle = {
+  colorDark: ColorValue | undefined;
+  textShadowColorDark?: ColorValue | undefined;
+  textDecorationColorDark?: ColorValue | undefined;
+} & ThemeViewStyle &
+  TextStyle &
+  ViewStyle;
+
+export type ThemeImageStyle = {
+  backgroundColorDark?: ColorValue | undefined;
+  shadowColorDark?: ColorValue | undefined;
+  borderColorDark?: ColorValue | undefined;
+  overlayColorDark?: ColorValue | undefined;
+  tintColorDark?: ColorValue | undefined;
+} & ImageStyle;
+
+// Scale //
+type ScaledFlexStyle = {
   borderBottomWidth?: string | number | undefined;
   borderEndWidth?: number | string | undefined;
   borderLeftWidth?: string | number | undefined;
@@ -11,61 +67,54 @@ interface FlexStyleMe {
   borderStartWidth?: number | string | undefined;
   borderTopWidth?: string | number | undefined;
   borderWidth?: string | number | undefined;
-  bottom?: number | string | undefined;
-  end?: number | string | undefined;
-  height?: number | string | undefined;
-  left?: number | string | undefined;
-  margin?: number | string | undefined;
-  marginBottom?: number | string | undefined;
-  marginEnd?: number | string | undefined;
-  marginHorizontal?: number | string | undefined;
-  marginLeft?: number | string | undefined;
-  marginRight?: number | string | undefined;
-  marginStart?: number | string | undefined;
-  marginTop?: number | string | undefined;
-  marginVertical?: number | string | undefined;
-  maxHeight?: number | string | undefined;
-  maxWidth?: number | string | undefined;
-  minHeight?: number | string | undefined;
-  minWidth?: number | string | undefined;
-  padding?: number | string | undefined;
-  paddingBottom?: number | string | undefined;
-  paddingEnd?: number | string | undefined;
-  paddingHorizontal?: number | string | undefined;
-  paddingLeft?: number | string | undefined;
-  paddingRight?: number | string | undefined;
-  paddingStart?: number | string | undefined;
-  paddingTop?: number | string | undefined;
-  paddingVertical?: number | string | undefined;
-  right?: number | string | undefined;
-  start?: number | string | undefined;
-  top?: number | string | undefined;
-  width?: number | string | undefined;
-}
+};
+type ScaleFlexStyle = Modify<FlexStyle, ScaledFlexStyle>;
 
-interface ShadowStyleIOSMe {
+type ScaledShadowStyleIOS = {
   shadowOffset?: { width: string | number; height: string | number } | undefined;
   shadowRadius?: string | number | undefined;
-}
+};
+type ScaleShadowStyleIOS = Modify<ShadowStyleIOS, ScaledShadowStyleIOS>;
 
-interface TranslateXTransformMe {
+type ScaledTranslateXTransform = {
   translateX: string | number;
-}
+};
+type ScaleTranslateXTransform = Modify<TranslateXTransform, ScaledTranslateXTransform>;
 
-interface TranslateYTransformMe {
+type ScaledTranslateYTransform = {
   translateY: string | number;
-}
+};
+type ScaleTranslateYTransform = Modify<TranslateYTransform, ScaledTranslateYTransform>;
 
-interface TransformsStyleMe {
-  transform?: (TranslateXTransformMe | TranslateYTransformMe)[] | undefined;
+type ScaledTransformsStyle = {
+  transform?:
+    | (
+        | PerpectiveTransform
+        | RotateTransform
+        | RotateXTransform
+        | RotateYTransform
+        | RotateZTransform
+        | ScaleTransform
+        | ScaleXTransform
+        | ScaleYTransform
+        | TranslateXTransform
+        | TranslateYTransform
+        | SkewXTransform
+        | SkewYTransform
+        | MatrixTransform
+        | ScaleTranslateXTransform
+        | ScaleTranslateYTransform
+      )[]
+    | undefined;
   translateX?: string | number | undefined;
   /**
    * @deprecated Use translateY in transform prop instead.
    */
   translateY?: string | number | undefined;
-}
+};
+type ScaleTransformsStyle = Modify<TransformsStyle, ScaledTransformsStyle>;
 
-export interface ViewStyleMe extends FlexStyleMe, ShadowStyleIOSMe, TransformsStyleMe {
+type ScaledViewStyle = {
   borderBottomEndRadius?: string | number | undefined;
   borderBottomLeftRadius?: string | number | undefined;
   borderBottomRightRadius?: string | number | undefined;
@@ -89,83 +138,55 @@ export interface ViewStyleMe extends FlexStyleMe, ShadowStyleIOSMe, TransformsSt
    * @platform android
    */
   elevation?: string | number | undefined;
-}
+};
+export type ScaleViewStyle = ScaleFlexStyle &
+  ScaleShadowStyleIOS &
+  ScaleTransformsStyle &
+  Modify<ViewStyle, ScaledViewStyle>;
 
-interface TextStyleIOSMe extends ViewStyleMe {
+type ScaledTextStyleIOS = {
   letterSpacing?: string | number | undefined;
-}
+};
+type ScaleTextStyleIOS = Modify<TextStyleIOS, ScaledTextStyleIOS> & ScaleViewStyle;
 
-export interface TextStyleMe extends TextStyleIOSMe, ViewStyleMe {
+type ScaledTextStyle = {
   fontSize?: string | number | undefined;
   letterSpacing?: string | number | undefined;
   lineHeight?: string | number | undefined;
   textShadowOffset?: { width: string | number; height: string | number } | undefined;
   textShadowRadius?: string | number | undefined;
-}
+};
+export type ScaleTextStyle = ScaleTextStyleIOS & ScaleViewStyle & Modify<TextStyle, ScaledTextStyle> & ViewStyle;
 
-export interface ImageStyleMe extends FlexStyleMe, ShadowStyleIOSMe, TransformsStyleMe {
+type ScaledImageStyle = {
   borderBottomLeftRadius?: string | number | undefined;
   borderBottomRightRadius?: string | number | undefined;
   borderWidth?: string | number | undefined;
   borderRadius?: string | number | undefined;
   borderTopLeftRadius?: string | number | undefined;
   borderTopRightRadius?: string | number | undefined;
-}
+};
+export type ScaleImageStyle = ScaleFlexStyle &
+  ScaleShadowStyleIOS &
+  ScaleTransformsStyle &
+  Modify<ImageStyle, ScaledImageStyle>;
 
-/** Dark Themed ViewStyle  */
-export interface CustomViewMeStyle extends ViewStyleMe {
-  backgroundColorDark?: ColorValue | undefined;
-  borderBottomColorDark?: ColorValue | undefined;
-  borderColorDark?: ColorValue | undefined;
-  borderEndColorDark?: ColorValue | undefined;
-  borderLeftColorDark?: ColorValue | undefined;
-  borderRightColorDark?: ColorValue | undefined;
-  borderStartColorDark?: ColorValue | undefined;
-  borderTopColorDark?: ColorValue | undefined;
-  shadowColorDark?: ColorValue | undefined;
-}
-export interface CustomViewStyle {
-  backgroundColorDark?: ColorValue | undefined;
-  borderBottomColorDark?: ColorValue | undefined;
-  borderColorDark?: ColorValue | undefined;
-  borderEndColorDark?: ColorValue | undefined;
-  borderLeftColorDark?: ColorValue | undefined;
-  borderRightColorDark?: ColorValue | undefined;
-  borderStartColorDark?: ColorValue | undefined;
-  borderTopColorDark?: ColorValue | undefined;
-  shadowColorDark?: ColorValue | undefined;
-}
+export type ScaleThemeViewStyle = ThemeViewStyle & ScaleViewStyle;
+export type ScaleThemeTextStyle = ThemeTextStyle & ScaleTextStyle;
+export type ScaleThemeImageStyle = ThemeImageStyle & ScaleImageStyle;
 
-/** Dark Themed TextStyle  */
-export interface CustomTextMeStyle extends TextStyleMe, CustomViewMeStyle {
-  colorDark: ColorValue | undefined;
-  textShadowColorDark?: ColorValue | undefined;
-  textDecorationColorDark?: ColorValue | undefined;
-}
+export type MyViewStyle = ThemeViewStyle | ScaleViewStyle | ScaleThemeViewStyle | ViewStyle;
+export type MyTextStyle = ThemeTextStyle | ScaleTextStyle | ScaleThemeTextStyle | TextStyle;
+export type MyImageStyle = ThemeImageStyle | ScaleImageStyle | ScaleThemeImageStyle | ImageStyle;
 
-export interface CustomTextStyle extends CustomViewStyle {
-  colorDark: ColorValue | undefined;
-  textShadowColorDark?: ColorValue | undefined;
-  textDecorationColorDark?: ColorValue | undefined;
-}
+export type OnlyThemeType = { onlyTheme?: true; onlyScale?: never };
+export type OnlyScaleType = { onlyTheme?: never; onlyScale?: true };
+export type StyleOption = {
+  type?: ThemeType;
+  device?: Partial<MediaQueryAllQueryable>;
+} & (OnlyThemeType | OnlyScaleType);
 
-/** Dark Themed ImageStyle  */
-export interface CustomImageMeStyle extends ImageStyleMe {
-  backgroundColorDark?: ColorValue | undefined;
-  shadowColorDark?: ColorValue | undefined;
-  borderColorDark?: ColorValue | undefined;
-  overlayColorDark?: ColorValue | undefined;
-  tintColorDark?: ColorValue | undefined;
-}
-
-export interface CustomImageStyle {
-  backgroundColorDark?: ColorValue | undefined;
-  shadowColorDark?: ColorValue | undefined;
-  borderColorDark?: ColorValue | undefined;
-  overlayColorDark?: ColorValue | undefined;
-  tintColorDark?: ColorValue | undefined;
-}
-
-export type MyTextStyle = CustomTextStyle | CustomTextMeStyle | TextStyleMe | TextStyle;
-export type MyImageStyle = CustomImageStyle | CustomImageMeStyle | ImageStyleMe | ImageStyle;
-export type MyViewStyle = CustomViewStyle | CustomViewMeStyle | ViewStyleMe | ViewStyle;
+export type StyleSheetOption = {
+  type?: ThemeType;
+  device?: Partial<MediaQueryAllQueryable>;
+};

@@ -1,18 +1,31 @@
-export { styleScaled, styleScaledTheme, styleTheme } from './CustomStyleComponent';
+export { styleComp } from './CustomStyleComponent';
 export { default as CustomStyleSheet } from './CustomStyleSheet';
-export { getCurrentTheme, useMyCurrentTheme, useMyTheme, useThemeContext, useUpdateMyTheme } from './Hooks';
+export {
+  getCurrentTheme,
+  useCurrentOrientation,
+  useCurrentTheme,
+  useTheme,
+  useThemeContext,
+  useUpdateTheme
+} from './Hooks';
+export type { MediaQueryAllQueryable } from './MediaQuery';
+export { MediaQuery, useDevice, useMediaQuery } from './MediaQuery';
 export { ThemeContext, ThemeProvider } from './ThemeContext';
 export type { AppThemeType } from './ThemeReducers';
-export type { MyImageStyle, MyTextStyle, MyViewStyle, ThemeType } from './Utility';
+export type { MyImageStyle, MyTextStyle, MyViewStyle, StyleSheetOption, ThemeType } from './Utility';
 export {
   heightPercentageToDP,
   moderateScale,
   moderateVerticalScale,
   scale,
-  screenHeight,
-  screenWidth,
   sdp,
   ssp,
   verticalScale,
-  widthPercentageToDP
+  viewportHeight,
+  viewportMax,
+  viewportMin,
+  viewportWidth,
+  widthPercentageToDP,
+  windowHeight,
+  windowWidth
 } from './Utility';
