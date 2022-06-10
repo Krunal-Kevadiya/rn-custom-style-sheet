@@ -143,6 +143,10 @@ A function which returns computed styles on the basis of media queries specified
 
   - `styles` (_object_,_themeType_): A style object which is generated during application start. See basic [example](#usage) above.
 
+#### ThemeType
+
+- This is the type of theme and value is dark or light
+
 #### ThemeProvider
 
 - This is a theme provider and applies to the app level js/ts.
@@ -168,9 +172,34 @@ const handleAppTheme = useUpdateMyTheme();
 </Button>
 ```
 
-#### ThemeType
+#### Style Component
 
-- This is the type of theme and value is dark or light
+- If do you want to used style in style components then</br>
+  A function which returns computed styles on the basis of media queries specified or theming.
+
+> 1. `styleTheme(Component)<ComponentPropsType>(({ props, type }) => ({}))` only accepts dark/light mode theming
+> 2. `styleScaled(Component)<ComponentPropsType>(({ props }) => ({}))` only accepts media queries specified
+> 3. `styleScaledTheme(Component)<ComponentPropsType>(({ props, type }) => ({}))` accepts both dark/light mode theming and media queries specified
+
+```js
+const BigTitleWithTheme = styleScaledTheme(Text)<TextProps>(({ props, type }) => ({
+  padding: props.padding,
+  fontWeight: 'bold',
+  fontSize: '14@ms',
+  color: 'black',
+  colorDark: 'white'
+}));
+
+const BigTitle = styleScaled(Text)({
+  fontWeight: 'bold',
+  fontSize: '14@ms',
+  color: 'black'
+});
+
+
+<BigTitleWithTheme padding="10@vs">abc</BigTitleWithTheme>
+<BigTitle>abc</BigTitle>
+```
 
 #### Example
 

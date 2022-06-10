@@ -1,8 +1,11 @@
 import type { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 
 import type {
+  CustomImageMeStyle,
   CustomImageStyle,
+  CustomTextMeStyle,
   CustomTextStyle,
+  CustomViewMeStyle,
   CustomViewStyle,
   ImageStyleMe,
   TextStyleMe,
@@ -25,6 +28,10 @@ namespace CustomStyleSheet {
 
   type NamedScaleStyles<T> = {
     [P in keyof T]: ImageStyleMe | TextStyleMe | ViewStyleMe | ImageStyle | TextStyle | ViewStyle;
+  };
+
+  type NamedScaleThemeStyles<T> = {
+    [P in keyof T]: CustomImageMeStyle | CustomTextMeStyle | CustomViewMeStyle | ImageStyle | TextStyle | ViewStyle;
   };
 
   type ReturnNamedStyles<T> = {
@@ -56,7 +63,7 @@ namespace CustomStyleSheet {
   }
 
   export function createScaledTheme<T extends ReturnNamedStyles<T> | ReturnNamedStyles<any>>(
-    styles: T | NamedThemeStyles<T>,
+    styles: T | NamedScaleThemeStyles<T>,
     type: ThemeType = 'light'
   ): T {
     return deepMap(styles, type, scaleFunc) as T;

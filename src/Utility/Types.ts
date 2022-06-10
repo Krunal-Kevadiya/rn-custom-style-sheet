@@ -113,7 +113,18 @@ export interface ImageStyleMe extends FlexStyleMe, ShadowStyleIOSMe, TransformsS
 }
 
 /** Dark Themed ViewStyle  */
-export interface CustomViewStyle extends ViewStyleMe {
+export interface CustomViewMeStyle extends ViewStyleMe {
+  backgroundColorDark?: ColorValue | undefined;
+  borderBottomColorDark?: ColorValue | undefined;
+  borderColorDark?: ColorValue | undefined;
+  borderEndColorDark?: ColorValue | undefined;
+  borderLeftColorDark?: ColorValue | undefined;
+  borderRightColorDark?: ColorValue | undefined;
+  borderStartColorDark?: ColorValue | undefined;
+  borderTopColorDark?: ColorValue | undefined;
+  shadowColorDark?: ColorValue | undefined;
+}
+export interface CustomViewStyle {
   backgroundColorDark?: ColorValue | undefined;
   borderBottomColorDark?: ColorValue | undefined;
   borderColorDark?: ColorValue | undefined;
@@ -126,14 +137,20 @@ export interface CustomViewStyle extends ViewStyleMe {
 }
 
 /** Dark Themed TextStyle  */
-export interface CustomTextStyle extends TextStyleMe, CustomViewStyle {
+export interface CustomTextMeStyle extends TextStyleMe, CustomViewMeStyle {
+  colorDark: ColorValue | undefined;
+  textShadowColorDark?: ColorValue | undefined;
+  textDecorationColorDark?: ColorValue | undefined;
+}
+
+export interface CustomTextStyle extends CustomViewStyle {
   colorDark: ColorValue | undefined;
   textShadowColorDark?: ColorValue | undefined;
   textDecorationColorDark?: ColorValue | undefined;
 }
 
 /** Dark Themed ImageStyle  */
-export interface CustomImageStyle extends ImageStyleMe {
+export interface CustomImageMeStyle extends ImageStyleMe {
   backgroundColorDark?: ColorValue | undefined;
   shadowColorDark?: ColorValue | undefined;
   borderColorDark?: ColorValue | undefined;
@@ -141,6 +158,14 @@ export interface CustomImageStyle extends ImageStyleMe {
   tintColorDark?: ColorValue | undefined;
 }
 
-export type MyTextStyle = CustomTextStyle | TextStyleMe | TextStyle;
-export type MyImageStyle = CustomImageStyle | ImageStyleMe | ImageStyle;
-export type MyViewStyle = CustomViewStyle | ViewStyleMe | ViewStyle;
+export interface CustomImageStyle {
+  backgroundColorDark?: ColorValue | undefined;
+  shadowColorDark?: ColorValue | undefined;
+  borderColorDark?: ColorValue | undefined;
+  overlayColorDark?: ColorValue | undefined;
+  tintColorDark?: ColorValue | undefined;
+}
+
+export type MyTextStyle = CustomTextStyle | CustomTextMeStyle | TextStyleMe | TextStyle;
+export type MyImageStyle = CustomImageStyle | CustomImageMeStyle | ImageStyleMe | ImageStyle;
+export type MyViewStyle = CustomViewStyle | CustomViewMeStyle | ViewStyleMe | ViewStyle;

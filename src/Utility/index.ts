@@ -22,8 +22,11 @@ export {
 export type { StorageStringType } from './MMKVStorage';
 export { getStorageString, setStorageString } from './MMKVStorage';
 export type {
+  CustomImageMeStyle,
   CustomImageStyle,
+  CustomTextMeStyle,
   CustomTextStyle,
+  CustomViewMeStyle,
   CustomViewStyle,
   ImageStyleMe,
   MyImageStyle,

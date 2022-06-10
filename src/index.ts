@@ -1,3 +1,4 @@
+export { styleScaled, styleScaledTheme, styleTheme } from './CustomStyleComponent';
 export { default as CustomStyleSheet } from './CustomStyleSheet';
 export { getCurrentTheme, useMyCurrentTheme, useMyTheme, useThemeContext, useUpdateMyTheme } from './Hooks';
 export { ThemeContext, ThemeProvider } from './ThemeContext';
