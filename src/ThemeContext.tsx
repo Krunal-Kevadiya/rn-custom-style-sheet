@@ -1,6 +1,7 @@
 import React, { createContext, Dispatch, useReducer } from 'react';
 
 import { useDeviceOrientation, useSystemAppearance } from './Hooks';
+import useDidMount from './Hooks/UseDidMount';
 import type { InitialThemeStateType, ThemeActions } from './ThemeReducers';
 import { themeReducer } from './ThemeReducers';
 import { applicationOrientation } from './Utility';
@@ -31,7 +32,10 @@ export function ThemeProvider({
   const [state, dispatch] = useReducer(themeReducer, initialThemeState);
   useSystemAppearance(dispatch);
   useDeviceOrientation(dispatch, isSupportLandscape);
-  applicationOrientation(dispatch, isAppLandscape);
+
+  useDidMount(() => {
+    applicationOrientation(dispatch, isAppLandscape);
+  });
 
   return <ThemeContext.Provider value={{ state, dispatch }}>{children}</ThemeContext.Provider>;
 }
