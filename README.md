@@ -151,6 +151,7 @@ A function which returns computed styles on the basis of media queries specified
 
 - This is a theme provider and applies to the app level js/ts.
 - isSupportLandscape props will be support device landscape mode from scaling because when device orientation change then change height and width(Default false).
+- isAppLandscape props will be support device landscape mode from scaling because when application need landscape mode then change height and width(Default false).
 
 #### useMyTheme
 
@@ -211,7 +212,7 @@ import { ThemeProvider, CustomStyleSheet, ThemeType, useMyTheme } from 'rn-custo
 
 const App = () => {
   return (
-    <ThemeProvider isSupportLandscape={true}>
+    <ThemeProvider isSupportLandscape={true} isAppLandscape={true}>
       <Example />
     </ThemeProvider>
   );

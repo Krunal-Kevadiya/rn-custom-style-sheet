@@ -3,6 +3,7 @@ import React, { createContext, Dispatch, useReducer } from 'react';
 import { useDeviceOrientation, useSystemAppearance } from './Hooks';
 import type { InitialThemeStateType, ThemeActions } from './ThemeReducers';
 import { themeReducer } from './ThemeReducers';
+import { applicationOrientation } from './Utility';
 
 const initialThemeState: InitialThemeStateType = {
   appTheme: 'system',
@@ -20,18 +21,22 @@ export const ThemeContext = createContext<{
 
 export function ThemeProvider({
   children,
-  isSupportLandscape
+  isSupportLandscape,
+  isAppLandscape
 }: {
   children: React.ReactElement;
   isSupportLandscape: boolean;
+  isAppLandscape: boolean;
 }): React.ReactElement {
   const [state, dispatch] = useReducer(themeReducer, initialThemeState);
   useSystemAppearance(dispatch);
   useDeviceOrientation(dispatch, isSupportLandscape);
+  applicationOrientation(dispatch, isAppLandscape);
 
   return <ThemeContext.Provider value={{ state, dispatch }}>{children}</ThemeContext.Provider>;
 }
 
 ThemeProvider.defaultProps = {
-  isSupportLandscape: false
+  isSupportLandscape: false,
+  isAppLandscape: false
 };

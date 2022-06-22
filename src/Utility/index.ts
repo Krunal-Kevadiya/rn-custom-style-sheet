@@ -1,6 +1,7 @@
 export { scaleFunc } from './Common';
 export { deepMap } from './DeepMap';
 export {
+  applicationOrientation,
   getNewSize,
   heightPercentageToDP,
   listenOrientationChange,

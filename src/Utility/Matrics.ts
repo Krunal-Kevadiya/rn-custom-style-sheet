@@ -1,7 +1,9 @@
+import type { Dispatch } from 'react';
 import { Dimensions, EmitterSubscription, PixelRatio } from 'react-native';
 
 import { configs } from '../CustomStyleSheet';
 import { ORIENTATION } from '../Hooks';
+import { OrientationType, ThemeActions, Types } from '../ThemeReducers';
 
 // Retrieve initial screen's width
 export let screenWidth: number = Dimensions.get('window').width;
@@ -140,6 +142,28 @@ export function viewportWidth(size: number, skipAspectRatio: boolean = false): n
   return (changeSize / 100) * screenWidth;
 }
 
+export function applicationOrientation(dispatch?: Dispatch<ThemeActions>, isAppLandscape?: boolean) {
+  const { width, height } = Dimensions.get('window');
+  const orientation = screenWidth < screenHeight ? ORIENTATION.PORTRAIT : ORIENTATION.LANDSCAPE;
+  if (isAppLandscape && orientation === ORIENTATION.PORTRAIT) {
+    screenWidth = height;
+    screenHeight = width;
+  } else {
+    screenWidth = width;
+    screenHeight = height;
+  }
+  currentWidthDimen = 0;
+  shortDimension = Math.min(screenWidth, screenHeight);
+  longDimension = Math.max(screenWidth, screenHeight);
+
+  dispatch?.({
+    type: Types.ChangeOrientation,
+    payload: {
+      orientation: orientation as OrientationType
+    }
+  });
+}
+
 /**
  * Event listener function that detects orientation change (every time it occurs) and triggers
  * screen rerendering. It does that, by changing the state of the screen where the function is
@@ -152,15 +176,9 @@ export function viewportWidth(size: number, skipAspectRatio: boolean = false): n
 let subscription: EmitterSubscription;
 export function listenOrientationChange(callback?: (orientation: string) => void): EmitterSubscription {
   subscription = Dimensions.addEventListener('change', ({ window }) => {
-    // Retrieve and save new dimensions
-    screenWidth = window.width;
-    screenHeight = window.height;
-    currentWidthDimen = 0;
-    shortDimension = Math.min(screenWidth, screenHeight);
-    longDimension = Math.max(screenWidth, screenHeight);
-
+    applicationOrientation(undefined, false);
     // Trigger screen's rerender with a state update of the orientation variable
-    callback?.(screenWidth < screenHeight ? ORIENTATION.PORTRAIT : ORIENTATION.LANDSCAPE);
+    callback?.(window.width < window.height ? ORIENTATION.PORTRAIT : ORIENTATION.LANDSCAPE);
   });
   return subscription;
 }
