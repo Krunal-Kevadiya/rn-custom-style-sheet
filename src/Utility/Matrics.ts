@@ -144,7 +144,7 @@ export function viewportWidth(size: number, skipAspectRatio: boolean = false): n
 
 export function applicationOrientation(dispatch?: Dispatch<ThemeActions>, isAppLandscape?: boolean) {
   const { width, height } = Dimensions.get('window');
-  const orientation = screenWidth < screenHeight ? ORIENTATION.PORTRAIT : ORIENTATION.LANDSCAPE;
+  const orientation = width < height ? ORIENTATION.PORTRAIT : ORIENTATION.LANDSCAPE;
   if (isAppLandscape && orientation === ORIENTATION.PORTRAIT) {
     screenWidth = height;
     screenHeight = width;
