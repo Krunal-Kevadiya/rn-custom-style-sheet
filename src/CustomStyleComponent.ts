@@ -10,26 +10,32 @@ import React, {
 } from 'react';
 import { ImageStyle, StyleProp, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
-import { useMyCurrentTheme } from './Hooks';
+import { useCurrentTheme } from './Hooks';
+import useCurrentOrientation from './Hooks/UseCurrentOrientation';
+import type { MediaQueryAllQueryable } from './MediaQuery';
+import type { OrientationType } from './ThemeReducers';
 import {
-  CustomImageMeStyle,
-  CustomImageStyle,
-  CustomTextMeStyle,
-  CustomTextStyle,
-  CustomViewMeStyle,
-  CustomViewStyle,
   deepMap,
-  ImageStyleMe,
+  OnlyScaleType,
+  OnlyThemeType,
   scaleFunc,
-  TextStyleMe,
+  ScaleImageStyle,
+  ScaleTextStyle,
+  ScaleThemeImageStyle,
+  ScaleThemeTextStyle,
+  ScaleThemeViewStyle,
+  ScaleViewStyle,
+  ThemeImageStyle,
+  ThemeTextStyle,
   ThemeType,
-  ViewStyleMe
+  ThemeViewStyle
 } from './Utility';
 
 type DefaultProps = object & {
   as?: ComponentType<any>;
   children?: ReactNode;
-};
+  device?: Partial<MediaQueryAllQueryable>;
+} & (OnlyThemeType | OnlyScaleType);
 
 type Merge<P1 = {}, P2 = {}> = Omit<P1, keyof P2> & P2;
 
@@ -46,120 +52,73 @@ interface Polymorphic<IntrinsicElement extends JSXElementConstructor<any>, OwnPr
   ): ReactElement | null;
 }
 
-type NamedThemeStyles = CustomImageStyle | CustomTextStyle | CustomViewStyle | ImageStyle | TextStyle | ViewStyle;
+type Get<T, K> = K extends `${infer F}.${infer R}`
+  ? F extends keyof T
+    ? Get<T[F], R>
+    : never
+  : K extends keyof T
+  ? T[K]
+  : never;
 
-type NamedScaleStyles = ImageStyleMe | TextStyleMe | ViewStyleMe | ImageStyle | TextStyle | ViewStyle;
+type BoundMediaStyles<T> = {
+  [P in keyof T]:
+    | Get<ThemeViewStyle, P>
+    | Get<ThemeTextStyle, P>
+    | Get<ThemeImageStyle, P>
+    | Get<ScaleViewStyle, P>
+    | Get<ScaleTextStyle, P>
+    | Get<ScaleImageStyle, P>
+    | Get<ScaleThemeViewStyle, P>
+    | Get<ScaleThemeTextStyle, P>
+    | Get<ScaleThemeImageStyle, P>;
+};
+type BoundStyles<P> = P extends object
+  ? BoundMediaStyles<keyof P>
+  :
+      | Get<ThemeViewStyle, P>
+      | Get<ThemeTextStyle, P>
+      | Get<ThemeImageStyle, P>
+      | Get<ScaleViewStyle, P>
+      | Get<ScaleTextStyle, P>
+      | Get<ScaleImageStyle, P>
+      | Get<ScaleThemeViewStyle, P>
+      | Get<ScaleThemeTextStyle, P>
+      | Get<ScaleThemeImageStyle, P>;
 
-type NamedScaleThemeStyles =
-  | CustomImageMeStyle
-  | CustomTextMeStyle
-  | CustomViewMeStyle
-  | ImageStyle
-  | TextStyle
-  | ViewStyle;
-
-type ReturnNamedStyles = ViewStyle | TextStyle | ImageStyle;
-
-type StylesWithTheme<P, T, U> = (args: { props: P; type?: U extends number ? never : ThemeType }) => T;
-
-type Styles<P, T, U> = StylesWithTheme<P, T, U> | T;
-
-export const styleTheme =
+export const styleComp =
   <Comp extends ComponentType<any>>(Component: Comp) =>
   <Props extends DefaultProps = DefaultProps>(
-    stylesProp: Styles<Props, NamedThemeStyles, boolean>
-  ): Polymorphic<Comp, Props> => {
-    return forwardRef(function ForwardedComponent(props: Props, ref) {
-      const type: ThemeType = useMyCurrentTheme();
-      const {
-        style: inlineStyles = {},
-        as,
-        ...restProps
-      } = props as Props & {
-        style: StyleProp<NamedThemeStyles>;
-      };
-
-      // Check type of argument
-      const styleSheet = typeof stylesProp === 'function' ? stylesProp({ props, type }) : stylesProp;
-      const styles = useMemo<ReturnNamedStyles>(
-        () =>
-          deepMap(
-            StyleSheet.flatten([styleSheet, ...(Array.isArray(inlineStyles) ? inlineStyles : [inlineStyles])]),
-            type,
-            undefined
-          ),
-        [styleSheet, inlineStyles, type]
-      );
-
-      // Create component
-      return createElement<DefaultProps>(as || Component, {
-        ...restProps,
-        ref,
-        style: styles
-      });
-    }) as any;
-  };
-
-export const styleScaled =
-  <Comp extends ComponentType<any>>(Component: Comp) =>
-  <Props extends DefaultProps = DefaultProps>(
-    stylesProp: Styles<Props, NamedScaleStyles, number>
+    stylesProp: BoundStyles<any> | ((args: { props: Props }) => BoundStyles<any>)
   ): Polymorphic<Comp, Props> => {
     return forwardRef(function ForwardedComponent(props: Props, ref) {
       const {
         style: inlineStyles = {},
         as,
+        device,
+        onlyTheme,
+        onlyScale,
         ...restProps
       } = props as Props & {
-        style: StyleProp<NamedScaleStyles>;
+        style: StyleProp<BoundStyles<any>>;
       };
+      const localOnlyTheme: boolean = onlyTheme ?? false;
+      const localScaleTheme: boolean = onlyScale ?? false;
+      const localDevice: Partial<MediaQueryAllQueryable> | undefined = device;
+      const localType: ThemeType = useCurrentTheme();
+      const orientation: OrientationType = useCurrentOrientation();
 
       // Check type of argument
       const styleSheet = typeof stylesProp === 'function' ? stylesProp({ props }) : stylesProp;
-      const styles = useMemo<ReturnNamedStyles>(
+      const styles = useMemo<ViewStyle | TextStyle | ImageStyle>(
         () =>
-          deepMap(
-            StyleSheet.flatten([styleSheet, ...(Array.isArray(inlineStyles) ? inlineStyles : [inlineStyles])]),
-            undefined,
-            scaleFunc
-          ),
-        [styleSheet, inlineStyles]
-      );
-
-      // Create component
-      return createElement<DefaultProps>(as || Component, {
-        ...restProps,
-        ref,
-        style: styles
-      });
-    }) as any;
-  };
-
-export const styleScaledTheme =
-  <Comp extends ComponentType<any>>(Component: Comp) =>
-  <Props extends DefaultProps = DefaultProps>(
-    stylesProp: Styles<Props, NamedScaleThemeStyles, boolean>
-  ): Polymorphic<Comp, Props> => {
-    return forwardRef(function ForwardedComponent(props: Props, ref) {
-      const type: ThemeType = useMyCurrentTheme();
-      const {
-        style: inlineStyles = {},
-        as,
-        ...restProps
-      } = props as Props & {
-        style: StyleProp<NamedScaleThemeStyles>;
-      };
-
-      // Check type of argument
-      const styleSheet = typeof stylesProp === 'function' ? stylesProp({ props, type }) : stylesProp;
-      const styles = useMemo<ReturnNamedStyles>(
-        () =>
-          deepMap(
-            StyleSheet.flatten([styleSheet, ...(Array.isArray(inlineStyles) ? inlineStyles : [inlineStyles])]),
-            type,
-            scaleFunc
-          ),
-        [styleSheet, inlineStyles, type]
+          deepMap({
+            styles: StyleSheet.flatten([styleSheet, ...(Array.isArray(inlineStyles) ? inlineStyles : [inlineStyles])]),
+            device: localDevice,
+            type: localScaleTheme ? undefined : localType,
+            scaleFunc: localOnlyTheme ? undefined : scaleFunc
+          }),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [styleSheet, inlineStyles, device, localType, orientation]
       );
 
       // Create component

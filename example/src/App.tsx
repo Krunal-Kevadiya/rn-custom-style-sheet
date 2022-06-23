@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { CustomStyleSheet, ThemeProvider } from 'rn-custom-style-sheet';
+import { ThemeProvider } from 'rn-custom-style-sheet';
 import { ScaledScreen } from './ScaledScreen';
 import { ThemeScreen } from './ThemeScreen';
 import { ScaledThemeScreen } from './ScaledThemeScreen';
 import { HomeScreen } from './HomeScreen';
-
-CustomStyleSheet.config();
+import { MediaQueryScreen } from './MediaQueryScreen';
+import { StyleComponentScreen } from './StyleComponentScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +20,8 @@ const App = () => {
           <Stack.Screen name="Scaled" component={ScaledScreen} />
           <Stack.Screen name="Theme" component={ThemeScreen} />
           <Stack.Screen name="ScaledTheme" component={ScaledThemeScreen} />
+          <Stack.Screen name="MediaQuery" component={MediaQueryScreen} />
+          <Stack.Screen name="StyleComponent" component={StyleComponentScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>

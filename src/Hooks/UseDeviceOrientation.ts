@@ -1,6 +1,6 @@
 import type { Dispatch } from 'react';
 import { useEffect } from 'react';
-import { Dimensions } from 'react-native';
+import { Dimensions, EmitterSubscription } from 'react-native';
 
 import type { OrientationType, ThemeActions } from '../ThemeReducers';
 import { Types } from '../ThemeReducers';
@@ -16,10 +16,11 @@ export function getWindowOrientation(): string {
   return height >= width ? ORIENTATION.PORTRAIT : ORIENTATION.LANDSCAPE;
 }
 
-export default function useDeviceOrientation(dispatch: Dispatch<ThemeActions>, isSupportLandscape: boolean): void {
+export default function useDeviceOrientation(dispatch: Dispatch<ThemeActions>, isSupportedOrientation: boolean): void {
   useEffect(() => {
-    if (isSupportLandscape) {
-      listenOrientationChange((orientation: string) => {
+    let subscription: EmitterSubscription | undefined;
+    if (isSupportedOrientation) {
+      subscription = listenOrientationChange(true, (orientation: string) => {
         dispatch({
           type: Types.ChangeOrientation,
           payload: {
@@ -29,8 +30,9 @@ export default function useDeviceOrientation(dispatch: Dispatch<ThemeActions>, i
       });
     }
     return () => {
-      removeOrientationListener();
+      removeOrientationListener(subscription);
+      subscription = undefined;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSupportLandscape]);
+  }, [isSupportedOrientation]);
 }

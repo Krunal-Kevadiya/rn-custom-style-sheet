@@ -14,6 +14,7 @@ export enum Types {
   ChangeAppTheme = 'CHANGE_APP_THEME',
   ChangeSystemTheme = 'CHANGE_SYSTEM_THEME',
   ChangeOrientation = 'CHANGE_ORIENTATION',
+  ChangeOrientationAndConfig = 'CHANGE_ORIENTATION_AND_CONFIG',
   Clear = 'CLEAR'
 }
 
@@ -24,6 +25,8 @@ export type InitialThemeStateType = {
   appTheme: AppThemeType;
   systemTheme: AppThemeType;
   orientation: OrientationType;
+  isRefreshConfig: boolean;
+  isThemeSupportedOrientation: boolean;
 };
 
 type ThemePayload = {
@@ -31,6 +34,8 @@ type ThemePayload = {
     appTheme: AppThemeType;
     systemTheme: AppThemeType;
     orientation: OrientationType;
+    isRefreshConfig: boolean;
+    isThemeSupportedOrientation: boolean;
   };
   [Types.ChangeAppTheme]: {
     appTheme: AppThemeType;
@@ -40,6 +45,10 @@ type ThemePayload = {
   };
   [Types.ChangeOrientation]: {
     orientation: OrientationType;
+  };
+  [Types.ChangeOrientationAndConfig]: {
+    orientation: OrientationType;
+    isRefreshConfig: boolean;
   };
   [Types.Clear]: {};
 };
@@ -52,7 +61,9 @@ export function themeReducer(state: InitialThemeStateType, action: ThemeActions)
       return Object.assign({}, state, {
         appTheme: action.payload.appTheme,
         systemTheme: action.payload.systemTheme,
-        orientation: action.payload.orientation
+        orientation: action.payload.orientation,
+        isRefreshConfig: action.payload.isRefreshConfig,
+        isThemeSupportedOrientation: action.payload.isThemeSupportedOrientation
       });
     case Types.ChangeAppTheme:
       return Object.assign({}, state, {
@@ -67,11 +78,18 @@ export function themeReducer(state: InitialThemeStateType, action: ThemeActions)
       return Object.assign({}, state, {
         orientation: action.payload.orientation
       });
+    case Types.ChangeOrientationAndConfig:
+      return Object.assign({}, state, {
+        orientation: action.payload.orientation,
+        isRefreshConfig: action.payload.isRefreshConfig
+      });
     case Types.Clear:
       return Object.assign({}, state, {
         appTheme: 'system',
         systemTheme: 'system',
-        orientation: 'portrait'
+        orientation: 'portrait',
+        isRefreshConfig: false,
+        isThemeSupportedOrientation: false
       });
     default:
       return state;

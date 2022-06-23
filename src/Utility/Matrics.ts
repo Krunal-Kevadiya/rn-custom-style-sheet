@@ -1,24 +1,24 @@
 import type { Dispatch } from 'react';
 import { Dimensions, EmitterSubscription, PixelRatio } from 'react-native';
 
-import { configs } from '../CustomStyleSheet';
+import { BreakpointUnitType, config, configs } from '../Config';
 import { ORIENTATION } from '../Hooks';
 import { OrientationType, ThemeActions, Types } from '../ThemeReducers';
 
 // Retrieve initial screen's width
-export let screenWidth: number = Dimensions.get('window').width;
+export let windowWidth: number = Dimensions.get('window').width;
 
 // Retrieve initial screen's height
-export let screenHeight: number = Dimensions.get('window').height;
+export let windowHeight: number = Dimensions.get('window').height;
 
 // Retrieve initial screen's short dimension
-export let shortDimension: number = Math.min(screenWidth, screenHeight);
+export let shortDimension: number = Math.min(windowWidth, windowHeight);
 
 // Retrieve initial screen's long dimension
-export let longDimension: number = Math.max(screenWidth, screenHeight);
+export let longDimension: number = Math.max(windowWidth, windowHeight);
 
 export function getNewSize(size: number): number {
-  const aspectRatio: number = screenHeight / screenWidth;
+  const aspectRatio: number = windowHeight / windowWidth;
   let newSize: number = 0;
   if (aspectRatio > 1.77) {
     newSize = size;
@@ -59,7 +59,8 @@ export function getNewSize(size: number): number {
  */
 export function scale(size: number, skipAspectRatio: boolean = false): number {
   const changeSize: number = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
-  return (screenWidth / configs.guidelineBaseWidth) * changeSize;
+  console.log(size, changeSize);
+  return (windowWidth / configs.guidelineBaseWidth) * changeSize;
 }
 
 /**
@@ -71,7 +72,7 @@ export function scale(size: number, skipAspectRatio: boolean = false): number {
  */
 export function verticalScale(size: number, skipAspectRatio: boolean = false): number {
   const changeSize: number = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
-  return (screenHeight / configs.guidelineBaseHeight) * changeSize;
+  return (windowHeight / configs.guidelineBaseHeight) * changeSize;
 }
 
 /**
@@ -108,7 +109,7 @@ export function moderateVerticalScale(size: number, skipAspectRatio: boolean = f
 export function widthPercentageToDP(widthPercent: number): number {
   // Use PixelRatio.roundToNearestPixel method in order to round the layout
   // size (dp) to the nearest one that correspons to an integer number of pixels.
-  return PixelRatio.roundToNearestPixel((screenWidth * widthPercent) / 100);
+  return PixelRatio.roundToNearestPixel((windowWidth * widthPercent) / 100);
 }
 
 /**
@@ -119,7 +120,7 @@ export function widthPercentageToDP(widthPercent: number): number {
 export function heightPercentageToDP(heightPercent: number): number {
   // Use PixelRatio.roundToNearestPixel method in order to round the layout
   // size (dp) to the nearest one that correspons to an integer number of pixels.
-  return PixelRatio.roundToNearestPixel((screenHeight * heightPercent) / 100);
+  return PixelRatio.roundToNearestPixel((windowHeight * heightPercent) / 100);
 }
 
 export function viewportMin(size: number, skipAspectRatio: boolean = false): number {
@@ -134,34 +135,76 @@ export function viewportMax(size: number, skipAspectRatio: boolean = false): num
 
 export function viewportHeight(size: number, skipAspectRatio: boolean = false): number {
   const changeSize: number = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
-  return (changeSize / 100) * screenHeight;
+  return (changeSize / 100) * windowHeight;
 }
 
 export function viewportWidth(size: number, skipAspectRatio: boolean = false): number {
   const changeSize: number = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
-  return (changeSize / 100) * screenWidth;
+  return (changeSize / 100) * windowWidth;
 }
 
-export function applicationOrientation(dispatch?: Dispatch<ThemeActions>, isAppLandscape?: boolean) {
+type ConfigType = {
+  guideLineBaseWidth?: number;
+  guideLineBaseHeight?: number;
+  guideLineBreakpointValues?: Record<string, number>;
+  guideLineBreakpointUnit?: BreakpointUnitType;
+  guideLineBreakpointStep?: number;
+  isUsedBuiltInAspectRatioFunction?: boolean;
+  guideLineAspectRatioFunction?: (size: number) => number;
+  prevISRefreshConfig: boolean;
+};
+export function applicationOrientation(
+  dispatch?: Dispatch<ThemeActions>,
+  isAppLandscape?: boolean,
+  configOption?: ConfigType
+) {
   const { width, height } = Dimensions.get('window');
   const orientation = width < height ? ORIENTATION.PORTRAIT : ORIENTATION.LANDSCAPE;
   if (isAppLandscape && orientation === ORIENTATION.PORTRAIT) {
-    screenWidth = height;
-    screenHeight = width;
+    windowWidth = height;
+    windowHeight = width;
   } else {
-    screenWidth = width;
-    screenHeight = height;
+    windowWidth = width;
+    windowHeight = height;
   }
   currentWidthDimen = 0;
-  shortDimension = Math.min(screenWidth, screenHeight);
-  longDimension = Math.max(screenWidth, screenHeight);
-
-  dispatch?.({
-    type: Types.ChangeOrientation,
-    payload: {
-      orientation: orientation as OrientationType
-    }
-  });
+  shortDimension = Math.min(windowWidth, windowHeight);
+  longDimension = Math.max(windowWidth, windowHeight);
+  if (configOption !== undefined && configOption !== null) {
+    const {
+      guideLineBaseWidth,
+      guideLineBaseHeight,
+      guideLineBreakpointValues,
+      guideLineBreakpointUnit,
+      guideLineBreakpointStep,
+      isUsedBuiltInAspectRatioFunction,
+      guideLineAspectRatioFunction,
+      prevISRefreshConfig
+    } = configOption;
+    config(
+      guideLineBaseWidth,
+      guideLineBaseHeight,
+      guideLineBreakpointValues,
+      guideLineBreakpointUnit,
+      guideLineBreakpointStep,
+      isUsedBuiltInAspectRatioFunction,
+      guideLineAspectRatioFunction
+    );
+    dispatch?.({
+      type: Types.ChangeOrientationAndConfig,
+      payload: {
+        orientation: orientation as OrientationType,
+        isRefreshConfig: !prevISRefreshConfig
+      }
+    });
+  } else {
+    dispatch?.({
+      type: Types.ChangeOrientation,
+      payload: {
+        orientation: orientation as OrientationType
+      }
+    });
+  }
 }
 
 /**
@@ -173,10 +216,15 @@ export function applicationOrientation(dispatch?: Dispatch<ThemeActions>, isAppL
  * @param {object} that Screen's class component this variable. The function needs it to
  *                      invoke setState method and trigger screen rerender (this.setState()).
  */
-let subscription: EmitterSubscription;
-export function listenOrientationChange(callback?: (orientation: string) => void): EmitterSubscription {
-  subscription = Dimensions.addEventListener('change', ({ window }) => {
-    applicationOrientation(undefined, false);
+export function listenOrientationChange(
+  forTheme: boolean,
+  callback?: (orientation: string) => void
+): EmitterSubscription {
+  const subscription: EmitterSubscription = Dimensions.addEventListener('change', ({ window }) => {
+    if (forTheme) {
+      applicationOrientation(undefined, false, undefined);
+    }
+
     // Trigger screen's rerender with a state update of the orientation variable
     callback?.(window.width < window.height ? ORIENTATION.PORTRAIT : ORIENTATION.LANDSCAPE);
   });
@@ -189,7 +237,7 @@ export function listenOrientationChange(callback?: (orientation: string) => void
  * listenOrientationChange function has been invoked. This should be done in order to
  * avoid adding new listeners every time the same component is re-mounted.
  */
-export function removeOrientationListener(): void {
+export function removeOrientationListener(subscription?: EmitterSubscription): void {
   subscription?.remove();
 }
 
@@ -201,9 +249,9 @@ const dimenInterval: number = 30;
 
 const getAvailableWidthDimension = () => {
   if (currentWidthDimen === 0) {
-    var dimen: number = screenWidth;
+    var dimen: number = windowWidth;
     for (let i: number = dimenMin; i <= dimenMax; i = i + dimenInterval) {
-      if (screenWidth >= i && screenWidth < i + dimenInterval) {
+      if (windowWidth >= i && windowWidth < i + dimenInterval) {
         dimen = i;
         break; // stop the loop
       }

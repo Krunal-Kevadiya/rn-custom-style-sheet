@@ -1,7 +1,5 @@
 # rn-custom-style-sheet
 
----
-
 Create responsive design with the help of custom style sheet
 
 #### Steps to Run & Build:
@@ -11,13 +9,11 @@ Create responsive design with the help of custom style sheet
 - Install dependencies in example app `cd example && yarn && cd ios/ && pod install && cd ..`
 - Run example app `yarn ios`
 
----
-
 - Run `yarn build` to sync package changes / updates
 
----
-
 ## Installation
+
+---
 
 npm
 
@@ -30,39 +26,6 @@ Yarn
 ```bash
 yarn add install rn-custom-style-sheet react-native-mmkv
 ```
-
-## Usage
-
-Define styles using [`CustomStyleSheet.create<Theme|Scaled|ScaledTheme>()`](#create-styles) instead of `StyleSheet.create()`
-
-```js
-import React from 'react';
-import { Text, View } from 'react-native';
-
-import { CustomStyleSheet } from 'rn-custom-style-sheet';
-
-const Example = () => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Example</Text>
-    </View>
-  );
-};
-
-const styles = CustomStyleSheet.createScaled({
-  text: {
-    fontSize: '2@ms',
-    marginVertical: '20@s'
-  },
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center'
-  }
-});
-```
-
-## Styling Options
 
 ### Size with custom units
 
@@ -81,88 +44,257 @@ const styles = CustomStyleSheet.createScaled({
 | `<size>@sdp<sar><r>`         | size relative to the window width, More detail of [sdp](https://github.com/intuit/sdp)                       | `10@sdp`               |
 | `<size>@ssp<sar><r>`         | size relative to the window width and device font size , More detail of [ssp](https://github.com/intuit/ssp) | `10@ssp`               |
 
-> **Note:**
->
-> 1. `size` can be any positive number (including decimal) for `s`, `vs`, `ms`, `mvs`, `sdp` and `ssp`
-> 2. `size` can be any positive percentage (including decimal) for `hp`, and `wp`
-> 3. `size` can be any positive number ranging from 0 to 100 (including decimal) for `vw`, `vh`, `vmin`, and `vmax`
-> 4. `factor` can be any positive number ranging from 0 and 1 (including decimal)
-> 5. `sar` can be skip aspect ratio apply to given `size`
-> 6. `r` can be rounding the result
+**Note:**
+
+- `size` : can be any positive number (including decimal) for `s`, `vs`, `ms`, `mvs`, `sdp` and `ssp`
+- `size` : can be any positive percentage (including decimal) for `hp`, and `wp`
+- `size` : can be any positive number ranging from 0 to 100 (including decimal) for `vw`, `vh`, `vmin`, and `vmax`
+- `factor` : can be any positive number ranging from 0 and 1 (including decimal)
+- `sar` : can be skip aspect ratio apply to given `size`
+- `r` : can be rounding the result
+
+### Forcing a device with the `device` prop
+
+---
+
+- At times you may need to render components with different device settings than what gets automatically detected.
+- This is especially useful in a Node environment where these settings can't be detected (SSR) or for testing.
+
+  #### **Possible Keys**
+
+  `orientation`, `aspectRatio`, `deviceAspectRatio`, `height`, `deviceHeight`, `width`, `deviceWidth`, `direction` and `type`
+
+  #### **Possible Types**
+
+  `modifier` can be one of: `only` or `not`
+
+  `type` can be one of: `all`, `screen`, `tv`, `ios`, `android`, `windows`, `macos` or `web`
+
+  `aspectRatio` or `deviceAspectRatio` : to decimal number
+
+  `height`, `width`, `deviceHeight`, or `deviceWidth` : to `em`, `rem`, `cm`, `mm`, `in`, `pt`, `pc` and `px`
+
+  `direction` can be one of: `rtl` or `ltr`
+
+### Supplying through Context / ThemeProvider
+
+---
+
+#### **Default breakpoints**
+
+Each breakpoint (a key) matches with a fixed screen width (a value):
+
+- base, base / extra-small: 0px
+- sm, small: 480px
+- md, medium: 768px
+- lg, large: 992px
+- xl, extra-large: 1280px
+- 2xl, double-extra-large: 1536px
+
+These values can be customized using `guideLineBreakpointValues` key.
+
+- This is a theme provider and applies to the app level js/ts.
+- `isThemeSupportedOrientation` : props will be support device landscape mode from scaling because when device orientation change then change height and width(Default false).
+- `isAppLandscape` props will be support device landscape mode from scaling because when application need landscape mode then change height and width(Default false).
+- `isMediaQuerySupportedOrientation` : props will be support device landscape mode from media query because when device orientation change then change height, width and orientation(Default true).
+- `deviceForMediaQuery` : props will be used to apply media query device configuration at project level.
+- `guideLineBaseWidth` : can be default guideline width sizes are based on standard ~5" screen mobile device or you can set based on design guideline. Default to `375`
+- `guideLineBaseHeight` : can be default guideline height sizes are based on standard ~5" screen mobile device or you can set based on design guideline. Default to `812`
+- `guideLineBreakpointValues` : The keys are your screen names, and the values are the min-width where that breakpoint should start. Default to the above values.
+- `guideLineBreakpointUnit` : The unit used for the breakpoint's values. Default is `px` but can be changed, can be one of `em`, `rem`, `cm`, `mm`, `in`, `pt`, `pc` and `px`
+- `guideLineBreakpointStep` : The increment divided by 100 used to implement exclusive breakpoints. For example, `step = 5` means that `down(500)` will result in `(max-width: 499.95px)`. Default to `0`
+- `isUsedBuiltInAspectRatioFunction`: Default is `false`. Set true if you want to apply aspect ration function which are provided built-in.
+- `guideLineAspectRatioFunction` : can be function which calculates new size based on aspect ratio condition.
+
+```js
+const App = () => {
+  return (
+    <ThemeProvider deviceForMediaQuery={{ width: 500 }}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={HomeScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
+  );
+};
+```
 
 ## API
 
-### `config`
+---
 
-A function which apply custom styles config.
+### 01. `create (styles, option)`
 
-> 1. `guideLineBase` can be Default guideline sizes(width|height) are based on standard ~5" screen mobile device or design guideline.
-> 2. `aspectRatioFn` can be function which calculates new size based on aspect ratio condition.
+A function which returns computed styles on the basis of media queries specified, scale functionality or theming.
 
-```js
-CustomStyleSheet.config(
-  {
-    width: 375,
-    height: 812
-  },
-  (size: number) => {
-    const aspectRatio = screenHeight / screenWidth;
-    let newSize = 0;
-    if (aspectRatio > 1.77) {
-      newSize = size;
-    } else if (aspectRatio > 1.6) {
-      newSize = size * 0.97;
-    } else if (aspectRatio > 1.4) {
-      newSize = size * 0.89;
-    } else if (aspectRatio > 1.35) {
-      newSize = size * 0.87;
-    } else {
-      newSize = size * 0.6;
-    }
-    return newSize;
-  }
-);
-```
-
-### `create (styles)`
-
-A function which returns computed styles on the basis of media queries specified or theming.
-
-> 1. `createTheme (styles)` only accepts dark/light mode theming
-> 2. `createScaled (styles)` only accepts media queries specified
-> 3. `createScaledTheme (styles)` accepts both dark/light mode theming and media queries specified
+Here styles is plain json object to define your component or screen all styles
 
 #### Arguments
 
-1. `styles` (_object_) : A style object either the normal or with custom properties and queries.
-1. `styles` (_object_,_themeType_) : A style object either the normal or with custom properties, queries and theme properties.
+- `styles` (_object_) : A style object either the normal or with custom properties and media queries.
+- `styles` (_object_,_option_) : A option is contain `type`, `device`, `onlyTheme` and `onlyScale` key properties.
+
+  - `type` : A type is theme type which is currently used like `light` or `dark`
+  - `device` : At times you may need to render components with different device settings than what gets automatically detected.
+
+    This is especially useful in a Node environment where these settings can't be detected (SSR) or for testing.
+
+    For Device type check **Forcing a device with the `device` prop** section above
+
+  - `onlyTheme` : Define true when only support dark or light theme mode(Exclude scale functionality).
+  - `onlyScale` : Define true when only support scale functionality(Exclude dark or light theme mode support)
+    Note: The `onlyTheme` and `onlyScale` property always applies visa versa.
 
 #### Return
 
-- `customStyleSheet` (_object_,_themeType_)
+- `customStyleSheet` (_object_,_option_)
+  - `styles` (_object_,_option_): A style object which is generated during application start. See basic [example](#Example) below.
 
-  - `styles` (_object_,_themeType_): A style object which is generated during application start. See basic [example](#usage) above.
+### 02. getCurrentTheme
 
-#### ThemeType
+Will return current theme, based on app and system theme which are provided as a parameter.
 
-- This is the type of theme and value is dark or light
+`Example :` getCurrentTheme('system', 'system')
 
-#### ThemeProvider
+### 03. scale
 
-- This is a theme provider and applies to the app level js/ts.
-- isSupportLandscape props will be support device landscape mode from scaling because when device orientation change then change height and width(Default false).
-- isAppLandscape props will be support device landscape mode from scaling because when application need landscape mode then change height and width(Default false).
+Will return a linear scaled result of the provided size, based on your device's screen width
 
-#### useMyTheme
+`Example :` scale(10)
 
-- Custom hook for applying the current theme in our style object.
+### 04. verticalScale
 
-#### useUpdateMyTheme
+Will return a linear scaled result of the provided size, based on your device's screen height.
 
-- Custom hook for update the current app theme in our application(used for setting preference or other you have specify option in our application).
+`Example :` verticalScale(10)
+
+### 05. moderateScale
+
+Sometimes you don't want to scale everything in a linear manner, that's where moderateScale comes in.
+
+The cool thing about it is that you can control the resize factor (default is 0.5).
+
+If normal scale will increase your size by +2X, moderateScale will only increase it by +X, for example:
+
+- scale(10) = 20
+- moderateScale(10) = 15
+- moderateScale(10, 0.1) = 11
+
+### 06. moderateVerticalScale
+
+Same as moderateScale, but using verticalScale instead of scale.
+
+`Example :` moderateVerticalScale(10)
+
+### 07. heightPercentageToDP
+
+Their names essentially mean that you can supply a "percentage like" string value and it will return the DP (indipendent pixel) that correspond to the supplied percentage of current screen's height.
+
+`Example :` widthPercentageToDP('50%')
+
+### 08. heightPercentageToDP
+
+Their names essentially mean that you can supply a "percentage like" string value and it will return the DP (indipendent pixel) that correspond to the supplied percentage of current screen's width.
+
+`Example :` widthPercentageToDP('50%')
+
+### 09. viewportHeight
+
+Size relative to the window height
+
+`Example :` viewportHeight(1.02)
+
+### 10. viewportWidth
+
+Size relative to the window width
+
+`Example :` viewportWidth(10)
+
+### 11. viewportMax
+
+Size relative to the largest dimension compared between window width and height
+
+`Example :` viewportMax(10)
+
+### 12. viewportMin
+
+Size relative to the shortest dimension compared between window width and height
+
+`Example :` viewportMin(10)
+
+### 13. sdp
+
+New size unit - sdp (scalable dp). This size unit scales with the screen size. It can help developers with supporting multiple screens.
+More detail of [sdp](https://github.com/intuit/sdp)
+
+`Example :` sdp(10)
+
+### 14. ssp
+
+New size unit - ssp (scalable sp). This size unit scales with the screen size based on the sp size unit (for texts). It can help developers with supporting multiple screens.
+More detail of [ssp](https://github.com/intuit/ssp)
+
+`Example :` ssp(10)
+
+### 15. windowHeight
+
+here is provided windows height.
+
+### 16. windowWidth
+
+here is provided windows width.
+
+## Hooks
+
+### 01. useCurrentOrientation
+
+If you want to get the current orientation from theme but based on `isThemeSupportedOrientation` props setting.
+
+If `isThemeSupportedOrientation` true than provided `portrait` or `landscape` otherwise provided `portrait`
 
 ```js
-const handleAppTheme = useUpdateMyTheme();
+const orientation: OrientationType = useCurrentOrientation();
+```
+
+### 02. useCurrentTheme
+
+if you want to get the current theme than used this hook, hook will return `dark` or `light` mode
+
+```js
+const localType: ThemeType = useCurrentTheme();
+```
+
+### 03. useTheme
+
+Custom hook for applying the current theme in our style object.
+
+```js
+const normalStyleSheet = () =>
+  CustomStyleSheet.create <
+  Styles >
+  ({
+    screenView: {
+      height: '50@vs',
+      width: '50@vs',
+      backgroundColor: 'red'
+    }
+  },
+  { onlyScale: true });
+
+const normalStyles = useTheme(normalStyleSheet);
+```
+
+### 04. useThemeContext
+
+Hook provided a theme provider context.
+
+### 05. useUpdateTheme
+
+Custom hook for update the current app theme or switch theme in our application(used for setting preference or other you have specify option in our application).
+
+```js
+const handleAppTheme = useUpdateTheme();
 
 <Button onPress={() => handleAppTheme('dark')}>
 	Dark Theme
@@ -173,79 +305,303 @@ const handleAppTheme = useUpdateMyTheme();
 </Button>
 ```
 
-#### Style Component
+### 06. useDevice
 
-- If do you want to used style in style components then</br>
-  A function which returns computed styles on the basis of media queries specified or theming.
+This hook provided device configuration value based on own config props or `deviceForMediaQuery` props from provider or default value.
 
-> 1. `styleTheme(Component)<ComponentPropsType>(({ props, type }) => ({}))` only accepts dark/light mode theming
-> 2. `styleScaled(Component)<ComponentPropsType>(({ props }) => ({}))` only accepts media queries specified
-> 3. `styleScaledTheme(Component)<ComponentPropsType>(({ props, type }) => ({}))` accepts both dark/light mode theming and media queries specified
+```jsx
+const device: Partial<MediaQueryAllQueryable> = useDevice();
+```
+
+OR
+
+```jsx
+const device: Partial<MediaQueryAllQueryable> = useDevice({
+  width: win.width,
+  height: win.height,
+  orientation: win.width > win.height ? 'landscape' : 'portrait',
+  aspectRatio: win.width / win.height,
+  type: Platform.OS,
+  direction: isRTL ? 'rtl' : 'ltr'
+});
+```
+
+### 07. useMediaQuery
+
+```jsx
+const Example = () => {
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  const isDesktopOrLaptop: boolean = useMediaQuery({
+    query: '@media (min-width: 1224px)'
+  });
+  const isBigScreen: boolean = useMediaQuery({ query: '@media (min-width: 1824px)' }, device);
+  const isTabletOrMobile: boolean = useMediaQuery({ query: '@media (max-width: 1224px)' }, device);
+  const isPortrait: boolean = useMediaQuery({ query: '@media (orientation: portrait)' }, { ...device, width: 1600 });
+
+  return (
+    <>
+      <Text>Device Test!</Text>
+      {isDesktopOrLaptop && <Text>You are a desktop or laptop</Text>}
+      {isBigScreen && <Text>You have a huge screen</Text>}
+      {isTabletOrMobile && <Text>You are a tablet or mobile phone</Text>}
+      <Text>Your are in {isPortrait ? 'portrait' : 'landscape'} orientation</Text>
+      <MediaQuery device={device} upBreakpoint="xs" onChange={handleMediaQueryChange}>
+        {/* You can also use a function (render prop) as a child */}
+        {(matches: boolean) =>
+          matches ? <Text>You are minimum small device</Text> : <Text>You are not minimum small device</Text>
+        }
+    </>
+  );
+};
+```
+
+### With Components
+
+```jsx
+const Example = () => (
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  <>
+    <Text>Device Testing!</Text>
+    <MediaQuery minWidth={1224}>
+      <Text>You are a desktop or laptop</Text>
+      <MediaQuery minWidth={1824}>
+        <Text>You also have a huge screen</Text>
+      </MediaQuery>
+    </MediaQuery>
+  </>
+);
+```
+
+To make things more idiomatic to react, you can use camel-cased shorthands to construct media queries.
+
+For a list of all possible shorthands and value types see https://github.com/Krunal-Kevadiya/rn-custom-style-sheet/tree/main/src/MediaQuery/MediaQuery.ts#L9.
+
+Any numbers given as shorthand will be expanded to px (1234 will become '1234px').
+
+The CSS media queries in the example above could be constructed like this:
+
+```jsx
+const Example = () => {
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  const isDesktopOrLaptop: boolean = useMediaQuery({ minWidth: 1224 }, device);
+  const isBigScreen: boolean = useMediaQuery({ minWidth: 1824 }, device);
+  const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 1224 }, device);
+  const isPortrait: boolean = useMediaQuery({ orientation: 'portrait' }, device);
+
+  return (
+    <>
+      <Text>Device Test!</Text>
+      {isDesktopOrLaptop && <Text>You are a desktop or laptop</Text>}
+      {isBigScreen && <Text>You have a huge screen</Text>}
+      {isTabletOrMobile && <Text>You are a tablet or mobile phone</Text>}
+      <Text>Your are in {isPortrait ? 'portrait' : 'landscape'} orientation</Text>
+    </>
+  );
+};
+```
+
+### `onChange`
+
+You can use the `onChange` callback to specify a change handler that will be called when the media query's value changes.
+
+```jsx
+const Example = () => {
+  const handleMediaQueryChange = (matches: boolean) => {
+    // matches will be true or false based on the value for the media query
+  };
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  const isDesktopOrLaptop: boolean = useMediaQuery({ minWidth: 1224 }, device, handleMediaQueryChange);
+
+  return <Text>...</Text>;
+};
+```
+
+```jsx
+const Example = () => {
+  const handleMediaQueryChange = (matches: boolean) => {
+    // matches will be true or false based on the value for the media query
+  };
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+
+  return (
+    <MediaQuery device={device} minWidth={1224} onChange={handleMediaQueryChange}>
+      ...
+    </MediaQuery>
+  );
+};
+```
+
+## Easy Mode
+
+That's it! Now you can create your application specific breakpoints and reuse them easily. Here is an example:
+
+```jsx
+const Desktop = ({ children }) => {
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  const isDesktop = useMediaQuery({ minWidth: 992 }, device);
+  return isDesktop ? children : null;
+};
+const Tablet = ({ children }) => {
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 }, device);
+  return isTablet ? children : null;
+};
+const Mobile = ({ children }) => {
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  const isMobile = useMediaQuery({ maxWidth: 767 }, device);
+  return isMobile ? children : null;
+};
+const Default = ({ children }) => {
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  const isNotMobile = useMediaQuery({ minWidth: 768 }, device);
+  return isNotMobile ? children : null;
+};
+
+const Example = () => (
+  <>
+    <Desktop>
+      <Text>Desktop or laptop</Text>
+    </Desktop>
+    <Tablet>
+      <Text>Tablet</Text>
+    </Tablet>
+    <Mobile>
+      <Text>Mobile</Text>
+    </Mobile>
+    <Default>
+      <Text>Not mobile (desktop or laptop or tablet)</Text>
+    </Default>
+  </>
+);
+```
+
+And if you want a combo (the DRY way):
 
 ```js
-const BigTitleWithTheme = styleScaledTheme(Text)<TextProps>(({ props, type }) => ({
-  padding: props.padding,
-  fontWeight: 'bold',
-  fontSize: '14@ms',
-  color: 'black',
-  colorDark: 'white'
-}));
+const useDesktopMediaQuery = () => {
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  return useMediaQuery({ query: '@media (min-width: 1280px)' }, device);
+};
 
-const BigTitle = styleScaled(Text)({
+const useTabletAndBelowMediaQuery = () => {
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  return useMediaQuery({ query: '@media (max-width: 1279px)' }, device);
+};
+
+const Desktop = ({ children }) => {
+  const isDesktop = useDesktopMediaQuery();
+
+  return isDesktop ? children : null;
+};
+
+const TabletAndBelow = ({ children }) => {
+  const isTabletAndBelow = useTabletAndBelowMediaQuery();
+
+  return isTabletAndBelow ? children : null;
+};
+```
+
+## Breakpoint
+
+key (string | number): A breakpoint key (xs, sm, etc.) or a screen width number in px or your provided breakpoint unit(`guideLineBreakpointUnit` props to provider).
+
+1. Up (upBreakpoint / up-breakpoint)
+
+   Which matches screen widths greater than the screen size given by the breakpoint key (inclusive).
+
+   `Example :` upBreakpoint: 'sm' / (up-breakpoint: sm)
+
+2. Down (downBreakpoint / down-breakpoint)
+
+   Which matches screen widths less than the screen size given by the breakpoint key (exclusive).
+
+   `Example :` downBreakpoint: 'md' / (down-breakpoint: md)
+
+3. Between (betweenBreakpoint / between-breakpoint)
+
+   Which matches screen widths greater than the screen size given by the breakpoint key in the first argument (inclusive) and less than the screen size given by the breakpoint key in the second argument (exclusive).
+
+   `Example :` betweenBreakpoint: ['sm', 'lg'] / (between-breakpoint: [sm, lg])
+
+4. Only (onlyBreakpoint / only-breakpoint)
+
+   Which matches screen widths starting from the screen size given by the breakpoint key (inclusive) and stopping at the screen size given by the next breakpoint key (exclusive).
+
+   `Example :` onlyBreakpoint: 'md' / (only-breakpoint: md)
+
+5. Not (notBreakpoint / not-breakpoint)
+
+   Which matches screen widths stopping at the screen size given by the breakpoint key (exclusive) and starting at the screen size given by the next breakpoint key (inclusive).
+
+   `Example :` notBreakpoint: '2xl' / (not-breakpoint: 2xl)
+
+## Style Component
+
+If do you want to used style as style components then
+
+A function which returns computed styles on the basis of scale functionality, media queries specified or theming.
+
+`Syntax :` `styleComp(Component)<ComponentPropsType>(({ props }) => ({}))`
+
+```js
+const BigTitleWithProps =
+  styleComp(Text) <
+  TextStyle >
+  (({ props }: { props: TextStyle }) => ({
+    padding: props.padding,
+    fontWeight: 'bold',
+    fontSize: '14@ms',
+    color: 'black',
+    colorDark: 'white',
+    '@media (orientation: portrait)': {
+      color: 'red',
+      colorDark: 'green'
+    },
+    '@media (orientation: landscape)': {
+      color: 'green',
+      colorDark: 'red'
+    }
+  }));
+
+const BigTitle = styleComp(Text)({
   fontWeight: 'bold',
-  fontSize: '14@ms',
-  color: 'black'
+  fontSize: 14,
+  color: 'black',
+  '@media (orientation: portrait)': {
+    color: 'red'
+  },
+  '@media (orientation: landscape)': {
+    color: 'green'
+  }
 });
 
-
-<BigTitleWithTheme padding="10@vs">abc</BigTitleWithTheme>
-<BigTitle>abc</BigTitle>
-```
-
-#### Example
-
-```js
-import React from 'react';
-import { Text, View } from 'react-native';
-
-import { ThemeProvider, CustomStyleSheet, ThemeType, useMyTheme } from 'rn-custom-style-sheet';
-
-const App = () => {
-  return (
-    <ThemeProvider isSupportLandscape={true} isAppLandscape={true}>
-      <Example />
-    </ThemeProvider>
-  );
-};
-
 const Example = () => {
-  const styles = useMyTheme(styleSheet);
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Example</Text>
-    </View>
+    <>
+      <BigTitle device={device} onlyScale>
+        Big Title
+      </BigTitle>
+      <BigTitleWithProps device={device} padding="20@s">
+        Big Title with props
+      </BigTitleWithProps>
+    </>
   );
 };
-
-const styleSheet = (themeType: ThemeType) =>
-  CustomStyleSheet.createScaledTheme(
-    {
-      text: {
-        fontSize: '2@ms',
-        marginVertical: '20@s',
-        color: 'red',
-        colorDark: 'green'
-      },
-      container: {
-        alignItems: 'center',
-        flex: 1,
-        justifyContent: 'center'
-      }
-    },
-    themeType
-  );
 ```
+
+## Example
+
+- Check out repository in example folder
+
+## Acknowledgments and Big Thanks to
+
+[react-responsive](https://github.com/contra/react-responsive)
+
+## Roadmap (What to do in next)
+
+- Support for React-Native-Web.
 
 ## License
 
-[MIT](LICENSE)
+This project is licensed under the MIT License - see the [MIT](LICENSE) file for details
