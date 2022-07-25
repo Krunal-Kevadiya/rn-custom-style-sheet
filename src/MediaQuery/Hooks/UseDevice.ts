@@ -1,6 +1,6 @@
 import hyphenate from 'hyphenate-style-name';
 import { useEffect, useState } from 'react';
-import { Dimensions, EmitterSubscription, I18nManager, Platform, ScaledSize } from 'react-native';
+import { Appearance, Dimensions, EmitterSubscription, I18nManager, Platform, ScaledSize } from 'react-native';
 
 import { useDeepCompareEffect } from '../../Hooks';
 import { listenOrientationChange, removeOrientationListener, shallowEqualObjects } from '../../Utility';
@@ -24,7 +24,8 @@ function getMatchObject(): MediaQueryMatchers {
     deviceWidth: screen.width,
     deviceAspectRatio: screen.width / screen.height,
     type: Platform.isTV ? 'tv' : Platform.OS,
-    direction: isRTL ? 'rtl' : 'ltr'
+    direction: isRTL ? 'rtl' : 'ltr',
+    prefersColorScheme: Appearance.getColorScheme() || 'light'
   };
 }
 

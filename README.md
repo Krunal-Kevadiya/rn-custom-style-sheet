@@ -62,7 +62,7 @@ yarn add install rn-custom-style-sheet react-native-mmkv
 
   #### **Possible Keys**
 
-  `orientation`, `aspectRatio`, `deviceAspectRatio`, `height`, `deviceHeight`, `width`, `deviceWidth`, `direction` and `type`
+  `orientation`, `aspectRatio`, `deviceAspectRatio`, `height`, `deviceHeight`, `width`, `deviceWidth`, `direction`, `prefersColorScheme` and `type`
 
   #### **Possible Types**
 
@@ -75,6 +75,8 @@ yarn add install rn-custom-style-sheet react-native-mmkv
   `height`, `width`, `deviceHeight`, or `deviceWidth` : to `em`, `rem`, `cm`, `mm`, `in`, `pt`, `pc` and `px`
 
   `direction` can be one of: `rtl` or `ltr`
+
+  `prefersColorScheme` can be one of: `light` ro `dark`
 
 ### Supplying through Context / ThemeProvider
 
@@ -193,7 +195,7 @@ Their names essentially mean that you can supply a "percentage like" string valu
 
 `Example :` widthPercentageToDP('50%')
 
-### 08. heightPercentageToDP
+### 08. widthPercentageToDP
 
 Their names essentially mean that you can supply a "percentage like" string value and it will return the DP (indipendent pixel) that correspond to the supplied percentage of current screen's width.
 
@@ -317,12 +319,13 @@ OR
 
 ```jsx
 const device: Partial<MediaQueryAllQueryable> = useDevice({
-  width: win.width,
-  height: win.height,
-  orientation: win.width > win.height ? 'landscape' : 'portrait',
-  aspectRatio: win.width / win.height,
-  type: Platform.OS,
-  direction: isRTL ? 'rtl' : 'ltr'
+  width: window.width,
+  height: window.height,
+  orientation: window.width > window.height ? 'landscape' : 'portrait',
+  aspectRatio: window.width / window.height,
+  type: Platform.isTV ? 'tv' : Platform.OS,
+  direction: isRTL ? 'rtl' : 'ltr',
+  prefersColorScheme: Appearance.getColorScheme() || 'light'
 });
 ```
 

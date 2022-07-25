@@ -35,7 +35,7 @@ namespace CustomStyleSheet {
     [P in keyof T]: ViewStyle | TextStyle | ImageStyle;
   };
 
-  export function create<T extends ReturnStyles<T> | ReturnStyles<any>>(
+  export function create<T = ReturnStyles<any>>(
     styles:
       | T
       | BoundThemeStyles<T>
@@ -45,7 +45,7 @@ namespace CustomStyleSheet {
       | BoundScaleStyles<any>
       | BoundScaleThemeStyles<any>,
     option?: StyleOption
-  ): T {
+  ): ReturnStyles<T> {
     const localOnlyTheme: boolean = option?.onlyTheme ?? false;
     const localScaleTheme: boolean = option?.onlyScale ?? false;
     const localType: ThemeType = option?.type ?? 'light';
@@ -56,7 +56,7 @@ namespace CustomStyleSheet {
       device: localDevice,
       type: localScaleTheme ? undefined : localType,
       scaleFunc: localOnlyTheme ? undefined : scaleFunc
-    }) as T;
+    }) as ReturnStyles<T>;
   }
 }
 

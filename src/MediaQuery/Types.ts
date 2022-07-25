@@ -21,6 +21,7 @@ export type MediaQueryMatchers = {
   type?: MediaQueryType;
   direction?: 'rtl' | 'ltr';
   orientation?: 'portrait' | 'landscape';
+  prefersColorScheme?: 'light' | 'dark';
 };
 
 export type MediaQueryFeatures = MediaQueryMatchers & {

@@ -39,7 +39,16 @@ const styleSheet = (styleOption: StyleSheetOption) =>
         height: '45@vs',
         marginTop: '15@vs',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        elevation: '4@s',
+        shadowOffset: {
+          width: '0@s',
+          height: '5@s'
+        },
+        shadowOpacity: 0.99,
+        shadowRadius: '2.62@s',
+        shadowColor: 'red',
+        shadowColorDark: 'orange'
       }
     },
     styleOption

@@ -59,7 +59,6 @@ export function getNewSize(size: number): number {
  */
 export function scale(size: number, skipAspectRatio: boolean = false): number {
   const changeSize: number = skipAspectRatio ? size : configs.guidelineBaseAspectRatioFn(size);
-  console.log(size, changeSize);
   return (windowWidth / configs.guidelineBaseWidth) * changeSize;
 }
 

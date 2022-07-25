@@ -7,7 +7,7 @@ const BigTitleWithProps = styleComp(Text)<TextStyle>(({ props }: { props: TextSt
   fontWeight: 'bold',
   fontSize: '14@ms',
   color: 'black',
-  colorDark: 'white',
+  colorDark: 'cyan',
   '@media (orientation: portrait)': {
     color: 'red',
     colorDark: 'green'

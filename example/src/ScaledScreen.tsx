@@ -1,13 +1,9 @@
 import React from 'react';
-import { View, ViewStyle } from 'react-native';
+import { View } from 'react-native';
 import { CustomStyleSheet, MediaQueryAllQueryable, StyleSheetOption, useDevice, useTheme } from 'rn-custom-style-sheet';
 
-type Styles = {
-  screenView: ViewStyle;
-};
-
 const normalStyleSheet = () =>
-  CustomStyleSheet.create<Styles>(
+  CustomStyleSheet.create(
     {
       screenView: {
         height: '50@vs',
@@ -19,7 +15,7 @@ const normalStyleSheet = () =>
   );
 
 const mediaQueryStyleSheet = (styleOption: StyleSheetOption) =>
-  CustomStyleSheet.create<Styles>(
+  CustomStyleSheet.create(
     {
       screenView: {
         height: '50@vs',

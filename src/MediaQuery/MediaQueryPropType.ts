@@ -29,7 +29,8 @@ const matchers = {
 
   type: Object.keys(types),
   direction: PropTypes.oneOf(['rtl', 'ltr']),
-  orientation: PropTypes.oneOf(['portrait', 'landscape'])
+  orientation: PropTypes.oneOf(['portrait', 'landscape']),
+  prefersColorScheme: PropTypes.oneOf(['light', 'dark'])
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
