@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text, TextStyle } from 'react-native';
-import { MediaQueryAllQueryable, styleComp, useDevice } from 'rn-custom-style-sheet';
+import { MediaQueryAllQueryable, styleComp, ThemeType, useDevice } from 'rn-custom-style-sheet';
 
-const BigTitleWithProps = styleComp(Text)<TextStyle>(({ props }: { props: TextStyle }) => ({
+const BigTitleWithProps = styleComp(Text)<TextStyle>(({ props, theme }: { props: TextStyle; theme: ThemeType }) => ({
   padding: props.padding,
   fontWeight: 'bold',
   fontSize: '14@ms',

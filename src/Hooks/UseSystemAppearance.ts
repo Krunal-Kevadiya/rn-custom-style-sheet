@@ -13,12 +13,12 @@ export default function useSystemAppearance(dispatch: Dispatch<ThemeActions>, is
 
   useDidMount(() => {
     function onThemeChange({ colorScheme }: Appearance.AppearancePreferences): void {
-      const currentType = colorScheme === 'dark' ? 'dark' : 'light';
-      updateSystemTheme(currentType);
+      const currentTheme = colorScheme === 'dark' ? 'dark' : 'light';
+      updateSystemTheme(currentTheme);
       dispatch({
         type: Types.ChangeSystemTheme,
         payload: {
-          systemTheme: currentType
+          systemTheme: currentTheme
         }
       });
     }

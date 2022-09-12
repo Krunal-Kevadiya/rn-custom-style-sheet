@@ -46,8 +46,8 @@ const mediaQueryStyleSheet = (styleOption: StyleSheetOption) =>
 
 export const ScaledThemeScreen = () => {
   const device: Partial<MediaQueryAllQueryable> = useDevice();
-  const normalStyles = useTheme(normalStyleSheet);
-  const mediaQueryStyles = useTheme(mediaQueryStyleSheet, device);
+  const { styles: normalStyles } = useTheme(normalStyleSheet);
+  const { styles: mediaQueryStyles } = useTheme(mediaQueryStyleSheet, device);
   return (
     <>
       <View style={normalStyles.screenView} />

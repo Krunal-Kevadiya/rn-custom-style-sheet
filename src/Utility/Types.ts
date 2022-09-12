@@ -182,11 +182,11 @@ export type MyImageStyle = ThemeImageStyle | ScaleImageStyle | ScaleThemeImageSt
 export type OnlyThemeType = { onlyTheme?: true; onlyScale?: never };
 export type OnlyScaleType = { onlyTheme?: never; onlyScale?: true };
 export type StyleOption = {
-  type?: ThemeType;
+  theme: ThemeType;
   device?: Partial<MediaQueryAllQueryable>;
 } & (OnlyThemeType | OnlyScaleType);
 
 export type StyleSheetOption = {
-  type?: ThemeType;
+  theme: ThemeType;
   device?: Partial<MediaQueryAllQueryable>;
 };

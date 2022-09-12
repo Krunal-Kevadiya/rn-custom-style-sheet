@@ -17,12 +17,12 @@ function getStyleDark(key: string, value?: string): Record<string, any> {
 /**
  * @Processing Theme Style Processor
  * @param style is style object or array of style object
- * @param type is 'light' | 'dark'
+ * @param theme is 'light' | 'dark'
  * @returns {darkThemeStyle} is object style
  */
 export function themeStyleProcessor(
   style: Record<string, any> | Array<Record<string, any>>,
-  type: ThemeType = 'light'
+  theme: ThemeType = 'light'
 ): Record<string, any> {
   const flattenStyle: Record<string, any> = Array.isArray(style) ? StyleSheet.flatten(style) : style;
 
@@ -43,7 +43,7 @@ export function themeStyleProcessor(
     tintColorDark,
     ...other
   } = flattenStyle;
-  if (type === 'light') {
+  if (theme === 'light') {
     return other;
   } else {
     return StyleSheet.flatten([

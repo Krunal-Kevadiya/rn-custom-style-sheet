@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { CustomStyleSheet, MediaQueryAllQueryable, StyleSheetOption, useDevice, useTheme } from 'rn-custom-style-sheet';
 
-const normalStyleSheet = () =>
+const normalStyleSheet = (styleOption: StyleSheetOption) =>
   CustomStyleSheet.create(
     {
       screenView: {
@@ -11,7 +11,7 @@ const normalStyleSheet = () =>
         backgroundColor: 'red'
       }
     },
-    { onlyScale: true }
+    { ...styleOption, onlyScale: true }
   );
 
 const mediaQueryStyleSheet = (styleOption: StyleSheetOption) =>
@@ -38,8 +38,8 @@ const mediaQueryStyleSheet = (styleOption: StyleSheetOption) =>
 
 export const ScaledScreen = () => {
   const device: Partial<MediaQueryAllQueryable> = useDevice();
-  const normalStyles = useTheme(normalStyleSheet);
-  const mediaQueryStyles = useTheme(mediaQueryStyleSheet, device);
+  const { styles: normalStyles } = useTheme(normalStyleSheet);
+  const { styles: mediaQueryStyles } = useTheme(mediaQueryStyleSheet, device);
   return (
     <>
       <View style={normalStyles.screenView} />

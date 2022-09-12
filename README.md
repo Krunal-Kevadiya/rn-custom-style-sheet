@@ -264,7 +264,7 @@ const orientation: OrientationType = useCurrentOrientation();
 if you want to get the current theme than used this hook, hook will return `dark` or `light` mode
 
 ```js
-const localType: ThemeType = useCurrentTheme();
+const theme: ThemeType = useCurrentTheme();
 ```
 
 ### 03. useTheme
@@ -272,7 +272,7 @@ const localType: ThemeType = useCurrentTheme();
 Custom hook for applying the current theme in our style object.
 
 ```js
-const normalStyleSheet = () =>
+const normalStyleSheet = (styleOption: StyleSheetOption) =>
   CustomStyleSheet.create <
   Styles >
   ({
@@ -282,9 +282,9 @@ const normalStyleSheet = () =>
       backgroundColor: 'red'
     }
   },
-  { onlyScale: true });
+  { ...styleOption, onlyScale: true });
 
-const normalStyles = useTheme(normalStyleSheet);
+const { styles } = useTheme(normalStyleSheet);
 ```
 
 ### 04. useThemeContext
@@ -550,7 +550,7 @@ A function which returns computed styles on the basis of scale functionality, me
 const BigTitleWithProps =
   styleComp(Text) <
   TextStyle >
-  (({ props }: { props: TextStyle }) => ({
+  (({ props, theme }: { props: TextStyle, theme: ThemeType }) => ({
     padding: props.padding,
     fontWeight: 'bold',
     fontSize: '14@ms',
@@ -591,6 +591,83 @@ const Example = () => {
     </>
   );
 };
+```
+
+## Global way to handle theme mode
+
+If do you want to thing handle theme mode own way using Color object instead of above uses then,
+
+1. First create colors object like below
+
+```js
+const commonColors = {
+  primary: '#141414',
+  secondary: '#F1C336',
+  gray: '#7B7B7B',
+  error: '#E53E3E',
+  pink: '#BA25EB',
+  orange: '#F39C3C',
+  lightBlue: '#3787FC',
+  red: '#DD2C2C',
+  darkBlue: '#374dfc',
+  transparent: 'transparent'
+};
+
+const light = {
+  ...commonColors,
+  white: '#FFFFFF',
+  black: '#000000',
+  transparentBlack: '#00000000',
+  transparentWhite: '#FFFFFF00'
+};
+
+const dark = {
+  ...commonColors,
+  black: '#FFFFFF',
+  white: '#000000',
+  transparentWhite: '#00000000',
+  transparentBlack: '#FFFFFF00'
+};
+
+export default { light, dark };
+```
+
+2. Create styles like below
+
+```js
+const normalStyleSheet = (styleOption: StyleSheetOption) =>
+  CustomStyleSheet.create <
+  Styles >
+  ({
+    screenView: {
+      height: '50@vs',
+      width: '50@vs',
+      backgroundColor: Colors[styleOption.theme]?.white
+    }
+  },
+  { ...styleOption, onlyScale: true });
+
+const { styles } = useTheme(normalStyleSheet);
+```
+
+3. If you can used style component then like below
+
+```js
+const BigTitleWithProps =
+  styleComp(Text) <
+  TextStyle >
+  (({ props, theme }: { props: TextStyle, theme: ThemeType }) => ({
+    padding: props.padding,
+    fontWeight: 'bold',
+    fontSize: '14@ms',
+    color: Colors[theme]?.white,
+    '@media (orientation: portrait)': {
+      color: Colors[theme]?.white
+    },
+    '@media (orientation: landscape)': {
+      color: Colors[theme]?.black
+    }
+  }));
 ```
 
 ## Example

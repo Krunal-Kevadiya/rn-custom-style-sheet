@@ -35,7 +35,7 @@ namespace CustomStyleSheet {
     [P in keyof T]: ViewStyle | TextStyle | ImageStyle;
   };
 
-  export function create<T = ReturnStyles<any>>(
+  export function create<T extends Record<string, any> = ReturnStyles<any>>(
     styles:
       | T
       | BoundThemeStyles<T>
@@ -48,13 +48,13 @@ namespace CustomStyleSheet {
   ): ReturnStyles<T> {
     const localOnlyTheme: boolean = option?.onlyTheme ?? false;
     const localScaleTheme: boolean = option?.onlyScale ?? false;
-    const localType: ThemeType = option?.type ?? 'light';
+    const localTheme: ThemeType = option?.theme ?? 'light';
     const localDevice: Partial<MediaQueryAllQueryable> | undefined = option?.device;
 
     return deepNestedMap({
       styles,
       device: localDevice,
-      type: localScaleTheme ? undefined : localType,
+      theme: localScaleTheme ? undefined : localTheme,
       scaleFunc: localOnlyTheme ? undefined : scaleFunc
     }) as ReturnStyles<T>;
   }

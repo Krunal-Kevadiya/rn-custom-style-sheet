@@ -56,7 +56,7 @@ const styleSheet = (styleOption: StyleSheetOption) =>
 
 export const HomeScreen = () => {
   const device: Partial<MediaQueryAllQueryable> = useDevice();
-  const styles = useTheme(styleSheet, device);
+  const { styles } = useTheme(styleSheet, device);
   const handleAppTheme = useUpdateTheme();
   const navigation = useNavigation();
 

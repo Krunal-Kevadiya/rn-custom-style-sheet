@@ -88,7 +88,7 @@ type BoundStyles<P> = P extends object
 export const styleComp =
   <Comp extends ComponentType<any>>(Component: Comp) =>
   <Props extends DefaultProps = DefaultProps>(
-    stylesProp: BoundStyles<any> | ((args: { props: Props }) => BoundStyles<any>)
+    stylesProp: BoundStyles<any> | ((args: { props: Props; theme: ThemeType }) => BoundStyles<any>)
   ): Polymorphic<Comp, Props> => {
     return forwardRef(function ForwardedComponent(props: Props, ref) {
       const {
@@ -104,21 +104,21 @@ export const styleComp =
       const localOnlyTheme: boolean = onlyTheme ?? false;
       const localScaleTheme: boolean = onlyScale ?? false;
       const localDevice: Partial<MediaQueryAllQueryable> | undefined = device;
-      const localType: ThemeType = useCurrentTheme();
+      const localTheme: ThemeType = useCurrentTheme();
       const orientation: OrientationType = useCurrentOrientation();
 
       // Check type of argument
-      const styleSheet = typeof stylesProp === 'function' ? stylesProp({ props }) : stylesProp;
+      const styleSheet = typeof stylesProp === 'function' ? stylesProp({ props, theme: localTheme }) : stylesProp;
       const styles = useMemo<ViewStyle | TextStyle | ImageStyle>(
         () =>
           deepMap({
             styles: StyleSheet.flatten([styleSheet, ...(Array.isArray(inlineStyles) ? inlineStyles : [inlineStyles])]),
             device: localDevice,
-            type: localScaleTheme ? undefined : localType,
+            theme: localScaleTheme ? undefined : localTheme,
             scaleFunc: localOnlyTheme ? undefined : scaleFunc
           }),
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [styleSheet, inlineStyles, device, localType, orientation]
+        [styleSheet, inlineStyles, device, localTheme, orientation]
       );
 
       // Create component

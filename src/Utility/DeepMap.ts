@@ -5,7 +5,7 @@ import type { ThemeType } from './Types';
 
 type DeepMapArgType = {
   styles: Record<string, any>;
-  type?: ThemeType;
+  theme?: ThemeType;
   device?: Partial<MediaQueryAllQueryable>;
   scaleFunc?: any;
 };
@@ -55,18 +55,18 @@ function convertValue(obj: Record<string, any> | any, fnScaleFunc): Record<strin
 }
 
 // @ts-ignore
-function mapObject(obj: Record<string, any>, type?: ThemeType, fnScaleFunc): Record<string, any> {
+function mapObject(obj: Record<string, any>, theme?: ThemeType, fnScaleFunc): Record<string, any> {
   const newStyle = Object.keys(obj).reduce((res, key) => {
     // @ts-ignore
     res[key] = fnScaleFunc ? convertValue(obj[key], fnScaleFunc) : obj[key];
     return res;
   }, {});
-  return type ? themeStyleProcessor(newStyle, type) : newStyle;
+  return theme ? themeStyleProcessor(newStyle, theme) : newStyle;
 }
 
 function mapSingleObject(
   obj: Record<string, any>,
-  type?: ThemeType,
+  theme?: ThemeType,
   device?: Partial<MediaQueryAllQueryable>,
   isNestedObject?: boolean,
   // @ts-ignore
@@ -85,7 +85,7 @@ function mapSingleObject(
   }, {});
 
   // apply media query stuff
-  if (mqKeys.length && device !== null && device !== undefined && device !== {}) {
+  if (mqKeys.length && device !== null && device !== undefined) {
     mqKeys.forEach((key: string) => {
       const query: string = makeQuery({ query: key });
       if (query === undefined || query === null || query?.trim() === '' || (query?.trim()?.length ?? 0) === 0) {
@@ -94,39 +94,39 @@ function mapSingleObject(
       const { isMatches } = matchMedia(query, device);
       if (isMatches) {
         // here nested object
-        merge(newStyle, mapObject(obj[key], isNestedObject ? type : undefined, fnScaleFunc));
+        merge(newStyle, mapObject(obj[key], isNestedObject ? theme : undefined, fnScaleFunc));
       }
     });
   }
 
-  return type ? themeStyleProcessor(newStyle, type) : newStyle;
+  return theme ? themeStyleProcessor(newStyle, theme) : newStyle;
 }
 
 function mapNestedObject(
   obj: Record<string, any>,
-  type?: ThemeType,
+  theme?: ThemeType,
   device?: Partial<MediaQueryAllQueryable>,
   // @ts-ignore
   fnScaleFunc
 ): Record<string, any> {
   const res: Record<string, any> = Object.keys(obj).reduce((resource: Record<string, any>, key: string) => {
-    resource[key] = mapSingleObject(obj[key], type, device, true, fnScaleFunc);
+    resource[key] = mapSingleObject(obj[key], theme, device, true, fnScaleFunc);
     return resource;
   }, {});
   return res;
 }
 
-export function deepMap({ styles, type, device, scaleFunc }: DeepMapArgType): Record<string, any> {
-  return mapSingleObject(styles, type, device, false, scaleFunc);
+export function deepMap({ styles, theme, device, scaleFunc }: DeepMapArgType): Record<string, any> {
+  return mapSingleObject(styles, theme, device, false, scaleFunc);
 }
 
-export function deepNestedMap({ styles, type, device, scaleFunc }: DeepMapArgType): Record<string, any> {
+export function deepNestedMap({ styles, theme, device, scaleFunc }: DeepMapArgType): Record<string, any> {
   const mqKeys: string[] = [];
 
   // copy non-media-query stuff
   const res: Record<string, any> = Object.keys(styles).reduce((resource: Record<string, any>, key: string) => {
     if (!isMediaQuery(key)) {
-      resource[key] = mapSingleObject(styles[key], type, device, true, scaleFunc);
+      resource[key] = mapSingleObject(styles[key], theme, device, true, scaleFunc);
     } else {
       mqKeys.push(key);
     }
@@ -134,7 +134,7 @@ export function deepNestedMap({ styles, type, device, scaleFunc }: DeepMapArgTyp
   }, {});
 
   // apply media query stuff
-  if (mqKeys.length && device !== null && device !== undefined && device !== {}) {
+  if (mqKeys.length && device !== null && device !== undefined) {
     mqKeys.forEach((key: string) => {
       const query: string = makeQuery({ query: key });
       if (query === undefined || query === null || query?.trim() === '' || (query?.trim()?.length ?? 0) === 0) {
@@ -143,7 +143,7 @@ export function deepNestedMap({ styles, type, device, scaleFunc }: DeepMapArgTyp
       const { isMatches } = matchMedia(query, device);
       if (isMatches) {
         // here nested object
-        merge(res, mapNestedObject(styles[key], type, device, scaleFunc));
+        merge(res, mapNestedObject(styles[key], theme, device, scaleFunc));
       }
     });
   }
