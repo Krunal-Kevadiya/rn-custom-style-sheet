@@ -12,7 +12,7 @@ export type { MediaQueryAllQueryable } from './MediaQuery';
 export { MediaQuery, useDevice, useMediaQuery } from './MediaQuery';
 export { ThemeContext, ThemeProvider } from './ThemeContext';
 export type { AppThemeType } from './ThemeReducers';
-export type { MyImageStyle, MyTextStyle, MyViewStyle, StyleSheetOption, ThemeType } from './Utility';
+export type { StyleSheetOption, ThemeType } from './Utility';
 export {
   heightPercentageToDP,
   moderateScale,

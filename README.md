@@ -107,6 +107,8 @@ These values can be customized using `guideLineBreakpointValues` key.
 - `guideLineBreakpointStep` : The increment divided by 100 used to implement exclusive breakpoints. For example, `step = 5` means that `down(500)` will result in `(max-width: 499.95px)`. Default to `0`
 - `isUsedBuiltInAspectRatioFunction`: Default is `false`. Set true if you want to apply aspect ration function which are provided built-in.
 - `guideLineAspectRatioFunction` : can be function which calculates new size based on aspect ratio condition.
+- `getStorageString` : can be function which get current theme mode in local storage.
+- `setStorageString` : can be function which storage current theme mode in local storage.
 
 ```js
 const App = () => {
@@ -135,9 +137,9 @@ Here styles is plain json object to define your component or screen all styles
 #### Arguments
 
 - `styles` (_object_) : A style object either the normal or with custom properties and media queries.
-- `styles` (_object_,_option_) : A option is contain `type`, `device`, `onlyTheme` and `onlyScale` key properties.
+- `styles` (_object_,_option_) : A option is contain `theme`, `device`, `onlyTheme` and `onlyScale` key properties.
 
-  - `type` : A type is theme type which is currently used like `light` or `dark`
+  - `theme` : A theme is theme type which is currently used like `light` or `dark`
   - `device` : At times you may need to render components with different device settings than what gets automatically detected.
 
     This is especially useful in a Node environment where these settings can't be detected (SSR) or for testing.

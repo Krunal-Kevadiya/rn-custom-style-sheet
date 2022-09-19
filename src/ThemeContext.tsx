@@ -1,6 +1,6 @@
 import React, { createContext, Dispatch, useReducer } from 'react';
 
-import type { BreakpointUnitType } from './Config';
+import type { BreakpointUnitType, GetStorageStringType, SetStorageStringType } from './Config';
 import { useDeviceOrientation, useDidMount, useSystemAppearance } from './Hooks';
 import type { MediaQueryAllQueryable } from './MediaQuery';
 import type { InitialThemeStateType, ThemeActions } from './ThemeReducers';
@@ -18,11 +18,15 @@ const initialThemeState: InitialThemeStateType = {
 export const ThemeContext = createContext<{
   state: InitialThemeStateType;
   dispatch: Dispatch<ThemeActions>;
+  getStorageString: GetStorageStringType | undefined;
+  setStorageString: SetStorageStringType | undefined;
   isMediaQuerySupportedOrientation: boolean;
   deviceForMediaQuery: Partial<MediaQueryAllQueryable> | undefined;
 }>({
   state: initialThemeState,
   dispatch: () => null,
+  getStorageString: undefined,
+  setStorageString: undefined,
   isMediaQuerySupportedOrientation: true,
   deviceForMediaQuery: undefined
 });
@@ -40,6 +44,8 @@ type ThemeProviderType = {
   guideLineBreakpointUnit?: BreakpointUnitType;
   guideLineBreakpointStep?: number;
   guideLineAspectRatioFunction?: (size: number) => number;
+  getStorageString: GetStorageStringType;
+  setStorageString: SetStorageStringType;
 };
 
 export function ThemeProvider({
@@ -54,10 +60,12 @@ export function ThemeProvider({
   guideLineBreakpointUnit,
   guideLineBreakpointStep,
   isUsedBuiltInAspectRatioFunction,
-  guideLineAspectRatioFunction
+  guideLineAspectRatioFunction,
+  getStorageString,
+  setStorageString
 }: ThemeProviderType): React.ReactElement {
   const [state, dispatch] = useReducer(themeReducer, initialThemeState);
-  useSystemAppearance(dispatch, isThemeSupportedOrientation);
+  useSystemAppearance(dispatch, getStorageString, setStorageString, isThemeSupportedOrientation);
   useDeviceOrientation(dispatch, isThemeSupportedOrientation);
 
   useDidMount(() => {
@@ -74,7 +82,16 @@ export function ThemeProvider({
   });
 
   return (
-    <ThemeContext.Provider value={{ state, dispatch, isMediaQuerySupportedOrientation, deviceForMediaQuery }}>
+    <ThemeContext.Provider
+      value={{
+        state,
+        dispatch,
+        getStorageString,
+        setStorageString,
+        isMediaQuerySupportedOrientation,
+        deviceForMediaQuery
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );

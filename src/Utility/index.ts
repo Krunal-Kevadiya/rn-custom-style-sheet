@@ -20,24 +20,13 @@ export {
   windowHeight,
   windowWidth
 } from './Matrics';
-export type { StorageStringType } from './MMKVStorage';
-export { getStorageString, setStorageString } from './MMKVStorage';
 export type {
-  MyImageStyle,
-  MyTextStyle,
-  MyViewStyle,
+  BoundStyles,
+  NamedStyles,
   OnlyScaleType,
   OnlyThemeType,
-  ScaleImageStyle,
-  ScaleTextStyle,
-  ScaleThemeImageStyle,
-  ScaleThemeTextStyle,
-  ScaleThemeViewStyle,
-  ScaleViewStyle,
+  ReturnStyles,
   StyleOption,
   StyleSheetOption,
-  ThemeImageStyle,
-  ThemeTextStyle,
-  ThemeType,
-  ThemeViewStyle
+  ThemeType
 } from './Types';

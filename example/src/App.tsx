@@ -8,12 +8,13 @@ import { ScaledThemeScreen } from './ScaledThemeScreen';
 import { HomeScreen } from './HomeScreen';
 import { MediaQueryScreen } from './MediaQueryScreen';
 import { StyleComponentScreen } from './StyleComponentScreen';
+import { getStorageString, setStorageString } from './MMKVStorage';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <ThemeProvider>
+    <ThemeProvider getStorageString={getStorageString} setStorageString={setStorageString}>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Home" component={HomeScreen} />
