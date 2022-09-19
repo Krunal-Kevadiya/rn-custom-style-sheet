@@ -11,6 +11,8 @@ const breakpointValue = Object.freeze({
 });
 
 export type BreakpointUnitType = 'em' | 'rem' | 'px' | 'cm' | 'mm' | 'in' | 'pt' | 'pc';
+export type GetStorageStringType = <T extends string>(key: string, defaultValue: T) => T;
+export type SetStorageStringType = <T extends string>(key: string, newValue: T) => void;
 
 // Default guideline sizes are based on standard ~5" screen mobile device
 type ConfigType = {
@@ -21,6 +23,8 @@ type ConfigType = {
   breakpointUnit: BreakpointUnitType;
   breakpointStep: number;
   breakpointValuesKeys: string[];
+  appThemeKey: string;
+  systemThemeKey: string;
 };
 
 export let configs = Object.freeze<ConfigType>({
@@ -30,7 +34,9 @@ export let configs = Object.freeze<ConfigType>({
   breakpointValues: breakpointValue,
   breakpointUnit: 'px',
   breakpointStep: 0,
-  breakpointValuesKeys: Object.keys(sortBreakpointValues(breakpointValue))
+  breakpointValuesKeys: Object.keys(sortBreakpointValues(breakpointValue)),
+  appThemeKey: 'appTheme',
+  systemThemeKey: 'systemTheme'
 });
 
 export function config(

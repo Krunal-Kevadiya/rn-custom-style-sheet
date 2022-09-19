@@ -1,15 +1,20 @@
 import type { Dispatch } from 'react';
 import { Appearance, NativeEventSubscription } from 'react-native';
 
+import { configs, GetStorageStringType, SetStorageStringType } from '../Config';
 import type { AppThemeType, OrientationType, ThemeActions } from '../ThemeReducers';
 import { Types } from '../ThemeReducers';
-import { getStorageString } from '../Utility';
 import useAsyncStorage from './UseAsyncStorage';
 import { getWindowOrientation } from './UseDeviceOrientation';
 import useDidMount from './UseDidMount';
 
-export default function useSystemAppearance(dispatch: Dispatch<ThemeActions>, isSupportedOrientation: boolean): void {
-  const [, updateSystemTheme] = useAsyncStorage<string>('systemTheme', 'system');
+export default function useSystemAppearance(
+  dispatch: Dispatch<ThemeActions>,
+  getStorageString: GetStorageStringType,
+  setStorageString: SetStorageStringType,
+  isSupportedOrientation: boolean
+): void {
+  const [, updateSystemTheme] = useAsyncStorage(configs.systemThemeKey, 'system', getStorageString, setStorageString);
 
   useDidMount(() => {
     function onThemeChange({ colorScheme }: Appearance.AppearancePreferences): void {
@@ -23,8 +28,8 @@ export default function useSystemAppearance(dispatch: Dispatch<ThemeActions>, is
       });
     }
 
-    const localAppTheme = getStorageString<string>('appTheme', 'system');
-    const localSystemTheme = getStorageString<string>('systemTheme', 'system');
+    const localAppTheme = getStorageString<string>(configs.appThemeKey, 'system');
+    const localSystemTheme = getStorageString<string>(configs.systemThemeKey, 'system');
     dispatch({
       type: Types.Initial,
       payload: {

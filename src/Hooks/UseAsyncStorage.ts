@@ -1,13 +1,14 @@
 import { useState } from 'react';
 
-import type { StorageStringType } from '../Utility';
-import { getStorageString, setStorageString } from '../Utility';
+import type { GetStorageStringType, SetStorageStringType } from '../Config';
 import useDidMount from './UseDidMount';
 
-export default function useAsyncStorage<T extends StorageStringType>(
+export default function useAsyncStorage(
   key: string,
-  defaultValue: T
-): [T, (newValue: T) => void, boolean] {
+  defaultValue: string,
+  getStorageString?: GetStorageStringType,
+  setStorageString?: SetStorageStringType
+): [string, (newValue: string) => void, boolean] {
   const [state, setState] = useState({
     hydrated: false,
     storageValue: defaultValue
@@ -15,13 +16,13 @@ export default function useAsyncStorage<T extends StorageStringType>(
   const { hydrated, storageValue } = state;
 
   function pullFromStorage() {
-    const fromStorage = getStorageString<T>(key, defaultValue);
+    const fromStorage = getStorageString!(key, defaultValue);
     setState({ hydrated: true, storageValue: fromStorage });
   }
 
-  function updateStorage(newValue: T) {
+  function updateStorage(newValue: string) {
     setState({ hydrated: true, storageValue: newValue });
-    setStorageString<T>(key, newValue);
+    setStorageString!(key, newValue);
   }
 
   useDidMount(() => {

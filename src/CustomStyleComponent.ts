@@ -8,28 +8,13 @@ import React, {
   ReactNode,
   useMemo
 } from 'react';
-import { ImageStyle, StyleProp, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { StyleProp, StyleSheet } from 'react-native';
 
 import { useCurrentTheme } from './Hooks';
 import useCurrentOrientation from './Hooks/UseCurrentOrientation';
 import type { MediaQueryAllQueryable } from './MediaQuery';
 import type { OrientationType } from './ThemeReducers';
-import {
-  deepMap,
-  OnlyScaleType,
-  OnlyThemeType,
-  scaleFunc,
-  ScaleImageStyle,
-  ScaleTextStyle,
-  ScaleThemeImageStyle,
-  ScaleThemeTextStyle,
-  ScaleThemeViewStyle,
-  ScaleViewStyle,
-  ThemeImageStyle,
-  ThemeTextStyle,
-  ThemeType,
-  ThemeViewStyle
-} from './Utility';
+import { BoundStyles, deepMap, NamedStyles, OnlyScaleType, OnlyThemeType, scaleFunc, ThemeType } from './Utility';
 
 type DefaultProps = object & {
   as?: ComponentType<any>;
@@ -51,39 +36,6 @@ interface Polymorphic<IntrinsicElement extends JSXElementConstructor<any>, OwnPr
       : Merge<ComponentProps<IntrinsicElement>, OwnProps>
   ): ReactElement | null;
 }
-
-type Get<T, K> = K extends `${infer F}.${infer R}`
-  ? F extends keyof T
-    ? Get<T[F], R>
-    : never
-  : K extends keyof T
-  ? T[K]
-  : never;
-
-type BoundMediaStyles<T> = {
-  [P in keyof T]:
-    | Get<ThemeViewStyle, P>
-    | Get<ThemeTextStyle, P>
-    | Get<ThemeImageStyle, P>
-    | Get<ScaleViewStyle, P>
-    | Get<ScaleTextStyle, P>
-    | Get<ScaleImageStyle, P>
-    | Get<ScaleThemeViewStyle, P>
-    | Get<ScaleThemeTextStyle, P>
-    | Get<ScaleThemeImageStyle, P>;
-};
-type BoundStyles<P> = P extends object
-  ? BoundMediaStyles<keyof P>
-  :
-      | Get<ThemeViewStyle, P>
-      | Get<ThemeTextStyle, P>
-      | Get<ThemeImageStyle, P>
-      | Get<ScaleViewStyle, P>
-      | Get<ScaleTextStyle, P>
-      | Get<ScaleImageStyle, P>
-      | Get<ScaleThemeViewStyle, P>
-      | Get<ScaleThemeTextStyle, P>
-      | Get<ScaleThemeImageStyle, P>;
 
 export const styleComp =
   <Comp extends ComponentType<any>>(Component: Comp) =>
@@ -109,7 +61,7 @@ export const styleComp =
 
       // Check type of argument
       const styleSheet = typeof stylesProp === 'function' ? stylesProp({ props, theme: localTheme }) : stylesProp;
-      const styles = useMemo<ViewStyle | TextStyle | ImageStyle>(
+      const styles = useMemo<NamedStyles<any>>(
         () =>
           deepMap({
             styles: StyleSheet.flatten([styleSheet, ...(Array.isArray(inlineStyles) ? inlineStyles : [inlineStyles])]),
