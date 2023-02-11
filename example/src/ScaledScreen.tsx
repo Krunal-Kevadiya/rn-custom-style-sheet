@@ -1,39 +1,51 @@
 import React from 'react';
 import { View } from 'react-native';
-import { CustomStyleSheet, MediaQueryAllQueryable, StyleSheetOption, useDevice, useTheme } from 'rn-custom-style-sheet';
+import {
+  CustomStyleSheet,
+  type MediaQueryAllQueryable,
+  type StyleSheetPropsType,
+  useDevice,
+  useTheme,
+} from 'rn-custom-style-sheet';
+import Colors from './ThemeColors';
 
-const normalStyleSheet = (styleOption: StyleSheetOption) =>
+const normalStyleSheet = (styleOption: StyleSheetPropsType) =>
   CustomStyleSheet.create(
     {
       screenView: {
-        height: '50@vs',
-        width: '50@vs',
-        backgroundColor: 'red'
-      }
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: Colors[styleOption.themeMode]?.srnBackgroundColor,
+      },
+      boxView: {
+        height: '50@mhs',
+        width: '50@mhs',
+        backgroundColor: Colors[styleOption.themeMode]?.btnBackgroundColor,
+      },
     },
-    { ...styleOption, onlyScale: true }
+    styleOption
   );
 
-const mediaQueryStyleSheet = (styleOption: StyleSheetOption) =>
+const mediaQueryStyleSheet = (styleOption: StyleSheetPropsType) =>
   CustomStyleSheet.create(
     {
-      screenView: {
-        height: '50@vs',
-        width: '50@vs',
-        backgroundColor: 'red'
+      'boxView': {
+        height: '50@mhs',
+        width: '50@mhs',
       },
       '@media (orientation: portrait)': {
-        screenView: {
-          backgroundColor: 'red'
-        }
+        boxView: {
+          backgroundColor: Colors[styleOption.themeMode]?.btnBackgroundColor,
+        },
       },
       '@media (orientation: landscape)': {
-        screenView: {
-          backgroundColor: 'green'
-        }
-      }
+        boxView: {
+          backgroundColor: Colors[styleOption.themeMode]?.lightPink,
+        },
+      },
     },
-    { ...styleOption, onlyScale: true }
+    styleOption
   );
 
 export const ScaledScreen = () => {
@@ -41,9 +53,9 @@ export const ScaledScreen = () => {
   const { styles: normalStyles } = useTheme(normalStyleSheet);
   const { styles: mediaQueryStyles } = useTheme(mediaQueryStyleSheet, device);
   return (
-    <>
-      <View style={normalStyles.screenView} />
-      <View style={mediaQueryStyles.screenView} />
-    </>
+    <View style={normalStyles.screenView}>
+      <View style={normalStyles.boxView} />
+      <View style={mediaQueryStyles.boxView} />
+    </View>
   );
 };

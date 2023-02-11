@@ -1,19 +1,24 @@
-# custom-style-sheet demo app
+# rn-custom-style-sheet example
+
 ## How to Run ?
 
-_Steps to run the demo app in ios and andorid_
+Steps to run the demo app in ios and android
 
 1. Install dependencies
-    * cd to the project directory (example)
-      ```bash 
-      yarn
-      ```
+   - cd to the project directory (example)
+     ```bash
+     yarn
+     ```
 2. Build and Run
-    * Run iOS app
-        ```bash 
-        yarn ios
-        ```
-    * Run Android app
-      ```bash 
-      yarn android
-      ```
+   - Install Pod
+     ```bash
+     cd ios && pod install
+     ```
+   - Run iOS app
+     ```bash
+     yarn ios
+     ```
+   - Run Android app
+     ```bash
+     yarn android
+     ```

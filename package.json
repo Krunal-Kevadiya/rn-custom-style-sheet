@@ -1,18 +1,46 @@
 {
   "name": "rn-custom-style-sheet",
-  "version": "3.1.0",
-  "description": "React Native component to select a specific value from a range of values",
-  "homepage": "https://github.com/krunal-kevadiya/rn-custom-style-sheet/blob/main/README.md",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "author": "Krunal Kevadiya <kevadiyakrunal22@gmail.com>",
-  "license": "MIT",
+  "version": "4.0.0",
+  "description": "React Native component to select a specific value from a range of values.",
+  "main": "lib/commonjs/index",
+  "module": "lib/module/index",
+  "types": "lib/typescript/src/index.d.ts",
+  "react-native": "src/index",
+  "source": "src/index",
   "files": [
-    "lib"
+    "src",
+    "lib",
+    "android",
+    "ios",
+    "cpp",
+    "*.podspec",
+    "!ios/build",
+    "!android/build",
+    "!android/gradle",
+    "!android/gradlew",
+    "!android/gradlew.bat",
+    "!android/local.properties",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__",
+    "!**/.*"
   ],
+  "scripts": {
+    "example": "yarn workspace rn-custom-style-sheet-example",
+    "test": "jest",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"**/*.{js,ts,tsx}\"",
+    "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
+    "prepare": "bob build",
+    "release": "release-it",
+    "lint:fix": "eslint \"**/*.{js,ts,tsx}\" -c .eslintrc --fix",
+    "build_local": "yarn prepare && yarn pack"
+  },
   "keywords": [
-    "react",
     "react-native",
+    "ios",
+    "android",
+    "react",
     "typescript",
     "stylesheet",
     "style",
@@ -20,80 +48,148 @@
     "custom-style-sheet",
     "rn"
   ],
-  "scripts": {
-    "build": "rm -rf lib && tsc -p .",
-    "prepare": "husky install",
-    "test": "jest --passWithNoTests",
-    "yarn-i": "yarn install",
-    "pod-install": "cd ios && pod install && cd ..",
-    "jetify": "npx jetify",
-    "setup": "npm run yarn-i && npm run jetify && npm run pod-install",
-    "lint": "eslint --no-error-on-unmatched-pattern './src/**/*.{js,jsx,ts,tsx}'",
-    "format": "npm run lint --fix",
-    "pretty": "prettier --write --no-error-on-unmatched-pattern './src/**/*.{js,jsx,ts,tsx}'",
-    "pretty-Lint": "npm run pretty && npm run format && npm run lint"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Krunal-Kevadiya/rn-custom-style-sheet.git"
+  },
+  "contributors": [],
+  "author": "Krunal Kevadiya <kevadiyakrunal22@gmail.com> (https://github.com/Krunal-Kevadiya)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Krunal-Kevadiya/rn-custom-style-sheet/issues"
+  },
+  "homepage": "https://github.com/Krunal-Kevadiya/rn-custom-style-sheet#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "hyphenate-style-name": "^1.0.4",
+    "prop-types": "^15.8.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.12",
-    "@babel/runtime": "^7.16.7",
-    "@commitlint/cli": "^16.1.0",
-    "@commitlint/config-conventional": "^16.0.0",
+    "@babel/core": "^7.12.9",
+    "@babel/runtime": "^7.12.5",
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.0.2",
+    "@evilmartians/lefthook": "^1.5.0",
     "@react-native-community/eslint-config": "^3.0.1",
-    "@testing-library/react-native": "^9.0.0",
+    "@react-native/eslint-config": "^0.72.2",
+    "@release-it/conventional-changelog": "^5.0.0",
+    "@testing-library/react-native": "^12.1.2",
     "@types/hyphenate-style-name": "^1.0.0",
-    "@types/jest": "^27.4.0",
-    "@types/react-native": "^0.66.15",
-    "@types/react-test-renderer": "^17.0.1",
-    "babel-jest": "^27.4.6",
-    "eslint": "^7.32.0",
-    "eslint-plugin-simple-import-sort": "^7.0.0",
-    "husky": "^7.0.4",
-    "jest": "^27.4.7",
-    "lint-staged": "^11.1.2",
-    "metro-react-native-babel-preset": "^0.67.0",
-    "prettier": "^2.6.2",
-    "react": "^17.0.2",
-    "react-native": "^0.67.1",
-    "react-test-renderer": "^17.0.2",
-    "typescript": "^4.7.4"
+    "@types/jest": "^28.1.2",
+    "@types/react": "~17.0.21",
+    "@types/react-native": "0.70.0",
+    "@types/react-test-renderer": "^18.0.0",
+    "babel-jest": "^29.5.0",
+    "commitlint": "^17.0.2",
+    "del-cli": "^5.0.0",
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "husky": "^8.0.3",
+    "jest": "^28.1.1",
+    "lint-staged": "^13.2.3",
+    "metro-react-native-babel-preset": "^0.76.7",
+    "patch-package": "^7.0.0",
+    "pod-install": "^0.1.0",
+    "postinstall-postinstall": "^2.1.0",
+    "prettier": "^2.0.5",
+    "react": "18.2.0",
+    "react-native": "0.73.4",
+    "react-native-builder-bob": "^0.23.2",
+    "react-test-renderer": "^18.2.0",
+    "release-it": "^15.0.0",
+    "turbo": "^1.10.7",
+    "typescript": "^5.0.2"
+  },
+  "resolutions": {
+    "@types/react": "17.0.21",
+    "semver": "7.5.2"
   },
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
   },
+  "workspaces": [
+    "example"
+  ],
+  "packageManager": "yarn@3.6.1",
+  "engines": {
+    "node": ">= 18.0.0"
+  },
   "jest": {
     "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
+    "modulePathIgnorePatterns": [
+      "<rootDir>/example/node_modules",
+      "<rootDir>/lib/"
     ]
-  },
-  "lint-staged": {
-    "src/**/*.{js,ts,tsx}": [
-      "eslint"
-    ]
-  },
-  "eslintIgnore": [
-    "node_modules/",
-    "lib/"
-  ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "yarn build && yarn test"
-    }
   },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ]
   },
-  "dependencies": {
-    "hyphenate-style-name": "^1.0.4",
-    "prop-types": "^15.8.1"
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular"
+      }
+    }
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@react-native",
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "quoteProps": "consistent",
+          "singleQuote": true,
+          "tabWidth": 2,
+          "trailingComma": "es5",
+          "useTabs": false
+        }
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/"
+  ],
+  "prettier": {
+    "quoteProps": "consistent",
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ]
   }
 }
