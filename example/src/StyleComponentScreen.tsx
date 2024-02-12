@@ -1,45 +1,56 @@
 import React from 'react';
-import { Text, TextStyle } from 'react-native';
-import { MediaQueryAllQueryable, styleComp, ThemeType, useDevice } from 'rn-custom-style-sheet';
+import { Text, View } from 'react-native';
+import {
+  type MediaQueryAllQueryable,
+  styled,
+  useDevice,
+  type CustomStyledComponentProps,
+} from 'rn-custom-style-sheet';
+import Colors from './ThemeColors';
 
-const BigTitleWithProps = styleComp(Text)<TextStyle>(({ props, theme }: { props: TextStyle; theme: ThemeType }) => ({
-  padding: props.padding,
-  fontWeight: 'bold',
-  fontSize: '14@ms',
-  color: 'black',
-  colorDark: 'cyan',
+const ScreenView = styled(View)(
+  ({ styleOption }): CustomStyledComponentProps => ({
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors[styleOption.themeMode]?.srnBackgroundColor,
+  })
+);
+
+const BigTitleWithProps = styled(Text)(
+  ({ styleOption, ...props }): CustomStyledComponentProps => ({
+    'flex': 1,
+    'padding': props.padding,
+    'fontWeight': 'bold',
+    'fontSize': '14@mhs',
+    '@media (orientation: portrait)': {
+      color: Colors[styleOption.themeMode]?.darkPink,
+    },
+    '@media (orientation: landscape)': {
+      color: Colors[styleOption.themeMode]?.lightPink,
+    },
+  })
+);
+
+const BigTitle = styled.Text({
+  'fontWeight': 'bold',
+  'fontSize': 14,
   '@media (orientation: portrait)': {
-    color: 'red',
-    colorDark: 'green'
+    color: Colors.light?.lightPink,
   },
   '@media (orientation: landscape)': {
-    color: 'green',
-    colorDark: 'red'
-  }
-}));
-
-const BigTitle = styleComp(Text)({
-  fontWeight: 'bold',
-  fontSize: 14,
-  color: 'black',
-  '@media (orientation: portrait)': {
-    color: 'red'
+    color: Colors.light?.darkPink,
   },
-  '@media (orientation: landscape)': {
-    color: 'green'
-  }
 });
 
 export const StyleComponentScreen = () => {
   const device: Partial<MediaQueryAllQueryable> = useDevice();
   return (
-    <>
-      <BigTitle device={device} onlyScale>
-        Big Title
-      </BigTitle>
-      <BigTitleWithProps device={device} padding="20@s">
+    <ScreenView>
+      <BigTitle device={device}>Big Title</BigTitle>
+      <BigTitleWithProps device={device} padding="40@hs">
         Big Title with props
       </BigTitleWithProps>
-    </>
+    </ScreenView>
   );
 };

@@ -1,13 +1,17 @@
 {
   "files.autoSave": "onFocusChange",
-  "eslint.alwaysShowStatus": true,
-  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   "javascript.validate.enable": true,
   "typescript.validate.enable": true,
   "json.format.enable": true,
-  "window.zoomLevel": 0,
+  "window.zoomLevel": 0.8,
   "editor.tabSize": 2,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript]": {
@@ -50,30 +54,29 @@
     "*.svg": "html"
   },
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
-    "source.fixAll.eslint": true
+    "source.fixAll": "explicit",
+    "source.fixAll.eslint": "explicit"
   },
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#2f7c47",
     "activityBar.activeBorder": "#422c74",
     "activityBar.background": "#2f7c47",
-    "activityBar.foreground": "#e7e7e7",
-    "activityBar.inactiveForeground": "#e7e7e799",
-    "activityBarBadge.background": "#422c74",
-    "activityBarBadge.foreground": "#e7e7e7",
     "sash.hoverBorder": "#2f7c47",
     "statusBar.background": "#215732",
-    "statusBar.foreground": "#e7e7e7",
     "statusBarItem.hoverBackground": "#2f7c47",
     "statusBarItem.remoteBackground": "#215732",
-    "statusBarItem.remoteForeground": "#e7e7e7",
     "titleBar.activeBackground": "#215732",
-    "titleBar.activeForeground": "#e7e7e7",
     "titleBar.inactiveBackground": "#21573299",
-    "titleBar.inactiveForeground": "#e7e7e799",
-    "commandCenter.border": "#e7e7e799"
+    "editorGroup.border": "#2f7c47",
+    "panel.border": "#2f7c47",
+    "sideBar.border": "#2f7c47",
+    "statusBar.border": "#215732",
+    "statusBar.debuggingBackground": "#572146",
+    "statusBar.debuggingBorder": "#572146",
+    "tab.activeBorder": "#2f7c47",
+    "titleBar.border": "#215732"
   },
   "peacock.color": "#215732",
-  "workbench.editor.enablePreview": false,
+  "workbench.editor.enablePreview": true,
   "workbench.editor.enablePreviewFromQuickOpen": false
 }

@@ -28,16 +28,13 @@ build/
 .gradle
 local.properties
 *.iml
-*.hprof
-/android/gradlew
-/android/gradlew.bat
-/android/gradle/
 
 # node.js
 #
 node_modules/
 npm-debug.log
 yarn-error.log
+yarn.lock
 
 # BUCK
 buck-out/
@@ -59,8 +56,9 @@ buck-out/
 # Bundle artifact
 *.jsbundle
 
-# CocoaPods
+# Ruby / CocoaPods
 /ios/Pods/
+/vendor/bundle/
 
-# Library
-lib/
+# generated
+lib

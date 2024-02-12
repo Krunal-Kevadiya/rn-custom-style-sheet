@@ -1,0 +1,2371 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>The Custom Style Sheet</title>
+  <meta name="description" content="A framework for easily creating beautiful style for component">
+  <meta name="author" content="Krunal Kevadiya">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="dist/theme/blood.css" id="theme">
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="plugin/highlight/monokai.css">
+  <style type="text/css">
+    .my_h1_h3 {
+      color: #DF013A !important;
+      font-weight: italic !important;
+      text-align: center !important
+    }
+
+    .my_section_text_left {
+      min-height: 100% !important;
+      top: 0 !important;
+      bottom: 0 !important;
+      text-align: left !important;
+    }
+
+    .div_margin_left_150 {
+      margin-left: 150px !important;
+    }
+
+    .div_margin_left_60 {
+      margin-left: 60px !important;
+    }
+
+    .pre_full_width {
+      width: 100% !important;
+    }
+
+    .div_text_left {
+      text-align: left !important;
+    }
+
+    .my_h4 {
+      color: #ec008c !important;
+      font-weight: italic !important;
+      text-transform: none !important;
+    }
+
+    .my_text_font {
+      font-size: 18px !important;
+    }
+
+    .container {
+      display: grid;
+      grid-auto-flow: column;
+    }
+
+    .col {
+      flex: 1
+    }
+
+    .table {
+      width: 95%;
+      border: 1px solid #2E64FE;
+    }
+
+    .td .th {
+      font-size: 14px;
+      text-align: left;
+      padding: 8px;
+      border: 1px solid #2E64FE;
+    }
+
+    .tr:nth-child(even) {
+      color: #000000;
+      background-color: #dddddd;
+    }
+
+    .scrollable {
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      height: 100%;
+    }
+
+    a:visited {
+      color: yellow;
+      background-color: transparent;
+      text-decoration: none;
+    }
+
+    .reveal .slides section .fragment.current-fragment.highlight-current-red {
+      color: #FA5858;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <!-- Title -->
+      <section data-transition="zoom" data-background-opacity="0.2" data-background-transition="zoom"
+        data-background="assets/image_thank.jpeg">
+        <h1 class="my_h1_h3">RN Custom Style Sheet</h1>
+      </section>
+      <!-- Index -->
+      <section data-transition="zoom" data-background-opacity="0.2" data-background-transition="zoom"
+        data-background="assets/image_no.jpg">
+        <section data-auto-animate>
+          <h3 class="my_h1_h3">Table of Contents</h3>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h3 class="my_h1_h3">Table of Contents</h3>
+          <div class="div_margin_left_150">
+            <ol>
+              <li>
+                <a href="#/slide-introduction" style="color: #FA5858">Brief Summary</a>
+              </li>
+            </ol>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h3 class="my_h1_h3">Table of Contents</h3>
+          <div class="div_margin_left_150">
+            <ol>
+              <li>
+                <a href="#/slide-introduction" style="color: #FA5858">Brief Summary</a>
+              </li>
+              <li>
+                <a href="#/slide-configuration" style="color: #FAAC58">
+                  Installation Instructions
+                </a>
+              </li>
+            </ol>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h3 class="my_h1_h3">Table of Contents</h3>
+          <div class="div_margin_left_150">
+            <ol>
+              <li>
+                <a href="#/slide-introduction" style="color: #FA5858">Brief Summary</a>
+              </li>
+              <li>
+                <a href="#/slide-configuration" style="color: #FAAC58">Installation Instructions</a>
+              </li>
+              <li>
+                <a href="#/slide-syntax" style="color: #F4FA58">Size, Units with custom matrices function</a>
+              </li>
+            </ol>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h3 class="my_h1_h3">Table of Contents</h3>
+          <div class="div_margin_left_150">
+            <ol>
+              <li>
+                <a href="#/slide-introduction" style="color: #FA5858">Brief Summary</a>
+              </li>
+              <li>
+                <a href="#/slide-configuration" style="color: #FAAC58">
+                  Installation Instructions
+                </a>
+              </li>
+              <li>
+                <a href="#/slide-syntax" style="color: #F4FA58">Size, Units with custom matrices function</a>
+              </li>
+              <li>
+                <a href="#/slide-provider" style="color: #ACFA58">Theme Provider</a>
+              </li>
+            </ol>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h3 class="my_h1_h3">Table of Contents</h3>
+          <div class="div_margin_left_150">
+            <ol>
+              <li>
+                <a href="#/slide-introduction" style="color: #FA5858">Brief Summary</a>
+              </li>
+              <li>
+                <a href="#/slide-configuration" style="color: #FAAC58">
+                  Installation Instructions
+                </a>
+              </li>
+              <li>
+                <a href="#/slide-syntax" style="color: #F4FA58">Size, Units with custom matrices function</a>
+              </li>
+              <li>
+                <a href="#/slide-provider" style="color: #ACFA58">Theme Provider</a>
+              </li>
+              <li>
+                <a href="#/slide-expose" style="color: #58FAAC">Expose Api & Hook</a>
+              </li>
+            </ol>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h3 class="my_h1_h3">Table of Contents</h3>
+          <div class="div_margin_left_150">
+            <ol>
+              <li>
+                <a href="#/slide-introduction" style="color: #FA5858">Brief Summary</a>
+              </li>
+              <li>
+                <a href="#/slide-configuration" style="color: #FAAC58">
+                  Installation Instructions
+                </a>
+              </li>
+              <li>
+                <a href="#/slide-syntax" style="color: #F4FA58">Size, Units with custom matrices function</a>
+              </li>
+              <li>
+                <a href="#/slide-provider" style="color: #ACFA58">Theme Provider</a>
+              </li>
+              <li>
+                <a href="#/slide-expose" style="color: #58FAAC">Expose Api & Hook</a>
+              </li>
+              <li>
+                <a href="#/slide-breakpoint" style="color: #58D3F7">Breakpoint</a>
+              </li>
+            </ol>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h3 class="my_h1_h3">Table of Contents</h3>
+          <div class="div_margin_left_150">
+            <ol>
+              <li>
+                <a href="#/slide-introduction" style="color: #FA5858">Brief Summary</a>
+              </li>
+              <li>
+                <a href="#/slide-configuration" style="color: #FAAC58">
+                  Installation Instructions
+                </a>
+              </li>
+              <li>
+                <a href="#/slide-syntax" style="color: #F4FA58">Size, Units with custom matrices function</a>
+              </li>
+              <li>
+                <a href="#/slide-provider" style="color: #ACFA58">Theme Provider</a>
+              </li>
+              <li>
+                <a href="#/slide-expose" style="color: #58FAAC">Expose Api & Hook</a>
+              </li>
+              <li>
+                <a href="#/slide-breakpoint" style="color: #58D3F7">Breakpoint</a>
+              </li>
+              <li>
+                <a href="#/slide-media-query" style="color: #8258FA">Media Query</a>
+              </li>
+            </ol>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h3 class="my_h1_h3">Table of Contents</h3>
+          <div class="div_margin_left_150">
+            <ol>
+              <li>
+                <a href="#/slide-introduction" style="color: #FA5858">Brief Summary</a>
+              </li>
+              <li>
+                <a href="#/slide-configuration" style="color: #FAAC58">
+                  Installation Instructions
+                </a>
+              </li>
+              <li>
+                <a href="#/slide-syntax" style="color: #F4FA58">Size, Units with custom matrices function</a>
+              </li>
+              <li>
+                <a href="#/slide-provider" style="color: #ACFA58">Theme Provider</a>
+              </li>
+              <li>
+                <a href="#/slide-expose" style="color: #58FAAC">Expose Api & Hook</a>
+              </li>
+              <li>
+                <a href="#/slide-breakpoint" style="color: #58D3F7">Breakpoint</a>
+              </li>
+              <li>
+                <a href="#/slide-media-query" style="color: #8258FA">Media Query</a>
+              </li>
+              <li>
+                <a href="#/slide-create-style" style="color: #FA58D0">Create a style</a>
+              </li>
+            </ol>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h3 class="my_h1_h3">Table of Contents</h3>
+          <div class="div_margin_left_150">
+            <ol>
+              <li>
+                <a href="#/slide-introduction" style="color: #FA5858">Brief Summary</a>
+              </li>
+              <li>
+                <a href="#/slide-configuration" style="color: #FAAC58">
+                  Installation Instructions
+                </a>
+              </li>
+              <li>
+                <a href="#/slide-syntax" style="color: #F4FA58">Size, Units with custom matrices function</a>
+              </li>
+              <li>
+                <a href="#/slide-provider" style="color: #ACFA58">Theme Provider</a>
+              </li>
+              <li>
+                <a href="#/slide-expose" style="color: #58FAAC">Expose Api & Hook</a>
+              </li>
+              <li>
+                <a href="#/slide-breakpoint" style="color: #58D3F7">Breakpoint</a>
+              </li>
+              <li>
+                <a href="#/slide-media-query" style="color: #8258FA">Media Query</a>
+              </li>
+              <li>
+                <a href="#/slide-create-style" style="color: #FA58D0">Create a style</a>
+              </li>
+              <li>
+                <a href="#/slide-style-component" style="color: #FA5882">Style Component</a>
+              </li>
+            </ol>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h3 class="my_h1_h3">Table of Contents</h3>
+          <div class="div_margin_left_150">
+            <ol>
+              <li>
+                <a href="#/slide-introduction" style="color: #FA5858">Brief Summary</a>
+              </li>
+              <li>
+                <a href="#/slide-configuration" style="color: #FAAC58">
+                  Installation Instructions
+                </a>
+              </li>
+              <li>
+                <a href="#/slide-syntax" style="color: #F4FA58">Size, Units with custom matrices function</a>
+              </li>
+              <li>
+                <a href="#/slide-provider" style="color: #ACFA58">Theme Provider</a>
+              </li>
+              <li>
+                <a href="#/slide-expose" style="color: #58FAAC">Expose Api & Hook</a>
+              </li>
+              <li>
+                <a href="#/slide-breakpoint" style="color: #58D3F7">Breakpoint</a>
+              </li>
+              <li>
+                <a href="#/slide-media-query" style="color: #8258FA">Media Query</a>
+              </li>
+              <li>
+                <a href="#/slide-create-style" style="color: #FA58D0">Create a style</a>
+              </li>
+              <li>
+                <a href="#/slide-style-component" style="color: #FA5882">Style Component</a>
+              </li>
+              <li>
+                <a href="#/slide-handle-theme" style="color: #BDBDBD">Handle Theme</a>
+              </li>
+            </ol>
+          </div>
+        </section>
+      </section>
+      <!-- Introduction -->
+      <section id="slide-introduction" data-transition="zoom" data-background-opacity="0.2"
+        data-background-transition="zoom" data-background="assets/image_no.jpg" class="my_section_text_left">
+        <section data-auto-animate>
+          <h3 class="my_h1_h3">Brief Summary</h3>
+        </section>
+        <section data-auto-animate>
+          <h3 class="my_h1_h3">Brief Summary</h3>
+          <p class="my_text_font">Create responsive design with the help of custom style sheet</p>
+        </section>
+        <section data-auto-animate>
+          <h3 class="my_h1_h3">Brief Summary</h3>
+          <p class="my_text_font">Create responsive design with the help of custom style sheet</p>
+          <p class="my_text_font">
+            Drop-in replacement of <font color="#FAAC58">React Native StyleSheet</font> with media-queries, dynamic
+            themes, relative units, percents, math operations, scaling and other styling stuff.
+          </p>
+        </section>
+      </section>
+      <!-- Configuration -->
+      <section id="slide-configuration" data-transition="zoom" data-background-opacity="0.2"
+        data-background-transition="zoom" data-background="assets/image_no.jpg" class="my_section_text_left">
+        <section data-auto-animate>
+          <h3 class="my_h1_h3">Installation Instructions</h3>
+        </section>
+        <section data-auto-animate>
+          <h3 class="my_h1_h3">Installation Instructions</h3>
+          <p class="my_text_font">First, Let assume that you have used local storage as a MMKV(<a
+              href="https://github.com/mrousavy/react-native-mmkv" target="_blank">Visit react-native-mmkv!</a>) then
+          </p>
+        </section>
+        <section data-auto-animate>
+          <h3 class="my_h1_h3">Installation Instructions</h3>
+          <p class="my_text_font">First, Let assume that you have used local storage as a MMKV(<a
+              href="https://github.com/mrousavy/react-native-mmkv" target="_blank">Visit react-native-mmkv!</a>) then
+          </p>
+          <p class="my_text_font">If you want to used npm</p>
+          <p class="my_text_font">
+            &nbsp;&nbsp;&nbsp;&nbsp;<font color="#FAAC58" class="fragment highlight-current-red">npm install</font>
+            <font color="#F4FA58" class="fragment highlight-current-red">rn-custom-style-sheet</font>
+            <font color="#ACFA58" class="fragment highlight-current-red">react-native-mmkv</font>
+          </p>
+        </section>
+        <section data-auto-animate>
+          <h3 class="my_h1_h3">Installation Instructions</h3>
+          <p class="my_text_font">First, Let assume that you have used local storage as a MMKV(<a
+              href="https://github.com/mrousavy/react-native-mmkv" target="_blank">Visit react-native-mmkv!</a>) then
+          </p>
+          <p class="my_text_font">If you want to used npm</p>
+          <p class="my_text_font">
+            &nbsp;&nbsp;&nbsp;&nbsp;<font color="#FAAC58">npm install</font>
+            <font color="#F4FA58">rn-custom-style-sheet</font>
+            <font color="#ACFA58">react-native-mmkv</font>
+          </p>
+          <p class="my_text_font"">If you want to used Yarn</p>
+          <p class=" my_text_font">
+            &nbsp;&nbsp;&nbsp;&nbsp;<font color="#FAAC58" class="fragment highlight-current-red">yarn add</font>
+            <font color="#F4FA58" class="fragment highlight-current-red">rn-custom-style-sheet</font>
+            <font color="#ACFA58" class="fragment highlight-current-red">react-native-mmkv</font>
+          </p>
+        </section>
+      </section>
+      <!-- Syntax -->
+      <section id="slide-syntax" data-transition="zoom" data-background-opacity="0.2" data-background-transition="zoom"
+        data-background="assets/image_no.jpg">
+        <section data-auto-animate>
+          <h3 class="my_h1_h3">Size, Units with custom matrices function</h3>
+        </section>
+        <section data-auto-animate class="scrollable">
+          <h3 class="my_h1_h3">Size, Units with custom matrices function</h3>
+          <table>
+            <thead>
+              <tr>
+                <th style="font-size: 25px">Unit with syntax</th>
+                <th style="font-size: 25px">Description</th>
+                <th style="font-size: 25px">Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="fragment highlight-current-red">
+                <td style="font-size: 20px">
+                  &lt;size&gt;&lt;unit&gt;@s&lt;t[size]&gt;&lt;sar&gt;&lt;r&gt;
+                </td>
+                <td style="font-size: 20px">Scales size in a linear manner relative to screen size, t is threshold.
+                  Default is 0.4(Tablet) or 0.5(Phone)</td>
+                <td style="font-size: 20px">5.5@s <font color="#FAAC58">/</font> 5.5px@s <font color="#FAAC58">/</font>
+                  5.5px@st0.45</td>
+              </tr>
+              <tr class="fragment highlight-current-red">
+                <td style="font-size: 20px">
+                  &lt;size&gt;@hs&lt;sar&gt;&lt;r&gt;
+                </td>
+                <td style="font-size: 20px">Scales size in a linear manner relative to screen width</td>
+                <td style="font-size: 20px">5.5@hs <font color="#FAAC58">/</font>
+                  5.5px@hs</td>
+              </tr>
+              <tr class="fragment highlight-current-red">
+                <td style="font-size: 20px">&lt;size&gt;&lt;unit&gt;@vs&lt;sar&gt;&lt;r&gt;</td>
+                <td style="font-size: 20px">Scales size in a linear manner relative to screen height</td>
+                <td style="font-size: 20px">7@vs <font color="#FAAC58">/</font> 7px@vs</td>
+              </tr>
+              <tr class="fragment highlight-current-red">
+                <td style="font-size: 20px">
+                  &lt;size&gt;&lt;unit&gt;@ms&lt;factor&gt;&lt;t[size]&gt;&lt;sar&gt;&lt;r&gt;
+                </td>
+                <td style="font-size: 20px">Scales size in a linear manner relative to screen size. factor is resize
+                  font. Default is 0.5, t is threshold. Default is 0.4(Tablet) or 0.5(Phone)</td>
+                <td style="font-size: 20px">5@ms <font color="#FAAC58">/</font>
+                  5px@ms <br /> 5@ms0.25 <font color="#FAAC58">/</font> 5px@ms0.25 <font color="#FAAC58">/</font>
+                  5px@ms0.25t0.45</td>
+              </tr>
+              <tr class="fragment highlight-current-red">
+                <td style="font-size: 20px">
+                  &lt;size&gt;&lt;unit&gt;@mhs&lt;factor&gt;&lt;sar&gt;&lt;r&gt;
+                </td>
+                <td style="font-size: 20px">Scales size in a linear manner relative to screen width. factor is resize
+                  font. Default is 0.5</td>
+                <td style="font-size: 20px">5@mhs <font color="#FAAC58">/</font>
+                  5px@mhs <br /> 5@mhs0.25 <font color="#FAAC58">/</font> 5px@mhs0.25</td>
+              </tr>
+              <tr class="fragment highlight-current-red">
+                <td style="font-size: 20px">&lt;size&gt;&lt;unit&gt;@mvs&lt;factor&gt;&lt;sar&gt;&lt;r&gt;</td>
+                <td style="font-size: 20px">Scales size in a linear manner relative to screen height. factor is resize
+                  font. Default is 0.5</td>
+                <td style="font-size: 20px">5@mvs <font color="#FAAC58">/</font> 5px@mvs <br /> 5@mvs0.75 <font
+                    color="#FAAC58">/</font> 5px@mvs0.75</td>
+              </tr>
+              <tr class="fragment highlight-current-red">
+                <td style="font-size: 20px">&lt;size&gt;@hp&lt;r&gt;</td>
+                <td style="font-size: 20px">Size percentage relative to the window height</td>
+                <td style="font-size: 20px">1@hp</td>
+              </tr>
+              <tr class="fragment highlight-current-red">
+                <td style="font-size: 20px">&lt;size&gt;@wp&lt;r&gt;</td>
+                <td style="font-size: 20px">Size percentage to the window width</td>
+                <td style="font-size: 20px">1@wp</td>
+              </tr>
+              <tr class="fragment highlight-current-red">
+                <td style="font-size: 20px">&lt;size&gt;&lt;unit&gt;@vw&lt;sar&gt;&lt;r&gt;</td>
+                <td style="font-size: 20px">Size relative to the window width</td>
+                <td style="font-size: 20px">1.02@vw <font color="#FAAC58">/</font> 1.02px@vw</td>
+              </tr>
+              <tr class="fragment highlight-current-red">
+                <td style="font-size: 20px">&lt;size&gt;&lt;unit&gt;@vh&lt;sar&gt;&lt;r&gt;</td>
+                <td style="font-size: 20px">Size relative to the window height</td>
+                <td style="font-size: 20px">10@vh <font color="#FAAC58">/</font> 10px@vh</td>
+              </tr>
+              <tr class="fragment highlight-current-red">
+                <td style="font-size: 20px">&lt;size&gt;&lt;unit&gt;@vmin&lt;sar&gt;&lt;r&gt;</td>
+                <td style="font-size: 20px">Size relative to the shortest dimension compared between window width and
+                  height</td>
+                <td style="font-size: 20px">10@vmin <font color="#FAAC58">/</font> 10px@vmin</td>
+              </tr>
+              <tr class="fragment highlight-current-red">
+                <td style="font-size: 20px">&lt;size&gt;&lt;unit&gt;@vmax&lt;sar&gt;&lt;r&gt;</td>
+                <td style="font-size: 20px">Size relative to the largest dimension compared between window width and
+                  height</td>
+                <td style="font-size: 20px">10@vmax <font color="#FAAC58">/</font> 10px@vmax</td>
+              </tr>
+              <tr class="fragment highlight-current-red">
+                <td style="font-size: 20px">&lt;size&gt;&lt;unit&gt;@sdp&lt;sar&gt;&lt;r&gt;</td>
+                <td style="font-size: 20px">Size relative to the window width, More detail of <a
+                    href="https://github.com/intuit/sdp" target="_blank">Visit sdp!</a></td>
+                <td style="font-size: 20px">10@sdp <font color="#FAAC58">/</font> 10px@sdp</td>
+              </tr>
+              <tr class="fragment highlight-current-red">
+                <td style="font-size: 20px">&lt;size&gt;&lt;unit&gt;@ssp&lt;sar&gt;&lt;r&gt;</td>
+                <td style="font-size: 20px">Size relative to the window width and device font size , More detail of
+                  <a href="https://github.com/intuit/ssp" target="_blank">Visit ssp!</a>
+                </td>
+                <td style="font-size: 20px">10@ssp <font color="#FAAC58">/</font> 10px@ssp</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="div_text_left">
+            <p class="my_text_font">
+              <b>
+                <font color="#ACFA58">Note:</font>
+              </b>
+            </p>
+            <p class="my_text_font">
+              - <b>
+                <font color="#58FAAC" class="fragment highlight-current-red">Size : </font>
+              </b> Can be any positive or negative number (including decimal) for <b>s/hs</b>, <b>vs</b>, <b>ms/mhs</b>,
+              <b>mvs</b>, <b>sdp</b> and <b>ssp</b> <br />
+              - <b>
+                <font color="#58FAAC" class="fragment highlight-current-red">Size : </font>
+              </b> Can be any positive or negative number ranging from 0 to 100 (including decimal) for <b>vw</b>,
+              <b>vh</b>, <b>vmin</b>, and <b>vmax</b><br />
+              - <b>
+                <font color="#58FAAC" class="fragment highlight-current-red">Size : </font>
+              </b> Can be 0 to 100 percentage (including decimal) for <b>hp</b>, and <b>wp</b><br />
+              - <b>
+                <font color="#58FAAC" class="fragment highlight-current-red">Unit : </font>
+              </b> can be represent your size unit like, <b>em</b>, <b>rem</b>, <b>px</b>, <b>cm</b>, <b>mm</b>,
+              <b>in</b>, <b>pt</b>, <b>pc</b><br />
+              - <b>
+                <font color="#58FAAC" class="fragment highlight-current-red">Factor : </font>
+              </b> Can be any positive number ranging from 0 and 1 (including decimal)<br />
+              - <b>
+                <font color="#58FAAC" class="fragment highlight-current-red">t(Threshold) : </font>
+              </b> Can be any positive number ranging from 0 and 1 (including decimal)<br />
+              - <b>
+                <font color="#58FAAC" class="fragment highlight-current-red">SAR : </font>
+              </b> Can be skip aspect ratio apply to given size</b><br />
+              - <b>
+                <font color="#58FAAC" class="fragment highlight-current-red">R : </font>
+              </b> Can be rounding the result
+            </p>
+          </div>
+        </section>
+      </section>
+      <!-- Provider -->
+      <section id="slide-provider" data-transition="zoom" data-background-opacity="0.2"
+        data-background-transition="zoom" data-background="assets/image_no.jpg" data-auto-animate
+        class="my_section_text_left">
+        <section data-auto-animate>
+          <h3 class="my_h1_h3">Provider</h3>
+          <ul
+            style="list-style-type:circle;justify-content:center;align-items: center;font-size: 20px; margin-left: 50px">
+            <li class="fragment highlight-current-red">Theme Provider</li>
+            <li class="fragment highlight-current-red">Forcing a device with the device prop</li>
+          </ul>
+        </section>
+        <section data-auto-animate class="my_section_text_left | scrollable">
+          <h3 class="my_h1_h3">Provider Props</h3>
+          <p class="my_text_font">
+            - This is a theme provider and applies to the app level js / ts.<br />
+            - <font color="#58FAAC" class="fragment highlight-current-red">isSupportedOrientation</font> : Props will be
+            support device landscape mode because when device orientation change then change height and width. Default
+            is <b>false</b>.<br />
+            - <font color="#58FAAC" class="fragment highlight-current-red">isUsedBuiltInAspectRatioFunction</font> :
+            Default is <b>false</b>. Set true if you want to apply aspect ration function which are provided
+            built-in.<br />
+            - <font color="#58FAAC" class="fragment highlight-current-red">withPortraitBehaviorInLandscapeMode</font> :
+            Props will be support device portrait mode for scale in landscape mode because when device orientation
+            change then change height and width (Default false).<br />
+            - <font color="#58FAAC" class="fragment highlight-current-red">deviceForMediaQuery</font> : Props will be
+            used to apply media query device configuration at project level.<br />
+            - <font color="#58FAAC" class="fragment highlight-current-red">appThemeName</font> : Props will be used to
+            apply default theme when you used multiple theme.<br />
+            - <b>
+              <font color="#58D3F7" class="fragment highlight-current-red">guideLineLayout</font>
+            </b> :<br />
+            - <font color="#58FAAC" class="fragment highlight-current-red">width</font> : Can be default guideline width
+            sizes are based on standard ~5" screen mobile device or you can set based on design guideline. Default is
+            <b>375</b><br />
+            - <font color="#58FAAC" class="fragment highlight-current-red">height</font> : Can be default guideline
+            height sizes are based on standard ~5" screen mobile device or you can set based on design guideline.
+            Default is <b>812</b><br />
+            - <font color="#58FAAC" class="fragment highlight-current-red">aspectRatioFunction</font> : Can be function
+            which calculates new size based on aspect ratio condition.<br />
+            - <b>
+              <font color="#58D3F7" class="fragment highlight-current-red">guideLineBreakpoint</font>
+            </b> :<br />
+            - <font color="#58FAAC" class="fragment highlight-current-red">values</font> : The keys are your screen
+            names, and the values are the min-width where that breakpoint should start. Default to the above
+            values.<br />
+            - <font color="#58FAAC" class="fragment highlight-current-red">unit</font> : The unit used for the
+            breakpoint's values. Default is <b>px</b> but can be changed, can be one of <b>em</b>, <b>rem</b>,
+            <b>cm</b>, <b>mm</b>, <b>in</b>, <b>pt</b>, <b>pc</b> and <b>px</b><br />
+            - <font color="#58FAAC" class="fragment highlight-current-red">step</font> : The increment divided by 100
+            used to implement exclusive breakpoints. For example, <b>step = 5</b> means that <b>down(500)</b> will
+            result in <b>(max-width: 499.95px)</b>. Default is <b>0</b><br />
+            - <b>
+              <font color="#58D3F7" class="fragment highlight-current-red">storage</font>
+            </b> :<br />
+            - <font color="#58FAAC" class="fragment highlight-current-red">getStorage</font> : Can be function which get
+            current theme mode in local storage.<br />
+            - <font color="#58FAAC" class="fragment highlight-current-red">setStorage</font> : Can be function which
+            storage current theme mode in local storage.<br />
+            - <b>
+              <font color="#58D3F7" class="fragment highlight-current-red">baseSizeLayout</font>
+            </b> :<br />
+            - <font color="#58FAAC" class="fragment highlight-current-red">thresholdOfPhone</font> : Can be a decimal
+            number from 0 to 1 as multiply threshold when phone device type.<br />
+            - <font color="#58FAAC" class="fragment highlight-current-red">thresholdOfTablet</font> : Can be a decimal
+            number from 0 to 1 as multiply threshold when tablet device type.<br />
+            - <font color="#58FAAC" class="fragment highlight-current-red">androidTabletRatio</font> : Can be a decimal
+            number for identify tablet in Android platform.<br />
+            - <font color="#58FAAC" class="fragment highlight-current-red">thresholdFunction</font> : Can be function
+            which calculate threshold and provided baseSizeRatio & isTablet argument to manipulate data<br />
+          </p>
+          <pre class="pre_full_width">
+            <code>
+              <script type="text/template">const App = () => {
+  return (
+    <ThemeProvider deviceForMediaQuery={{ width: 500 }}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={HomeScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
+  );
+};</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h3 class="my_h1_h3">Forcing a device with the device prop</h3>
+          <p class="my_text_font">- At times you may need to render components with different device settings than what
+            gets automatically detected.</p>
+          <p class="my_text_font">- This is especially useful in a Node environment where these settings can't be
+            detected (SSR) or for testing.</p>
+          <b>
+            <font color="#58D3F7" class="fragment highlight-current-red">Possible Keys</font>
+          </b>
+          <p class="my_text_font">
+            <font color="#58FAAC" class="fragment highlight-current-red">orientation</font>, <font color="#58FAAC"
+              class="fragment highlight-current-red">aspectRatio</font>, <font color="#58FAAC"
+              class="fragment highlight-current-red"> deviceAspectRatio</font>, <font color="#58FAAC"
+              class="fragment highlight-current-red">pixelRatio</font>, <font color="#58FAAC"
+              class="fragment highlight-current-red">height</font>, <font color="#58FAAC"
+              class="fragment highlight-current-red">deviceHeight</font>, <font color="#58FAAC"
+              class="fragment highlight-current-red">width</font>, <font color="#58FAAC"
+              class="fragment highlight-current-red">deviceWidth</font>, <font color="#58FAAC"
+              class="fragment highlight-current-red">direction</font>, <font color="#58FAAC"
+              class="fragment highlight-current-red">prefersColorScheme</font> and <font color="#58FAAC"
+              class="fragment highlight-current-red"> type</font>
+          </p>
+          <b>
+            <font color="#58D3F7" class="fragment highlight-current-red">Possible Types</font>
+          </b>
+          <p class="my_text_font">
+            <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">modifier</font>
+            </b> can be one of: <b>only</b> or <b>not</b><br />
+
+            <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">type</font>
+            </b> can be one of: <b>all</b>, <b>screen</b>, <b>tv</b>, <b>ios</b>, <b>android</b>, <b>windows</b>,
+            <b>macos</b> or <b>web</b><br />
+
+            <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">aspectRatio</font>
+            </b> or <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">deviceAspectRatio</font>
+            </b> : to decimal number<br />
+
+            <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">pixelRatio</font>
+            </b> : to decimal number (device pixel density. <a
+              href="https://facebook.github.io/react-native/docs/pixelratio.html" target="_blank">Visit PixelRatio!</a>
+            )<br />
+
+            <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">height</font>
+            </b>, <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">width</font>
+            </b>, <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">deviceHeight</font>
+            </b>, or <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">deviceWidth</font>
+            </b> : to <b>em</b>, <b>rem</b>, <b>cm</b>, <b>mm</b>, <b>in</b>, <b>pt</b>, <b>pc</b> and <b>px</b><br />
+
+            <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">direction</font>
+            </b> can be one of: <b>rtl</b> or <b>ltr</b><br />
+
+            <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">prefersColorScheme</font>
+            </b> can be one of: <b>light</b> ro <b>dark</b><br />
+          </p>
+        </section>
+      </section>
+      <!-- Expose -->
+      <section id="slide-expose" data-transition="convex" data-background-opacity="0.2"
+        data-background-transition="zoom" data-background="assets/image_no.jpg" class="my_section_text_left">
+        <section data-auto-animate>
+          <h3 class="my_h1_h3">API & HOOK</h3>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">01. useThemeContext</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This hook provided a theme provider context. it provided a value like state, dispatch and storage.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">const themeContext: ThemeContextType = useThemeContext();</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">02. useCreateHandlerSetter</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This hook provided to create handle setter method.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">const handler = () => void;
+const [onMountHandler, setOnMountHandler] = useCreateHandlerSetter(handler);</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">03. useDeepCompareEffect</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This hook work same as useEffect but here different is check deeply in dependence object value.
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <b class="fragment highlight-current-red">NOTE:</b> Only use this if your values are objects or arrays
+              that contain objects. Otherwise, you should just use <font color="#FAAC58">React.useEffect</font>.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">useDeepCompareEffect(() => {
+  if (isUpdate) {
+    const newDevice: HyphenateKeyTypes = getDevice(
+      deviceFromProps,
+      deviceFromContext
+    );
+    if (!shallowEqualObjects(device, newDevice)) {
+      setDevice(newDevice);
+    }
+  }
+}, [deviceFromProps, deviceFromContext]);</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">04. useDeepCompareMemo</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This hook work same as useMemo but here different is check deeply in dependence object value.
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <b class="fragment highlight-current-red">NOTE:</b> Only use this if your values are objects or arrays
+              that contain objects. Otherwise, you should just use <font color="#FAAC58">React.useMemo</font>.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">const query: string = useDeepCompareMemo(() => makeQuery(settings), [settings]);</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left | scrollable">
+          <h4 class="my_h4">05. useDidMount</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This hook trigger when component mount. so if you need to do something when the component is mounted at
+              that time used this hook.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font" style="max-height:800px;">
+              <script type="text/template">useDidMount(() => {
+  function onThemeChange({
+    colorScheme,
+  }: Appearance.AppearancePreferences): void {
+    const currentTheme =
+      colorScheme === AppThemeModeEnum.Dark
+        ? AppThemeModeEnum.Dark
+        : AppThemeModeEnum.Light;
+    storage.setStorage<AppThemeModeEnum>(
+      StorageKeys.SystemThemeModeKey,
+      currentTheme
+    );
+    dispatch({
+      type: ReducerEventEnum.ChangeSystemThemeMode,
+      payload: {
+        systemThemeMode: currentTheme,
+      },
+    });
+  }
+  const subscription: NativeEventSubscription =
+    Appearance.addChangeListener(onThemeChange);
+  return () => {
+    subscription.remove();
+  };
+});</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">06. useCurrentOrientation</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              If you want to get the current orientation from context but based on <b>isSupportedOrientation</b> props
+              setting.
+            </p>
+            <p class="my_text_font fragment fade-down">
+              If <b>isSupportedOrientation</b> true than provided <b>portrait</b> or <b>landscape</b> otherwise provided
+              <b>portrait</b>
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">const orientation: OrientationEnum = useCurrentOrientation();</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">07. useGuideLineBreakpoint</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This hook provided a guide line break point value from theme provider context. Like values, unit and step.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">const breakpoint: StateGuideLineBreakpointType = useGuideLineBreakpoint();</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">08. useGuideLineLayout</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This hook provided a guide line layout value from theme provider context. Like height, width and
+              aspectRatioFunction.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">const layout: Omit<GuideLineLayoutType, ''> = useGuideLineLayout();</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">09. usePortraitBehaviorInLandscapeMode</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This hook provided a boolean value from theme provider context in withPortraitBehaviorInLandscapeMode key
+              value.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">const isPortraitBehaviorInLandscapeMode: boolean = usePortraitBehaviorInLandscapeMode();</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">10. useScreenResolution</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This hook provided a screen resolution object and some internal value which are used for scaling. Like a
+              windowWidth, windowHeight, shortDimension and longDimension.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">const screenResolutions: ScreenResolutionType = useScreenResolution();</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">11. useDevice</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This hook provided device configuration value based on own config props or <b>deviceForMediaQuery</b>
+              props from provider or default value.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font" style="max-height:800px;">
+              <script type="text/template">const device: Partial<MediaQueryAllQueryable> = useDevice();
+                      
+                      OR
+
+const device: Partial<MediaQueryAllQueryable> = useDevice({
+  width: window.width,
+  height: window.height,
+  orientation: window.width > window.height ? 'landscape' : 'portrait',
+  aspectRatio: window.width / window.height,
+  deviceHeight: screen.height,
+  deviceWidth: screen.width,
+  deviceAspectRatio: screen.width / screen.height,
+  type: Platform.isTV ? 'tv' : Platform.OS,
+  direction: isRTL ? 'rtl' : 'ltr',
+  prefersColorScheme: Appearance.getColorScheme() || 'light',
+});</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">12. useDeviceForMediaQuery</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This hook provided device configuration value based on <b>deviceForMediaQuery</b> props from provider or
+              default value.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">const deviceForMediaQuery: Partial<MediaQueryAllQueryable> | undefined =
+useDeviceForMediaQuery();</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left | scrollable">
+          <h4 class="my_h4">13. useMediaQuery</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This hook provided to execute from media query and based on media query provided true or false.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font" style="max-height:800px;">
+              <script type="text/template">const Example = () => {
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  const isDesktopOrLaptop: boolean = useMediaQuery({
+    query: '@media (min-width: 1224px)'
+  });
+  const isBigScreen: boolean = useMediaQuery({ query: '@media (min-width: 1824px)' }, device);
+  const isTabletOrMobile: boolean = useMediaQuery({ query: '@media (max-width: 1224px)' }, device);
+  const isPortrait: boolean = useMediaQuery({ query: '@media (orientation: portrait)' }, { ...device, width: 1600 });
+
+  return (
+    <>
+      <Text>Device Test!</Text>
+      {isDesktopOrLaptop && <Text>You are a desktop or laptop</Text>}
+      {isBigScreen && <Text>You have a huge screen</Text>}
+      {isTabletOrMobile && <Text>You are a tablet or mobile phone</Text>}
+      <Text>Your are in {isPortrait ? 'portrait' : 'landscape'} orientation</Text>
+      <MediaQuery device={device} upBreakpoint="xs" onChange={handleMediaQueryChange}>
+        {/* You can also use a function (render prop) as a child */}
+        {(matches: boolean) =>
+          matches ? <Text>You are minimum small device</Text> : <Text>You are not minimum small device</Text>
+        }
+    </>
+  );
+};</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">14. useScaleUtils</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This hook provided a scale matrices utility function if you want to used in different places.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">const {
+  horizontalScale,
+  verticalScale,
+  moderateHorizontalScale,
+  moderateVerticalScale,
+  heightPercentageToDP,
+  widthPercentageToDP,
+  viewportHeight,
+  viewportWidth,
+  viewportMax,
+  viewportMin,
+  sdp,
+  ssp,
+  scale,
+  moderateScale,
+}: UseScaleUtilsReturnType = useScaleUtils();</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">14.01 scale</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              Will return a linear scaled result of the provided size, based on your device's screen width & height
+              aspect ratio
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <font color="#8258FA">Example:</font> scale(10)
+            </p>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">14.02 horizontalScale</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              Will return a linear scaled result of the provided size, based on your device's screen width
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <font color="#8258FA">Example:</font> horizontalScale(10)
+            </p>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">14.03 verticalScale</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              Will return a linear scaled result of the provided size, based on your device's screen height.
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <font color="#8258FA">Example:</font> verticalScale(10)
+            </p>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">14.04 moderateScale</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              Sometimes you don't want to scale everything in a linear manner, that's where moderateScale
+              comes in.
+            </p>
+            <p class="my_text_font fragment fade-down">
+              The cool thing about it is that you can control the resize factor (default is 0.5) and threshold.
+            </p>
+            <p class="my_text_font fragment fade-down">
+              If normal scale will increase your size by +2X, moderateScale will only increase it by
+              +X, for example:
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <font color="#8258FA">Example:</font><br />
+              &nbsp;&nbsp;&nbsp;&nbsp;scale(10) = 20;<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;moderateScale(10) = 15;<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;moderateScale(10, 0.1) = 11;<br />
+            </p>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">14.05 moderateHorizontalScale</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              Sometimes you don't want to scale everything in a linear manner, that's where moderateHorizontalScale
+              comes in.
+            </p>
+            <p class="my_text_font fragment fade-down">
+              The cool thing about it is that you can control the resize factor (default is 0.5).
+            </p>
+            <p class="my_text_font fragment fade-down">
+              If normal horizontalScale will increase your size by +2X, moderateHorizontalScale will only increase it by
+              +X, for example:
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <font color="#8258FA">Example:</font><br />
+              &nbsp;&nbsp;&nbsp;&nbsp;horizontalScale(10) = 20;<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;moderateHorizontalScale(10) = 15;<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;moderateHorizontalScale(10, 0.1) = 11;<br />
+            </p>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">14.06 moderateVerticalScale</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              Same as moderateHorizontalScale, but using verticalScale instead of horizontalScale.
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <font color="#8258FA">Example:</font> moderateVerticalScale(10)
+            </p>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">14.07 heightPercentageToDP</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              Their names essentially mean that you can supply a "percentage like" string value and it will return the
+              DP (independent pixel) that correspond to the supplied percentage of current screen's height.
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <font color="#8258FA">Example:</font> heightPercentageToDP('50%')
+            </p>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">14.08 widthPercentageToDP</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              Their names essentially mean that you can supply a "percentage like" string value and it will return the
+              DP (independent pixel) that correspond to the supplied percentage of current screen's width.
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <font color="#8258FA">Example:</font> widthPercentageToDP('50%')
+            </p>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">14.09 viewportHeight</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              Size relative to the window height
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <font color="#8258FA">Example:</font> viewportHeight(1.02)
+            </p>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">14.10 viewportWidth</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              Size relative to the window width
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <font color="#8258FA">Example:</font> viewportWidth(10)
+            </p>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">14.11 viewportMax</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              Size relative to the largest dimension compared between window width and height
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <font color="#8258FA">Example:</font> viewportMax(10)
+            </p>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">14.12 viewportMin</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              Size relative to the shortest dimension compared between window width and height
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <font color="#8258FA">Example:</font> viewportMin(10)
+            </p>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">14.13 sdp</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              New size unit - sdp (scalable dp). This size unit scales with the screen size. It can help developers with
+              supporting multiple screens.
+            </p>
+            <p class="my_text_font fragment fade-down">
+              More detail of <a href="https://github.com/intuit/sdp" target="_blank">Visit sdp!</a>
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <font color="#8258FA">Example:</font> sdp(10)
+            </p>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">14.14 ssp</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              New size unit - ssp (scalable sp). This size unit scales with the screen size based on the sp size unit
+              (for texts). It can help developers with supporting multiple screens.
+            </p>
+            <p class="my_text_font fragment fade-down">
+              More detail of <a href="https://github.com/intuit/ssp" target="_blank">Visit ssp!</a>
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <font color="#8258FA">Example:</font> sdp(10)
+            </p>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">15. useCurrentThemeMode</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This hook provided a current theme mode, it's may be light or dark depending on user selection or system
+              behavior.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">const themeMode: ThemeModeEnum = useCurrentThemeMode();</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">16. useTheme</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              Custom hook for applying the current theme and scaling in our style object.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">const styleSheet = (option: StyleSheetOption) =>
+  CustomStyleSheet.create(
+    {
+      screenView: {
+        height: '50@vs',
+        width: '50@vs',
+        backgroundColor: 'red',
+      },
+    },
+    option
+  );
+
+const { styles } = useTheme(styleSheet);</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">17. useUpdateTheme</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              Custom hook for update the current app theme or switch theme in our application(used for setting
+              preference or other you have specify option in our application).
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">const handleAppTheme: UpdateThemeReturnType = useUpdateTheme();
+      
+<Button onPress={() => handleAppTheme('summer', AppThemeModeEnum.Dark)}>
+  Dark Theme with summer theming
+</Button>
+
+<Button onPress={() => handleAppTheme('winter', AppThemeModeEnum.Light)}>
+  Light Theme with winter theming
+</Button></script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">18. getScreenResolution</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This method provided a screen resolution object and some internal value which are used for scaling. Like a
+              windowWidth, windowHeight, shortDimension and longDimension.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">const screenResolution: GetScreenResolutionReturnType = getScreenResolution(
+  window,
+  false
+);</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">19. listenOrientationChange</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This method listen orientation change and provided a screen resolution object and some internal value
+              which are used for scaling. Like a windowWidth, windowHeight, shortDimension and longDimension.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">const subscription: EmitterSubscription = listenOrientationChange(
+  false,
+  (screenResolution: GetScreenResolutionReturnType) => {}
+);</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">20. removeOrientationListener</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This method remove listen orientation change event.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">removeOrientationListener(subscription);</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">21. shallowEqualArrays</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              If you know you have two arrays in hand, and you want to know if they are shallowly equal or not, this
+              method is for you.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">const flag: boolean = shallowEqualArrays([{ a: 5 }], [{ a: 5 }]);</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">22. shallowEqualObjects</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              If you know you have two objects in hand, and you want to know if they are shallowly equal or not, this
+              method is for you.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">const flag: boolean = shallowEqualObjects(
+  { a: 5, b: 'abc' },
+  { a: 5, b: 'abc' }
+);</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">23. getCurrentThemeMode</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              Will return current theme, based on app and system theme which are provided as a parameter.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">const themeMode: ThemeModeEnum = getCurrentThemeMode(
+  AppThemeModeEnum.System,
+  AppThemeModeEnum.System
+);</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">24. AppThemeModeEnum</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This enum represents app theme mode like System, Light or Dark.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">enum AppThemeModeEnum {
+  System = 'system',
+  Light = 'light',
+  Dark = 'dark',
+}</script>
+          </code>
+        </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">25. OrientationEnum</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This enum represents orientation like Portrait or Landscape.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">enum OrientationEnum {
+  Portrait = 'portrait',
+  Landscape = 'landscape',
+}</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">26. ThemeModeEnum</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This enum represents theme mode like Light or Dark and for System provided Light or Dark value based on
+              system behavior.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">enum ThemeModeEnum {
+  Light = 'light',
+  Dark = 'dark',
+}</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">27. UnitEnum</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This enum represents size unit which is provided a package like Em<font color="#FAAC58">(</font>Emphemeral
+              <font color="#FAAC58">)</font>, Rem<font color="#FAAC58">(</font>Roentgen Equivalent
+              Man<font color="#FAAC58">)</font>, Px<font color="#FAAC58">(</font>Pixel<font color="#FAAC58">)</font>, Cm
+              <font color="#FAAC58">(</font>Centimeter<font color="#FAAC58">)</font>, Mm<font color="#FAAC58">(</font>
+              Millimeter<font color="#FAAC58">)</font>, In<font color="#FAAC58">(</font>Inch<font color="#FAAC58">)
+              </font>, Pt<font color="#FAAC58">(</font>Point<font color="#FAAC58">)</font>, Pc<font color="#FAAC58">(
+              </font>Pica<font color="#FAAC58">)</font>.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">enum UnitEnum {
+  Em = 'em',
+  Rem = 'rem',
+  Px = 'px',
+  Cm = 'cm',
+  Mm = 'mm',
+  In = 'in',
+  Pt = 'pt',
+  Pc = 'pc',
+}</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">28. StorageKeys</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This object represents a list of keys which can be used for storage. Like AppThemeNameKey, AppThemeModeKey
+              and SystemThemeModeKey.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+            <code class="my_text_font">
+              <script type="text/template">const StorageKeys = {
+  AppThemeNameKey: 'appThemeNameKey',
+  AppThemeModeKey: 'appThemeModeKey',
+  SystemThemeModeKey: 'systemThemeModeKey',
+}</script>
+            </code>
+          </pre>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">29. useGeneralScreenResolution</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              This hook provided a general screen resolution object and some internal value which are used for scaling.
+              Like a baseWidth, baseHeight, isTablet, baseSizeRatio, threshold and baseSizeWithThreshold.
+            </p>
+          </div>
+          <pre class="pre_full_width fragment fade-right">
+                    <code class="my_text_font">
+                      <script type="text/template">const generalScreenResolutions: GeneralScreenResolutionType = useGeneralScreenResolution();</script>
+                    </code>
+                  </pre>
+        </section>
+      </section>
+      <!-- Breakpoint -->
+      <section id="slide-breakpoint" data-transition="convex" data-background-opacity="0.2"
+        data-background-transition="zoom" data-background="assets/image_no.jpg" class="my_section_text_left">
+        <section data-auto-animate class="my_section_text_left">
+          <h3 class="my_h1_h3">Breakpoint</h3>
+          <ul
+            style="list-style-type:circle;justify-content:center;align-items: center;font-size: 20px; margin-left: 50px">
+            <li class="fragment highlight-current-red">What is Breakpoint</li>
+            <li class="fragment highlight-current-red">Default breakpoints</li>
+            <li class="fragment highlight-current-red">How to use breakpoints</li>
+          </ul>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h3 class="my_h1_h3">What is Breakpoint</h3>
+          <p class="my_text_font fragment fade-left">
+            Breakpoints are the building blocks of responsive design.
+          </p>
+          <p class="my_text_font fragment fade-left">
+            Use them to control when your layout can be adapted at a particular viewport or device size.
+          </p>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h3 class="my_h1_h3">Default breakpoints</h3>
+          <div class="fragment fade-left">
+            <p class="my_text_font">Each breakpoint (a key) matches with a fixed screen width (a value):</p>
+            <ul
+              style="list-style-type:circle;justify-content:center;align-items: center;font-size: 20px; margin-left: 50px">
+              <li class="fragment highlight-current-red">base, base / extra-small: 0px</li>
+              <li class="fragment highlight-current-red">sm, small: 480px</li>
+              <li class="fragment highlight-current-red">md, medium: 768px</li>
+              <li class="fragment highlight-current-red">lg, large: 992px</li>
+              <li class="fragment highlight-current-red">xl, extra-large: 1280px</li>
+              <li class="fragment highlight-current-red">2xl, double-extra-large: 1536px</li>
+            </ul>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h3 class="my_h1_h3">How to use breakpoints in CreateStyle</h3>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              key (string | number): A breakpoint key (xs, sm, etc.) or a screen width number in px or your provided
+              breakpoint unit(<font color="#FAAC58">guideLineBreakpointUnit</font> props in provider).
+            </p>
+            <p class="my_text_font fragment fade-down">
+              If you want to change any of the properties values based on the breakpoint then you can do using this
+              package same as like provided to native-base(<a href="https://nativebase.io/" target="_blank">Visit
+                Native-Bases!</a>)
+            </p>
+            <p class="my_text_font fragment fade-down">
+              If you provided a value in array form so at that time your given array value will be sorted by
+              breakpoint key. For example in below example fontSize array will be sorted by breakpoint key</a>)
+            </p>
+            <div class="div_margin_left_60">
+              <p class="my_text_font fragment fade-down">
+                <font color="#8258FA">Example:</font><br />
+              <div class="div_margin_left_60">
+                <p class="my_text_font fragment fade-down">
+                  fontSize: ['12@mhs', '14@mhs', '16@mhs', '18@mhs']<br />
+                  fontSize: { base: '12@mhs', sm: '14@mhs', md: '16@mhs', lg: '18@mhs' }<br /></p>
+              </div>
+              </p>
+            </div>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h3 class="my_h1_h3">How to use breakpoints in MediaQuery</h3>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              key (string | number): A breakpoint key (xs, sm, etc.) or a screen width number in px or your provided
+              breakpoint unit(<font color="#FAAC58">guideLineBreakpointUnit</font> props in provider).
+            </p>
+            <ul class="fragment fade-down"
+              style="list-style-type:circle;justify-content:center;align-items: center;font-size: 20px; margin-left: 50px">
+              <li class="fragment highlight-current-red">01. upBreakpoint / up-breakpoint</li>
+              <li class="fragment highlight-current-red">02. downBreakpoint / down-breakpoint</li>
+              <li class="fragment highlight-current-red">03. betweenBreakpoint / between-breakpoint</li>
+              <li class="fragment highlight-current-red">04. onlyBreakpoint / only-breakpoint</li>
+              <li class="fragment highlight-current-red">05. notBreakpoint / not-breakpoint</li>
+            </ul>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">01. Up (upBreakpoint / up-breakpoint)</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              Which matches screen widths greater than the screen size given by the breakpoint key (inclusive).
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <font color="#8258FA">Example:</font><br />
+            <div class="div_margin_left_60">
+              <p class="my_text_font fragment fade-down">
+                upBreakpoint: 'sm'<br />
+                (up-breakpoint: sm)<br /></p>
+            </div>
+            </p>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">02. Down (downBreakpoint / down-breakpoint)</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              Which matches screen widths less than the screen size given by the breakpoint key (exclusive).
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <font color="#8258FA">Example:</font><br />
+            <div class="div_margin_left_60">
+              <p class="my_text_font fragment fade-down">
+                downBreakpoint: 'md'<br />
+                (down-breakpoint: md)<br /></p>
+            </div>
+            </p>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">03. Between (betweenBreakpoint / between-breakpoint)</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              Which matches screen widths greater than the screen size given by the breakpoint key in the first argument
+              (inclusive) and less than the screen size given by the breakpoint key in the second argument (exclusive).
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <font color="#8258FA">Example:</font><br />
+            <div class="div_margin_left_60">
+              <p class="my_text_font fragment fade-down">
+                betweenBreakpoint: ['sm', 'lg']<br />
+                (between-breakpoint: [sm, lg])<br /></p>
+            </div>
+            </p>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">04. Only (onlyBreakpoint / only-breakpoint)</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              Which matches screen widths starting from the screen size given by the breakpoint key (inclusive) and
+              stopping at the screen size given by the next breakpoint key (exclusive).
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <font color="#8258FA">Example:</font><br />
+            <div class="div_margin_left_60">
+              <p class="my_text_font fragment fade-down">
+                onlyBreakpoint: 'md'<br />
+                (only-breakpoint: md)<br /></p>
+            </div>
+            </p>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">05. Not (notBreakpoint / not-breakpoint)</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              Which matches screen widths stopping at the screen size given by the breakpoint key (exclusive) and
+              starting at the screen size given by the next breakpoint key (inclusive).
+            </p>
+            <p class="my_text_font fragment fade-down">
+              <font color="#8258FA">Example:</font><br />
+            <div class="div_margin_left_60">
+              <p class="my_text_font fragment fade-down">
+                notBreakpoint: '2xl'<br />
+                (not-breakpoint: 2xl)<br /></p>
+            </div>
+            </p>
+          </div>
+        </section>
+      </section>
+      <!-- Media Query -->
+      <section id="slide-media-query" data-transition="convex" data-background-opacity="0.2"
+        data-background-transition="zoom" data-background="assets/image_no.jpg" class="my_section_text_left">
+        <section data-auto-animate class="my_section_text_left">
+          <h3 class="my_h1_h3">MediaQuery</h3>
+          <ul
+            style="list-style-type:circle;justify-content:center;align-items: center;font-size: 20px; margin-left: 50px">
+            <li class="fragment highlight-current-red">What is Media Query</li>
+            <li class="fragment highlight-current-red">MediaQuery Components</li>
+            <li class="fragment highlight-current-red">MediaQuery Components with onChange</li>
+            <li class="fragment highlight-current-red">Easy Mode for Media Query</li>
+          </ul>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h3 class="my_h1_h3">What is Media Query</h3>
+          <p class="my_text_font">
+            This package allows you to make media-query components in React Native.
+          </p>
+          <p class="my_text_font">
+            This can be super useful when you want to render or remove specific elements in DOM depending on the screen
+            size. Also, you can restructure your DOM (in terms of CSS/Sass Styling) as fit.
+          </p>
+          <p class="my_text_font">
+            At times you may need to render components with different device settings than what gets automatically
+            detected.
+          </p>
+          <p class="my_text_font">
+            This is especially useful in a Node environment where these settings can't be detected (SSR) or for testing.
+          </p>
+          <b>
+            <font color="#58D3F7" class="fragment highlight-current-red">Possible Keys</font>
+          </b>
+          <p class="my_text_font">
+            <font color="#58FAAC" class="fragment highlight-current-red">orientation</font>, <font color="#58FAAC"
+              class="fragment highlight-current-red">aspectRatio</font>, <font color="#58FAAC"
+              class="fragment highlight-current-red">deviceAspectRatio</font>, <font color="#58FAAC"
+              class="fragment highlight-current-red">pixelRatio</font>, <font color="#58FAAC"
+              class="fragment highlight-current-red">height</font>, <font color="#58FAAC"
+              class="fragment highlight-current-red">deviceHeight</font>, <font color="#58FAAC"
+              class="fragment highlight-current-red">width</font>, <font color="#58FAAC"
+              class="fragment highlight-current-red">deviceWidth</font>, <font color="#58FAAC"
+              class="fragment highlight-current-red">direction</font>, <font color="#58FAAC"
+              class="fragment highlight-current-red">prefersColorScheme</font> and <font color="#58FAAC"
+              class="fragment highlight-current-red">type</font>
+          </p>
+          <b>
+            <font color="#58D3F7" class="fragment highlight-current-red">Possible Types</font>
+          </b>
+          <p class="my_text_font">
+            <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">modifier</font>
+            </b> can be one of: <b>only</b> or <b>not</b><br />
+
+            <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">type</font>
+            </b> can be one of: <b>all</b>, <b>screen</b>, <b>tv</b>, <b>ios</b>, <b>android</b>, <b>windows</b>,
+            <b>macos</b> or <b>web</b><br />
+
+            <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">aspectRatio</font>
+            </b> or <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">deviceAspectRatio</font>
+            </b> : to decimal number<br />
+
+            <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">pixelRatio</font>
+            </b> : to decimal number (device pixel density. <a
+              href="https://facebook.github.io/react-native/docs/pixelratio.html" target="_blank">Visit PixelRatio!</a>
+            )<br />
+
+            <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">height</font>
+            </b>, <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">width</font>
+            </b>, <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">deviceHeight</font>
+            </b>, or <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">deviceWidth</font>
+            </b> : to <b>em</b>, <b>rem</b>, <b>cm</b>, <b>mm</b>, <b>in</b>,
+            <b>pt</b>, <b>pc</b> and <b>px</b><br />
+
+            <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">direction</font>
+            </b> can be one of: <b>rtl</b> or <b>ltr</b><br />
+
+            <b>
+              <font color="#58FAAC" class="fragment highlight-current-red">prefersColorScheme</font>
+            </b> can be one of: <b>light</b> ro <b>dark</b><br />
+          </p>
+        </section>
+        <section data-auto-animate class="my_section_text_left | scrollable">
+          <h4 class="my_h4">MediaQuery Components</h4>
+          <div class="div_margin_left_60">
+            <pre class="pre_full_width fragment fade-right">
+              <code class="my_text_font" style="max-height:800px;">
+                <script type="text/template">const Example = () => (
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  <>
+    <Text>Device Testing!</Text>
+    <MediaQuery minWidth={1224}>
+      <Text>You are a desktop or laptop</Text>
+      <MediaQuery minWidth={1824}>
+        <Text>You also have a huge screen</Text>
+      </MediaQuery>
+    </MediaQuery>
+  </>
+);</script>
+              </code>
+            </pre>
+            <p class="my_text_font fragment fade-down">
+              To make things more idiomatic to react, you can use camel-cased shorthands to construct media queries.
+            </p>
+            <p class="my_text_font fragment fade-down">
+              For a list of all possible shorthands and value types see <a
+                href="https://github.com/Krunal-Kevadiya/rn-custom-style-sheet/tree/main/src/MediaQuery/Components/MediaQuery/MediaQueryTypes.ts#L9"
+                target="_blank">Visit here!</a>
+            </p>
+            <p class="my_text_font fragment fade-down">
+              Any numbers given as shorthand will be expanded to px (1234 will become '1234px').
+            </p>
+            <p class="my_text_font fragment fade-down">
+              The CSS media queries in the example above could be constructed like this:
+            </p>
+            <pre class="pre_full_width fragment fade-right">
+              <code class="my_text_font" style="max-height:800px;">
+                <script type="text/template">const Example = () => {
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  const isDesktopOrLaptop: boolean = useMediaQuery({ minWidth: 1224 }, device);
+  const isBigScreen: boolean = useMediaQuery({ minWidth: 1824 }, device);
+  const isTabletOrMobile: boolean = useMediaQuery({ maxWidth: 1224 }, device);
+  const isPortrait: boolean = useMediaQuery(
+    { orientation: 'portrait' },
+    device
+  );
+
+  return (
+    <>
+      <Text>Device Test!</Text>
+      {isDesktopOrLaptop && <Text>You are a desktop or laptop</Text>}
+      {isBigScreen && <Text>You have a huge screen</Text>}
+      {isTabletOrMobile && <Text>You are a tablet or mobile phone</Text>}
+      <Text>
+        Your are in {isPortrait ? 'portrait' : 'landscape'} orientation
+      </Text>
+    </>
+  );
+};</script>
+              </code>
+            </pre>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left | scrollable">
+          <h4 class="my_h4">MediaQuery Components with onChange</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              You can use the <font color="#F39C3C">onChange</font> callback to specify a change handler that will be
+              called when the media query's value changes.
+            </p>
+            <pre class="pre_full_width fragment fade-right">
+              <code class="my_text_font" style="max-height:1080px;">
+                <script type="text/template">const Example = () => {
+  const handleMediaQueryChange = (matches: boolean) => {
+    // matches will be true or false based on the value for the media query
+  };
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  const isDesktopOrLaptop: boolean = useMediaQuery(
+    { minWidth: 1224 },
+    device,
+    handleMediaQueryChange
+  );
+  const isBigScreen = useMediaQuery({ upBreakpoint: '2xl' }, device);
+
+  return <Text>...</Text>;
+};</script>
+                </code>
+              </pre>
+            <pre class="pre_full_width fragment fade-right">
+              <code class="my_text_font" style="max-height:1080px;">
+                <script type="text/template">const Example = () => {
+  const handleMediaQueryChange = (matches: boolean) => {
+    // matches will be true or false based on the value for the media query
+  };
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+
+  return (
+    <>
+      <MediaQuery
+        device={device}
+        minWidth={1224}
+        onChange={handleMediaQueryChange}>
+        ...
+      </MediaQuery>
+      <MediaQuery
+        device={device}
+        upBreakpoint="md"
+        onChange={handleMediaQueryChange}>
+        ...
+      </MediaQuery>
+    </>
+  );
+};</script>
+              </code>
+            </pre>
+          </div>
+        </section>
+        <section data-auto-animate class="my_section_text_left | scrollable">
+          <h4 class="my_h4">Easy Mode for Media Query</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              That's it! Now you can create your application specific breakpoints and reuse them easily. Here is an
+              example:
+            </p>
+            <pre class="pre_full_width fragment fade-right">
+              <code class="my_text_font" style="max-height:1080px;">
+                <script type="text/template">const Desktop = ({ children }) => {
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  const isDesktop = useMediaQuery({ minWidth: 992 }, device);
+  return isDesktop ? children : null;
+};
+const Tablet = ({ children }) => {
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 }, device);
+  return isTablet ? children : null;
+};
+const Mobile = ({ children }) => {
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  const isMobile = useMediaQuery({ maxWidth: 767 }, device);
+  return isMobile ? children : null;
+};
+const Default = ({ children }) => {
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  const isNotMobile = useMediaQuery({ minWidth: 768 }, device);
+  return isNotMobile ? children : null;
+};
+
+const Example = () => (
+  <>
+    <Desktop>
+      <Text>Desktop or laptop</Text>
+    </Desktop>
+    <Tablet>
+      <Text>Tablet</Text>
+    </Tablet>
+    <Mobile>
+      <Text>Mobile</Text>
+    </Mobile>
+    <Default>
+      <Text>Not mobile (desktop or laptop or tablet)</Text>
+    </Default>
+  </>
+);</script>
+                </code>
+              </pre>
+            <p class="my_text_font fragment fade-down">
+              And if you want a combo (the DRY way):
+            </p>
+            <pre class="pre_full_width fragment fade-right">
+              <code class="my_text_font" style="max-height:800px;">
+                <script type="text/template">const useDesktopMediaQuery = () => {
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  return useMediaQuery({ query: '@media (min-width: 1280px)' }, device);
+};
+
+const useTabletAndBelowMediaQuery = () => {
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  return useMediaQuery({ query: '@media (max-width: 1279px)' }, device);
+};
+
+const Desktop = ({ children }) => {
+  const isDesktop = useDesktopMediaQuery();
+
+  return isDesktop ? children : null;
+};
+
+const TabletAndBelow = ({ children }) => {
+  const isTabletAndBelow = useTabletAndBelowMediaQuery();
+
+  return isTabletAndBelow ? children : null;
+};</script>
+              </code>
+            </pre>
+          </div>
+        </section>
+      </section>
+      <!-- Create a style -->
+      <section id="slide-create-style" data-transition="convex" data-background-opacity="0.2"
+        data-background-transition="zoom" data-background="assets/image_no.jpg" class="my_section_text_left">
+        <section data-auto-animate class="my_section_text_left">
+          <h3 class="my_h1_h3">Create A Style</h3>
+        </section>
+        <section data-auto-animate class="my_section_text_left">
+          <h4 class="my_h4">create (styles, option)</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              A function which returns computed styles on the basis of media queries specified, scale functionality or
+              theming.
+            </p>
+            <p class="my_text_font fragment fade-down">
+              Here styles is plain json object to define your component or screen all styles
+            </p>
+            <p class="fragment fade-down"><b>Arguments</b></p>
+            <p class="my_text_font fragment fade-down">
+              <font color="#58D3F7" class="highlight-current-red">CustomStyleSheet.create(_object_,_option_)</font> : A
+              option is contain <b>isDark</b>, <b>themeName</b>, <b>themeMode</b>, and <b>isDisableScaling</b> key
+              properties and some other <b>screenResolution</b>, <b>guideLineLayout</b>, <b>guideLineBreakpoint</b>, and
+              <b>device</b> key properties for internal used.<br /><br />
+
+              - <font color="#FAAC58" class="fragment highlight-current-red">isDark</font> : A key represent current
+              theme is <b>light</b> or <b>dark</b> as boolean value<br /><br />
+              - <font color="#FAAC58" class="fragment highlight-current-red">themeName</font> : A theme name type which
+              is currently used for current theme. For example summer, winter or monsoon.<br /><br />
+              - <font color="#FAAC58" class="fragment highlight-current-red">themeMode</font> : A theme mode type which
+              is currently used like <b>light</b> or <b>dark</b><br /><br />
+              - <font color="#FAAC58" class="fragment highlight-current-red">isDisableScaling</font> : A key to used for
+              disabling scaling features.
+            </p>
+            <p class="fragment fade-down"><b>Return</b></p>
+            <p class="my_text_font fragment fade-down">
+              - A style object which is generated during application start.
+            </p>
+          </div>
+        </section>
+      </section>
+      <!-- Style Component -->
+      <section id="slide-style-component" data-transition="convex" data-background-opacity="0.2"
+        data-background-transition="zoom" data-background="assets/image_no.jpg" class="my_section_text_left">
+        <section data-auto-animate class="my_section_text_left">
+          <h3 class="my_h1_h3">Create Style Component</h3>
+        </section>
+        <section data-auto-animate class="scrollable">
+          <h4 class="my_h4">Create Style Component</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              If do you want to used style as style components then
+            </p>
+            <p class="my_text_font fragment fade-down">
+              A function which returns computed styles on the basis of scale functionality, media queries specified or
+              theming.
+            </p>
+            <p class="my_text_font fragment fade-down">
+              Syntax : <font color="#FAAC58" class="fragment highlight-current-red">styled</font>(<font color="#F4FA58"
+                class="fragment highlight-current-red">Component</font>)(<font color="#58FAAC"
+                class="fragment highlight-current-red">({ styleOption, ...props }): CustomStyledComponentProps => ({})
+              </font>)
+            </p>
+            <pre class="pre_full_width fragment fade-right">
+              <code class="my_text_font" style="max-height:1080px;">
+                <script type="text/template"> const BigTitleWithProps = styled(Text)(({ ...props, styleOption }): CustomStyledComponentProps => ({
+  padding: props.padding,
+  fontWeight: 'bold',
+  fontSize: '14@mhs',
+  color: styleOption.isDark ? 'white' : 'black',
+  '@media (orientation: portrait)': {
+    color: styleOption.isDark ? 'green' : 'red',
+  },
+  '@media (orientation: landscape)': {
+    color: styleOption.isDark ? 'red' : 'green',
+  },
+}));
+
+const BigTitle = styled(Text)({
+  fontWeight: 'bold',
+  fontSize: 14,
+  color: 'black',
+  '@media (orientation: portrait)': {
+    color: 'red',
+  },
+  '@media (orientation: landscape)': {
+    color: 'green',
+  },
+});
+
+const Example = () => {
+  const device: Partial<MediaQueryAllQueryable> = useDevice();
+  return (
+    <>
+      <BigTitle device={device}>Big Title</BigTitle>
+      <BigTitleWithProps device={device} padding="20@hs">
+        Big Title with props
+      </BigTitleWithProps>
+    </>
+  );
+};</script>
+              </code>
+            </pre>
+          </div>
+        </section>
+      </section>
+      <!-- Handle Theme -->
+      <section id="slide-handle-theme" data-transition="convex" data-background-opacity="0.2"
+        data-background-transition="zoom" data-background="assets/image_no.jpg" class="my_section_text_left">
+        <section data-auto-animate>
+          <h3 class="my_h1_h3">Handle Theme Mode</h3>
+          <ul
+            style="list-style-type:circle;justify-content:center;align-items: center;font-size: 20px; margin-left: 50px">
+            <li class="fragment highlight-current-red">Single</li>
+            <li class="fragment highlight-current-red">Multi</li>
+          </ul>
+        </section>
+        <section data-auto-animate class="scrollable">
+          <h4 class="my_h4">Handle single theme mode</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              If do you want to thing handle theme mode own way using Color object instead of above uses then,
+            </p>
+            <p class="my_text_font fragment fade-down">
+              1. First create colors object like below
+            </p>
+            <pre class="pre_full_width fragment fade-right">
+              <code class="my_text_font" style="max-height:1080px;">
+                <script type="text/template">const commonColors = {
+  primary: '#141414',
+  secondary: '#F1C336',
+  gray: '#7B7B7B',
+  error: '#E53E3E',
+  pink: '#BA25EB',
+  orange: '#F39C3C',
+  lightBlue: '#3787FC',
+  red: '#DD2C2C',
+  darkBlue: '#374dfc',
+  transparent: 'transparent',
+};
+
+const light = {
+  ...commonColors,
+  white: '#FFFFFF',
+  black: '#000000',
+  transparentBlack: '#00000000',
+  transparentWhite: '#FFFFFF00',
+};
+const dark = {
+  ...commonColors,
+  black: '#FFFFFF',
+  white: '#000000',
+  transparentWhite: '#00000000',
+  transparentBlack: '#FFFFFF00',
+};
+
+export default { light, dark };</script>
+              </code>
+            </pre>
+          </div>
+        </section>
+        <section data-auto-animate class="scrollable">
+          <h4 class="my_h4">Cont...</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              2. Create styles like below
+            </p>
+            <pre class="pre_full_width fragment fade-right">
+              <code class="my_text_font" style="max-height:1080px;">
+                <script type="text/template">const normalStyleSheet = (styleOption: StyleSheetOption) =>
+  CustomStyleSheet.create(
+    {
+      screenView: {
+        height: '50@vs',
+        width: '50@vs',
+        backgroundColor: Colors[styleOption.themeMode]?.white,
+      },
+    },
+    styleOption
+  );
+
+const { styles } = useTheme(normalStyleSheet);</script>
+              </code>
+            </pre>
+          </div>
+        </section>
+        <section data-auto-animate class="scrollable">
+          <h4 class="my_h4">Cont...</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              3. If you can used style component then like below
+            </p>
+            <pre class="pre_full_width fragment fade-right">
+              <code class="my_text_font" style="max-height:1080px;">
+                <script type="text/template">const BigTitleWithProps = styled(Text)(({ ...props, styleOption }): CustomStyledComponentProps => ({
+  padding: props.padding,
+  fontWeight: 'bold',
+  fontSize: '14@mhs',
+  color: Colors[styleOption.themeMode]?.white,
+  '@media (orientation: portrait)': {
+    color: Colors[styleOption.themeMode]?.white,
+  },
+  '@media (orientation: landscape)': {
+    color: Colors[styleOption.themeMode]?.black,
+  },
+}));</script>
+              </code>
+            </pre>
+          </div>
+        </section>
+        <section data-auto-animate class="scrollable">
+          <h4 class="my_h4">Handle multi theme mode</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              If do you want to thing handle theme mode own way using Color object instead of above uses then,
+            </p>
+            <p class="my_text_font fragment fade-down">
+              1. First create colors object like below
+            </p>
+            <pre class="pre_full_width fragment fade-right">
+              <code class="my_text_font" style="max-height:1080px;">
+                <script type="text/template">const commonColors = {
+  lightPink: '#CA45F6',
+  darkPink: '#A016CE',
+  lightOrange: '#F7A752',
+  darkOrange: '#FF8000',
+  lightRed: '#FA3868',
+  darkRed: '#C71010',
+  lightBlue: '#3787FC',
+  darkBlue: '#374dfc',
+  white: '#FFFFFF',
+  black: '#000000',
+  transparent: 'transparent',
+};
+
+const summerLight = {
+  ...commonColors,
+  srnBackgroundColor: commonColors.lightOrange,
+  txtColor: commonColors.white,
+  btnBackgroundColor: commonColors.darkBlue,
+  btnShadowColor: commonColors.darkPink,
+};
+const summerDark = {
+  ...commonColors,
+  srnBackgroundColor: commonColors.darkOrange,
+  txtColor: commonColors.black,
+  btnBackgroundColor: commonColors.lightBlue,
+  btnShadowColor: commonColors.lightPink,
+};
+const summer = { light: summerLight, dark: summerDark };
+
+const winterLight = {
+  ...commonColors,
+  srnBackgroundColor: commonColors.lightRed,
+  txtColor: commonColors.white,
+  btnBackgroundColor: commonColors.darkOrange,
+  btnShadowColor: commonColors.darkPink,
+};
+const winterDark = {
+  ...commonColors,
+  srnBackgroundColor: commonColors.darkRed,
+  txtColor: commonColors.black,
+  btnBackgroundColor: commonColors.lightOrange,
+  btnShadowColor: commonColors.lightPink,
+};
+const winter = { light: winterLight, dark: winterDark };
+
+const monsoonLight = {
+  ...commonColors,
+  srnBackgroundColor: commonColors.lightBlue,
+  txtColor: commonColors.white,
+  btnBackgroundColor: commonColors.darkRed,
+  btnShadowColor: commonColors.darkPink,
+};
+const monsoonDark = {
+  ...commonColors,
+  srnBackgroundColor: commonColors.darkBlue,
+  txtColor: commonColors.black,
+  btnBackgroundColor: commonColors.lightRed,
+  btnShadowColor: commonColors.lightPink,
+};
+const monsoon = { light: monsoonLight, dark: monsoonDark };
+
+export const MultiTheme = {
+  summer,
+  winter,
+  monsoon,
+};</script>
+              </code>
+            </pre>
+          </div>
+        </section>
+        <section data-auto-animate class="scrollable">
+          <h4 class="my_h4">Cont...</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              2. Create styles like below
+            </p>
+            <pre class="pre_full_width fragment fade-right">
+              <code class="my_text_font" style="max-height:1080px;">
+                <script type="text/template">const normalStyleSheet = (styleOption: StyleSheetOption) =>
+  CustomStyleSheet.create(
+    {
+      screenView: {
+        height: '50@vs',
+        width: '50@vs',
+        backgroundColor: MultiTheme[styleOption.themeName]?.[styleOption.themeMode]?.srnBackgroundColor,
+      },
+    },
+    styleOption
+  );
+
+const { styles } = useTheme(normalStyleSheet);</script>
+              </code>
+            </pre>
+          </div>
+        </section>
+        <section data-auto-animate class="scrollable">
+          <h4 class="my_h4">Cont...</h4>
+          <div class="div_margin_left_60">
+            <p class="my_text_font fragment fade-down">
+              3. If you can used style component then like below
+            </p>
+            <pre class="pre_full_width fragment fade-right">
+              <code class="my_text_font" style="max-height:1080px;">
+                <script type="text/template">const BigTitleWithProps = styled(Text)(({ ...props, styleOption }): CustomStyledComponentProps => ({
+  padding: props.padding,
+  fontWeight: 'bold',
+  fontSize: '14@mhs',
+  color: MultiTheme[styleOption.themeName]?.[styleOption.themeMode]?.srnBackgroundColor,
+  '@media (orientation: portrait)': {
+    color: MultiTheme[styleOption.themeName]?.[styleOption.themeMode]?.srnBackgroundColor,
+  },
+  '@media (orientation: landscape)': {
+    color: MultiTheme[styleOption.themeName]?.[styleOption.themeMode]?.txtColor,
+  },
+}));</script>
+              </code>
+            </pre>
+          </div>
+        </section>
+      </section>
+      <!-- Screen Shot -->
+      <section id="slide-screen-shot" data-transition="convex" data-background-opacity="0.2"
+        data-background-transition="zoom" data-background="assets/image_no.jpg" class="my_section_text_left">
+        <section data-auto-animate>
+          <h3 class="my_h1_h3">Screen Shot</h3>
+          <ul
+            style="list-style-type:circle;justify-content:center;align-items: center;font-size: 20px; margin-left: 50px">
+            <li class="fragment highlight-current-red">iPhone</li>
+            <li class="fragment highlight-current-red">Android</li>
+          </ul>
+        </section>
+        <section data-auto-animate class="scrollable">
+          <h4 class="my_h4">iPhone</h4>
+          <div class="container">
+            <div class="col">
+              <figure>
+                <img data-src="assets/screenshots/iphone_13_portrait.png" alt="iPhone 13 Portrait" />
+                <figcaption>iPhone 13 Portrait</figcaption>
+              </figure>
+            </div>
+            <div class="col">
+              <figure>
+                <img data-src="assets/screenshots/ipad_air_5th_generation_portrait.png"
+                  alt="iPad Air 5th Generation Portrait" />
+                <figcaption>iPad Air 5th Generation Portrait</figcaption>
+              </figure>
+            </div>
+            <div class="col">
+              <figure>
+                <img data-src="assets/screenshots/ipad_pro_12.9_inch_5th_generation_portrait.png"
+                  alt="iPad Pro 12.9 inch 5th Generation Portrait" />
+                <figcaption>iPad Pro 12.9 inch 5th Generation Portrait</figcaption>
+              </figure>
+            </div>
+
+          </div>
+
+          <div class="container">
+            <div class="col">
+              <figure>
+                <img data-src="assets/screenshots/iphone_13_landscape.png" alt="iPhone 13 Landscape" />
+                <figcaption>iPhone 13 Landscape</figcaption>
+              </figure>
+            </div>
+            <div class="col">
+              <figure>
+                <img data-src="assets/screenshots/ipad_air_5th_generation_landscape.png"
+                  alt="iPad Air 5th Generation Landscape" />
+                <figcaption>iPad Air 5th Generation Landscape</figcaption>
+              </figure>
+            </div>
+            <div class="col">
+              <figure>
+                <img data-src="assets/screenshots/ipad_pro_12.9_inch_5th_generation_landscape.png"
+                  alt="iPad Pro 12.9 inch 5th Generation Landscape" />
+                <figcaption>iPad Pro 12.9 inch 5th Generation Landscape</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+      </section>
+      <!-- Help -->
+      <section data-auto-animate data-background-opacity="0.2" data-background-transition="zoom"
+        data-background-gradient="linear-gradient(to bottom, #283b95, #17b2c3)">
+        <h4>Comment / Questions?</h4>
+        <p>Thank you for your attention and participation</p>
+        <p>Presented: Krunal Kevadiya</p>
+      </section>
+    </div>
+  </div>
+  <script src="dist/reveal.js"></script>
+  <script src="plugin/zoom/zoom.js"></script>
+  <script src="plugin/notes/notes.js"></script>
+  <script src="plugin/search/search.js"></script>
+  <script src="plugin/markdown/markdown.js"></script>
+  <script src="plugin/highlight/highlight.js"></script>
+  <script>
+    // Also available as an ES module, see:
+    // https://revealjs.com/initialization/
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      center: false,
+      hash: true,
+      touch: true,
+      width: '100%',
+      height: '100%',
+      margin: 0.04,
+      minScale: 0.2,
+      maxScale: 2.0,
+      slideNumber: 'V.H',
+      showSlideNumber: 'all',
+
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight]
+    });
+  </script>
+</body>
+
+</html>

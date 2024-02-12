@@ -1,43 +1,51 @@
 import React from 'react';
 import { View } from 'react-native';
-import { CustomStyleSheet, MediaQueryAllQueryable, StyleSheetOption, useDevice, useTheme } from 'rn-custom-style-sheet';
+import {
+  CustomStyleSheet,
+  type MediaQueryAllQueryable,
+  type StyleSheetPropsType,
+  useDevice,
+  useTheme,
+} from 'rn-custom-style-sheet';
+import Colors from './ThemeColors';
 
-const normalStyleSheet = (styleOption: StyleSheetOption) =>
+const normalStyleSheet = (styleOption: StyleSheetPropsType) =>
   CustomStyleSheet.create(
     {
       screenView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: Colors[styleOption.themeMode]?.srnBackgroundColor,
+      },
+      boxView: {
         height: 150,
         width: 150,
-        backgroundColor: 'red',
-        backgroundColorDark: 'green'
-      }
+        backgroundColor: Colors[styleOption.themeMode]?.btnBackgroundColor,
+      },
     },
-    { ...styleOption, onlyTheme: true }
+    { ...styleOption, isDisableScaling: true }
   );
 
-const mediaQueryStyleSheet = (styleOption: StyleSheetOption) =>
+const mediaQueryStyleSheet = (styleOption: StyleSheetPropsType) =>
   CustomStyleSheet.create(
     {
-      screenView: {
+      'boxView': {
         height: 150,
         width: 150,
-        backgroundColor: 'red',
-        backgroundColorDark: 'green'
       },
       '@media (orientation: portrait)': {
-        screenView: {
-          backgroundColor: 'red',
-          backgroundColorDark: 'green'
-        }
+        boxView: {
+          backgroundColor: Colors[styleOption.themeMode]?.btnBackgroundColor,
+        },
       },
       '@media (orientation: landscape)': {
-        screenView: {
-          backgroundColor: 'green',
-          backgroundColorDark: 'red'
-        }
-      }
+        boxView: {
+          backgroundColor: Colors[styleOption.themeMode]?.btnShadowColor,
+        },
+      },
     },
-    { ...styleOption, onlyScale: true }
+    { ...styleOption, isDisableScaling: true }
   );
 
 export const ThemeScreen = () => {
@@ -45,9 +53,9 @@ export const ThemeScreen = () => {
   const { styles: normalStyles } = useTheme(normalStyleSheet);
   const { styles: mediaQueryStyles } = useTheme(mediaQueryStyleSheet, device);
   return (
-    <>
-      <View style={normalStyles.screenView} />
-      <View style={mediaQueryStyles.screenView} />
-    </>
+    <View style={normalStyles.screenView}>
+      <View style={normalStyles.boxView} />
+      <View style={mediaQueryStyles.boxView} />
+    </View>
   );
 };

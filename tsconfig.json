@@ -1,33 +1,28 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "declaration": true,
-    "esModuleInterop": true,
+    "rootDir": ".",
+    "paths": {
+      "rn-custom-style-sheet": ["./src/index"]
+    },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "jsx": "react",
-    "lib": ["ESNext"],
-    "module": "ESNext",
-    "importsNotUsedAsValues": "error",
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "Node",
+    "jsx": "react",
+    "lib": ["esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noImplicitUseStrict": false,
     "noStrictGenericChecks": false,
+    "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "resolveJsonModule": true,
-    "noEmitOnError": true,
-    "outDir": "./lib",
-    "paths": {
-      "shallow-equal": ["./src/MediaQuery/@types/shallow-equal"]
-    },
     "skipLibCheck": true,
-    "sourceMap": true,
     "strict": true,
-    "target": "ES2018"
-  },
-  "exclude": ["**/__tests__/*"],
-  "include": ["src"]
+    "target": "esnext",
+    "verbatimModuleSyntax": true
+  }
 }
